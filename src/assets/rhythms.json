@@ -1,0 +1,12 @@
+[
+    {
+        "lead": "lead",
+        "curve": "some math curve",
+        "coordinates": {
+            "x": "x coord",
+            "y": "y coord",
+            "begin": "begin",
+            "end": "end"
+        }
+    }
+]
