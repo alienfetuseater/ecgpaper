@@ -1,8 +1,12 @@
 body {
-    background-color: orange;
+    // background-color: orange;
     margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 canvas {
-    background-color: purple;
+    // background-color: purple;
 }
