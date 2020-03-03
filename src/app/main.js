@@ -7,7 +7,7 @@ export default function mainSVG() {
     }
 
     return {
-        init: constructor()
+        init: constructor
     }
 }
 let main = mainSVG()

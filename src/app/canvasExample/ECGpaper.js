@@ -80,6 +80,6 @@ export default function ECGpaper(ctx, canvasHeight, canvasWidth) {
     }
 
     return {
-        init: constructor
+        init: constructor()
     }
 }
