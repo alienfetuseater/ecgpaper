@@ -8,5 +8,24 @@ body {
 }
 
 canvas {
-    // background-color: purple;
+    background-color: purple;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: orangered;
+
+    ul {
+        padding-top: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    li {
+        padding: 5px;
+        list-style: none;
+    }
 }
