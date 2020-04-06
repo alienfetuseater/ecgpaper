@@ -1,12 +1,21 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
+    entry: './src/index.js',
+    output: {
+        chunkFilename: '[name].bundle.js'
+    },
+    devServer: {
+        historyApiFallback: {
+            index: 'dist/index.html'
+        }
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src')
         }
     },
-    entry: './src/index.js',
     devtool: 'none',
     plugins: [
         new HtmlWebpackPlugin({

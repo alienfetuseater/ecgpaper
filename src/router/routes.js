@@ -1,22 +1,15 @@
-// import Route from './route.js'
-
+const path = require('path')
 export default [
     {
-        path: '/',
         name: 'root',
-        component: () => import('@/app/main.js')
+        component: 'root',
     },
     {
-        path: '/canvasExample',
         name: 'canvas example',
-        component: () => import('@/app/canvasExample/main.js')
+        component: 'canvas',
     },
     {
-        path: '/svgExample',
         name: 'svg example',
-        component: () => import('@/app/svgExample/main.js')
-    }
+        component: 'svg',
+    },
 ]
-// )
-
-// export default router

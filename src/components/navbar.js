@@ -1,32 +1,30 @@
-import routes from '@/router/routes.js'
-export default function NavBar(_routeArray) {
-    let routeArray = _routeArray
+import Router from '@/router/router.js'
+import Routes from '@/router/routes.js'
 
-    let clickHandler = e => {
+export default function NavBar() {
+    let clickHandlr = (e) => {
         let route = e.target.attributes[0].value
-        let routeInfo = routes.filter(r => {
-            return r.path === route
-        })[0]
-        window.history.pushState({}, '', routeInfo.path)
+        const router = Router(Routes)
+        router.loadRoute(route)
     }
 
-    const constructor = function() {
+    const constructor = function () {
         const nav = document.createElement('nav')
         const body = document.querySelector('body')
         body.insertAdjacentElement('afterbegin', nav)
         const ul = document.createElement('ul')
         nav.insertAdjacentElement('afterbegin', ul)
 
-        routeArray.forEach(route => {
+        Routes.forEach((route) => {
             const li = document.createElement('li')
-            li.setAttribute('data-path', route.path)
+            li.setAttribute('data-path', route.component)
             li.innerHTML = route.name
             ul.insertAdjacentElement('afterbegin', li)
-            li.addEventListener('click', clickHandler, false)
+            li.addEventListener('click', clickHandlr, false)
         })
     }
 
     return {
-        init: constructor()
+        init: constructor(),
     }
 }
