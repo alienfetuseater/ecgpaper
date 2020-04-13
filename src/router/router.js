@@ -1,29 +1,21 @@
-export default function Router(Routes) {
-    function _loadRoute(name) {
-        const route = _matchUrlToRoute(name)
+// import Home from '@/app/home/main.js'
+// import Svg from '@/app/svgExample/main.js'
+// import Canvas from '@/app/canvasExample/main.js'
 
-        switch (route.component) {
-            case 'canvas':
-                import('@/app/canvasExample/main.js')
-                break
-            case 'svg':
-                import('@/app/svgExample/main.js')
-                break
-            case 'root':
-                import('@/app/main.js')
-            default:
-                break
-        }
+export default function Router(Routes) {
+    function loadRoute(routeName) {
+        const route = matchRouteObject(routeName)
+        route.component()
     }
 
-    const _matchUrlToRoute = function (name) {
+    const matchRouteObject = function (name) {
         const matchedRoute = Routes.find((route) => {
-            return route.component == name
+            return route.name == name
         })
         return matchedRoute
     }
 
     return {
-        loadRoute: _loadRoute,
+        loadRoute: loadRoute,
     }
 }

@@ -1,4 +1,3 @@
 import './main.scss'
-import Navbar from './components/navbar.js'
-
-let navbar = Navbar()
+import Main from './app/main.js'
+let main = Main()

@@ -29,14 +29,11 @@
 
 export default function mainCanvas() {
     let constructor = function () {
-        const nav = document.querySelector('nav')
-        const clearMe = nav.nextElementSibling
-        clearMe.remove()
-        nav.insertAdjacentHTML('afterEnd', '<h1>hello world from canvas</h1>')
+        const main = document.querySelector('main')
+        main.innerHTML = '<h1>hello world from canvas</h1>'
     }
 
     return {
         init: constructor(),
     }
 }
-let MainCanvas = mainCanvas()

@@ -1,15 +1,18 @@
-const path = require('path')
+import Home from '@/app/home/main.js'
+import Svg from '@/app/svgExample/main.js'
+import Canvas from '@/app/canvasExample/main.js'
+
 export default [
     {
-        name: 'root',
-        component: 'root',
+        name: 'home',
+        component: Home,
     },
     {
-        name: 'canvas example',
-        component: 'canvas',
+        name: 'canvas',
+        component: Canvas,
     },
     {
-        name: 'svg example',
-        component: 'svg',
+        name: 'svg',
+        component: Svg,
     },
 ]
