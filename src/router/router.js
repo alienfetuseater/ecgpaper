@@ -4,6 +4,13 @@
 
 export default function Router(Routes) {
 	function loadRoute(routeName) {
+		// this makes sure there are no duplicate dom nodes being injected
+		const main = document.querySelector('main')
+		let mainChild = main.firstChild
+		if (mainChild) {
+			main.removeChild(mainChild)
+		}
+		// once old dom elements are removed we can go about adding selected route
 		const route = matchRouteObject(routeName)
 		route.component()
 	}
