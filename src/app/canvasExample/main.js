@@ -1,39 +1,27 @@
-// import ECGpaper from './ECGpaper.js'
+import ECGpaper from './ECGpaper'
 // import data from '@/assets/rhythms.json'
 // import Processor from './CurveGenerator.js'
 
-// export default function canvasECG() {
-//     let constructor = function() {
-//         // set up canvas
-//         const canvas = document.createElement('canvas')
-//         const body = document.querySelector('body')
-//         body.insertAdjacentHTML('afterbegin', canvas)
-//         const ctx = canvas.getContext('2d')
-//         canvas.height = window.innerHeight * (7 / 8)
-//         canvas.width = canvas.height * (11.69 / 8.27)
+export default function canvasECG() {
+	const constructor = () => {
+		// set up canvas
+		const canvas = document.createElement('canvas')
+		const main = document.querySelector('main')
+		const ctx = canvas.getContext('2d')
+		canvas.height = window.innerHeight * (7 / 8)
+		canvas.width = canvas.height * (11.69 / 8.27)
 
-//         // ecg paper
-//         let ecgPaper = ECGpaper(ctx, canvas.height, canvas.width)
-//         ecgPaper.init()
+		// ecg paper
+		const ecgPaper = ECGpaper(ctx, canvas.height, canvas.width)
+		console.log(ecgPaper.init)
+		main.innerHTML = canvas
+		// data.forEach((el) => {
+		//     let processor = Processor(ctx, el, canvas.width, canvas.height)
+		//     // processor.init()
+		// })
+	}
 
-//         data.forEach(el => {
-//             let processor = Processor(ctx, el, canvas.width, canvas.height)
-//             processor.init()
-//         })
-//     }
-
-//     return {
-//         init: constructor()
-//     }
-// }
-
-export default function mainCanvas() {
-    let constructor = function () {
-        const main = document.querySelector('main')
-        main.innerHTML = '<h1>hello world from canvas</h1>'
-    }
-
-    return {
-        init: constructor(),
-    }
+	return {
+		init: constructor(),
+	}
 }

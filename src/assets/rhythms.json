@@ -1,134 +1,134 @@
 [
-    {
-        "lead": "lead1",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.0,
-            "startY": 0.375,
-            "endX": 0.25,
-            "endY": 0.375
-        }
-    },
-    {
-        "lead": "lead2",
-        "curve": "Math.pow(x,2)",
-        "domain": [-20, 20],
-        "isoelectric": {
-            "startX": 0.0,
-            "startY": 0.625,
-            "endX": 0.25,
-            "endY": 0.625
-        }
-    },
-    {
-        "lead": "lead3",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.0,
-            "startY": 0.875,
-            "endX": 0.25,
-            "endY": 0.875
-        }
-    },
-    {
-        "lead": "avr",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.25,
-            "startY": 0.375,
-            "endX": 0.5,
-            "endY": 0.375
-        }
-    },
-    {
-        "lead": "avl",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.25,
-            "startY": 0.625,
-            "endX": 0.5,
-            "endY": 0.625
-        }
-    },
-    {
-        "lead": "avf",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.25,
-            "startY": 0.875,
-            "endX": 0.5,
-            "endY": 0.875
-        }
-    },
-    {
-        "lead": "v1",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.5,
-            "startY": 0.375,
-            "endX": 0.75,
-            "endY": 0.375
-        }
-    },
-    {
-        "lead": "v2",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.5,
-            "startY": 0.625,
-            "endX": 0.75,
-            "endY": 0.625
-        }
-    },
-    {
-        "lead": "v3",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.5,
-            "startY": 0.875,
-            "endX": 0.75,
-            "endY": 0.875
-        }
-    },
-    {
-        "lead": "v4",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.75,
-            "startY": 0.375,
-            "endX": 1.0,
-            "endY": 0.375
-        }
-    },
-    {
-        "lead": "v5",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.75,
-            "startY": 0.625,
-            "endX": 1.0,
-            "endY": 0.625
-        }
-    },
-    {
-        "lead": "v6",
-        "curve": "Math.pow(x,2)",
-        "domain": [-10, 10],
-        "isoelectric": {
-            "startX": 0.75,
-            "startY": 0.875,
-            "endX": 1.0,
-            "endY": 0.875
-        }
-    }
+	{
+		"lead": "lead1",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.0,
+			"startY": 0.375,
+			"endX": 0.25,
+			"endY": 0.375
+		}
+	},
+	{
+		"lead": "lead2",
+		"curve": "Math.pow(x,2)",
+		"domain": [-20, 20],
+		"isoelectric": {
+			"startX": 0.0,
+			"startY": 0.625,
+			"endX": 0.25,
+			"endY": 0.625
+		}
+	},
+	{
+		"lead": "lead3",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.0,
+			"startY": 0.875,
+			"endX": 0.25,
+			"endY": 0.875
+		}
+	},
+	{
+		"lead": "avr",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.25,
+			"startY": 0.375,
+			"endX": 0.5,
+			"endY": 0.375
+		}
+	},
+	{
+		"lead": "avl",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.25,
+			"startY": 0.625,
+			"endX": 0.5,
+			"endY": 0.625
+		}
+	},
+	{
+		"lead": "avf",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.25,
+			"startY": 0.875,
+			"endX": 0.5,
+			"endY": 0.875
+		}
+	},
+	{
+		"lead": "v1",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.5,
+			"startY": 0.375,
+			"endX": 0.75,
+			"endY": 0.375
+		}
+	},
+	{
+		"lead": "v2",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.5,
+			"startY": 0.625,
+			"endX": 0.75,
+			"endY": 0.625
+		}
+	},
+	{
+		"lead": "v3",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.5,
+			"startY": 0.875,
+			"endX": 0.75,
+			"endY": 0.875
+		}
+	},
+	{
+		"lead": "v4",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.75,
+			"startY": 0.375,
+			"endX": 1.0,
+			"endY": 0.375
+		}
+	},
+	{
+		"lead": "v5",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.75,
+			"startY": 0.625,
+			"endX": 1.0,
+			"endY": 0.625
+		}
+	},
+	{
+		"lead": "v6",
+		"curve": "Math.pow(x,2)",
+		"domain": [-10, 10],
+		"isoelectric": {
+			"startX": 0.75,
+			"startY": 0.875,
+			"endX": 1.0,
+			"endY": 0.875
+		}
+	}
 ]

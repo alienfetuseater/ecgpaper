@@ -1,0 +1,23 @@
+{
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        // "singleQuote": true
+        // "trailingComma": "all",
+        // "tabWidth": 4
+        // "semi": false,
+        // "endOfLine": "auto",
+        // "useTabs": true
+      }
+    ]
+  }
+}

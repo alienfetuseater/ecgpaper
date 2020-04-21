@@ -3,19 +3,19 @@
 // import Canvas from '@/app/canvasExample/main.js'
 
 export default function Router(Routes) {
-    function loadRoute(routeName) {
-        const route = matchRouteObject(routeName)
-        route.component()
-    }
+	function loadRoute(routeName) {
+		const route = matchRouteObject(routeName)
+		route.component()
+	}
 
-    const matchRouteObject = function (name) {
-        const matchedRoute = Routes.find((route) => {
-            return route.name == name
-        })
-        return matchedRoute
-    }
+	const matchRouteObject = function (name) {
+		const matchedRoute = Routes.find((route) => {
+			return route.name == name
+		})
+		return matchedRoute
+	}
 
-    return {
-        loadRoute: loadRoute,
-    }
+	return {
+		loadRoute: loadRoute,
+	}
 }
