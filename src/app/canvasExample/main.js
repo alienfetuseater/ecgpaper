@@ -14,7 +14,9 @@ export default function canvasECG() {
 		// ecg paper
 		const ecgPaper = ECGpaper(ctx, canvas.height, canvas.width)
 		ecgPaper
+
 		main.appendChild(canvas)
+
 		data.forEach((el) => {
 			let processor = Processor(ctx, el, canvas.width, canvas.height)
 			processor.init()

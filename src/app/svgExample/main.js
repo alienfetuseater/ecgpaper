@@ -1,9 +1,20 @@
+import ECGpaper from './ECGpaper'
+import data from '@/assets/rhythms.json'
+import Processor from './CurveGenerator.js'
+
 export default function mainSVG() {
+	const height = window.innerHeight * (7 / 8)
+	const width = height * (11.69 / 8.27)
+
 	let constructor = function () {
-		const main = document.querySelector('main')
-		const h1 = document.createElement('h1')
-		h1.innerHTML = 'hello world from svg'
-		main.appendChild(h1)
+		const ecgPaper = ECGpaper(width, height)
+		ecgPaper
+
+		// processor adds ecg leads to svg document created above
+		// data.forEach((el) => {
+		// 	let processor = Processor(el, width, height)
+		// 	processor.init()
+		// })
 	}
 
 	return {

@@ -1,31 +1,31 @@
 body {
-    // background-color: orange;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	// background-color: orange;
+	margin: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 canvas {
-    background-color: purple;
+	// background-color: purple;
 }
 
 nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: orangered;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: orangered;
 
-    ul {
-        padding-top: 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
+	ul {
+		padding-top: 5px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
 
-    li {
-        padding: 5px;
-        list-style: none;
-    }
+	li {
+		padding: 5px;
+		list-style: none;
+	}
 }
