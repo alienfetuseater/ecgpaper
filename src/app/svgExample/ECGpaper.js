@@ -3,9 +3,9 @@ export default function ECGpaper(_width, _height) {
 	let width = _width
 	let height = _height
 	const NMBRHORIZSMLBXS = 275
-	const NMBRVERTSMLBXS = 212.5
+	const NMBRVERTSMLBXS = 212
 	const NMBRHORIZLRGBXS = 55
-	const NMBRVERTLRGBXS = 42.5
+	const NMBRVERTLRGBXS = 42
 	let horizontalMM = width / NMBRHORIZSMLBXS
 	let verticalMM = height / NMBRVERTSMLBXS
 	let horizontalBB = horizontalMM * 5
@@ -72,9 +72,13 @@ export default function ECGpaper(_width, _height) {
 
 		// border
 		const border = document.createElementNS(xmlns, 'rect')
-		border.setAttributeNS(null, 'width', '100%')
-		border.setAttributeNS(null, 'height', '100%')
+		border.setAttributeNS(null, 'x', 0)
+		border.setAttributeNS(null, 'y', 0)
+		border.setAttributeNS(null, 'width', width)
+		border.setAttributeNS(null, 'height', height - verticalMM)
 		border.setAttributeNS(null, 'fill', 'white')
+		border.setAttributeNS(null, 'stroke', 'black')
+		border.setAttributeNS(null, 'stroke-width', '1')
 
 		//grids
 		const grids = document.createElementNS(xmlns, 'path')
@@ -100,7 +104,7 @@ export default function ECGpaper(_width, _height) {
 		// add svg element to main element
 		main.appendChild(svg)
 		svg.appendChild(border)
-		svg.appendChild(grids)
+		// svg.appendChild(grids)
 		svg.appendChild(smallLines)
 		svg.appendChild(bigLines)
 	}

@@ -11,10 +11,10 @@ export default function mainSVG() {
 		ecgPaper
 
 		// processor adds ecg leads to svg document created above
-		// data.forEach((el) => {
-		// 	let processor = Processor(el, width, height)
-		// 	processor.init()
-		// })
+		data.forEach((el) => {
+			let processor = Processor(el, width, height)
+			processor.init()
+		})
 	}
 
 	return {

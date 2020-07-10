@@ -10,6 +10,7 @@ export default function CurveGenerator(ctx, lead, canvasWidth, canvasHeight) {
 
 	const draw = function () {
 		for (let x = left_bound; x <= right_bound; x += 0.1) {
+			let X = x
 			let x_i = x + origin_x
 			let y_i = eval(curve) + origin_y
 			if (x === left_bound) {
