@@ -24,12 +24,8 @@ export default function CurveGenerator(ctx, lead, canvasWidth, canvasHeight) {
 
 	// draw draws a short straight line
 	const draw = function () {
-		console.groupCollapsed(lead.lead)
-		console.log(`begin_x: ${begin_x}`)
-		console.log(`end_y: ${end_y}`)
-		console.log(`origin_x: ${origin_x}`)
-		console.log(`origin_y: ${origin_y}`)
-		for (let x = left_bound; x <= right_bound; x += 1) {
+		for (let x = left_bound; x <= right_bound; x += 0.1) {
+			let X = x
 			let x_i = x + origin_x
 			let y_i = eval(curve) + origin_y
 
