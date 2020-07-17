@@ -12,13 +12,8 @@
 	},
 	{
 		"lead": "lead2",
-<<<<<<< HEAD
-		"curve": "Math.pow(x,2)",
-		"domain": [-4, 4],
-=======
 		"curve": "Math.pow(X,2)",
 		"domain": [-20, 20],
->>>>>>> 67f7e4fe6a3e0ee8bd986871823e92a20416496c
 		"isoelectric": {
 			"startX": 0.0,
 			"startY": 0.625,
@@ -61,11 +56,7 @@
 	},
 	{
 		"lead": "avf",
-<<<<<<< HEAD
-		"curve": "5*x - 5/2 * Math.pow(x, 2)",
-=======
 		"curve": "Math.pow(X,2)",
->>>>>>> 67f7e4fe6a3e0ee8bd986871823e92a20416496c
 		"domain": [-10, 10],
 		"isoelectric": {
 			"startX": 0.25,
@@ -76,11 +67,7 @@
 	},
 	{
 		"lead": "v1",
-<<<<<<< HEAD
-		"curve": "(-5/3) * Math.pow(x,2) + (20/3)*(x)",
-=======
 		"curve": "Math.pow(X,2)",
->>>>>>> 67f7e4fe6a3e0ee8bd986871823e92a20416496c
 		"domain": [-10, 10],
 		"isoelectric": {
 			"startX": 0.5,
