@@ -13,7 +13,7 @@
 	{
 		"lead": "lead2",
 		"curve": "Math.pow(x,2)",
-		"domain": [-20, 20],
+		"domain": [-4, 4],
 		"isoelectric": {
 			"startX": 0.0,
 			"startY": 0.625,
@@ -56,7 +56,7 @@
 	},
 	{
 		"lead": "avf",
-		"curve": "Math.pow(x,2)",
+		"curve": "5*x - 5/2 * Math.pow(x, 2)",
 		"domain": [-10, 10],
 		"isoelectric": {
 			"startX": 0.25,
@@ -67,7 +67,7 @@
 	},
 	{
 		"lead": "v1",
-		"curve": "Math.pow(x,2)",
+		"curve": "(-5/3) * Math.pow(x,2) + (20/3)*(x)",
 		"domain": [-10, 10],
 		"isoelectric": {
 			"startX": 0.5,
@@ -122,7 +122,13 @@
 	},
 	{
 		"lead": "v6",
-		"curve": "Math.pow(x,2)",
+		"curve": {
+			"pwave": "Math.pow(x,2)",
+			"prsegment": "2",
+			"qrs": "Math.pow(x,3)",
+			"stsegment": "1",
+			"twave": "Math.pow(x,2)"
+		},
 		"domain": [-10, 10],
 		"isoelectric": {
 			"startX": 0.75,

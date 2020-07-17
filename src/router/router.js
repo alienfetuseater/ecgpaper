@@ -1,11 +1,11 @@
-// import Home from '@/app/home/main.js'
-// import Svg from '@/app/svgExample/main.js'
-// import Canvas from '@/app/canvasExample/main.js'
-
 export default function Router(Routes) {
+	const main = document.querySelector('main')
+	function constructor() {
+		matchRouteObject(Routes[0].name).component()
+	}
+
 	function loadRoute(routeName) {
 		// this makes sure there are no duplicate dom nodes being injected
-		const main = document.querySelector('main')
 		let mainChild = main.firstChild
 		if (mainChild) {
 			main.removeChild(mainChild)
@@ -23,6 +23,7 @@ export default function Router(Routes) {
 	}
 
 	return {
-		loadRoute: loadRoute,
+		loadRoute,
+		init: constructor(),
 	}
 }

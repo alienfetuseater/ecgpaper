@@ -18,7 +18,7 @@ nav {
     background-color: orangered;
 
     ul {
-        padding-top: 5px;
+        margin: 0;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -27,5 +27,8 @@ nav {
     li {
         padding: 5px;
         list-style: none;
+        user-select: none;
+        cursor: pointer;
     }
+
 }
