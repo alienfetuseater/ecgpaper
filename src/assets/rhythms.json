@@ -119,22 +119,5 @@
 			"endX": 1.0,
 			"endY": 0.625
 		}
-	},
-	{
-		"lead": "v6",
-		"curve": {
-			"pwave": "Math.pow(x,2)",
-			"prsegment": "2",
-			"qrs": "Math.pow(x,3)",
-			"stsegment": "1",
-			"twave": "Math.pow(x,2)"
-		},
-		"domain": [-10, 10],
-		"isoelectric": {
-			"startX": 0.75,
-			"startY": 0.875,
-			"endX": 1.0,
-			"endY": 0.875
-		}
 	}
 ]

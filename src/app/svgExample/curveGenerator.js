@@ -3,6 +3,7 @@ export default function CurveGenerator(lead, canvasWidth, canvasHeight) {
 	const xmlns = 'http://www.w3.org/2000/svg'
 
 	let begin_x = lead.isoelectric.startX * canvasWidth
+	let end_x = lead.isoelectric.endX * canvasWidth
 	let end_y = lead.isoelectric.endY * canvasHeight
 	let curve = lead.curve
 	let origin_x = begin_x + 0.125 * canvasWidth
@@ -27,6 +28,8 @@ export default function CurveGenerator(lead, canvasWidth, canvasHeight) {
 			line.setAttributeNS(null, 'x2', x2)
 			line.setAttributeNS(null, 'y2', y2)
 			line.setAttributeNS(null, 'stroke', 'black')
+			line.setAttributeNS(null, 'stroke-width', '1')
+
 			svg.appendChild(line)
 		}
 	}

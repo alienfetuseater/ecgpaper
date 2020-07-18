@@ -7,8 +7,8 @@ body {
 	align-items: center;
 }
 
-canvas {
-	// background-color: purple;
+main {
+	// margin: 5px 0 0;
 }
 
 nav {
@@ -18,14 +18,13 @@ nav {
 	background-color: orangered;
 
 	ul {
-		padding-top: 5px;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 	}
 
 	li {
-		padding: 5px;
+		padding: 0 5px;
 		list-style: none;
 	}
 }

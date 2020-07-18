@@ -3,7 +3,7 @@ import data from '@/assets/rhythms.json'
 import Processor from './CurveGenerator.js'
 
 export default function mainSVG() {
-	const height = window.innerHeight * (7 / 8)
+	const height = window.innerHeight * (13 / 16)
 	const width = height * (11.69 / 8.27)
 
 	let constructor = function () {

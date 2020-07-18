@@ -11,6 +11,8 @@ export default function ECGpaper(_width, _height) {
 	let horizontalBB = horizontalMM * 5
 	let verticalBB = verticalMM * 5
 
+	let isoElectricArray = [0.375, 0.625, 0.875]
+
 	const SmallLines = function () {
 		let path = ''
 		for (let i = 5; i < NMBRHORIZSMLBXS - 5; i++) {
@@ -42,6 +44,20 @@ export default function ECGpaper(_width, _height) {
 			}, ${i * verticalBB} `
 		}
 		return path
+	}
+
+	const isoElectricLines = function (y) {
+		const isoElectricLine = document.createElementNS(xmlns, 'line')
+		isoElectricLine.setAttributeNS(null, 'x1', 0)
+		isoElectricLine.setAttributeNS(null, 'y1', y * height)
+		isoElectricLine.setAttributeNS(null, 'x2', width)
+		isoElectricLine.setAttributeNS(null, 'y2', y * height)
+		isoElectricLine.setAttributeNS(null, 'stroke', 'black')
+		isoElectricLine.setAttributeNS(null, 'stroke-opacity', 0.5)
+		isoElectricLine.setAttributeNS(null, 'stroke-dasharray', '10 10')
+
+		return isoElectricLine
+		// svg.appendChild(isoElectricLine)
 	}
 
 	const LeadBoxes = function () {
@@ -86,6 +102,7 @@ export default function ECGpaper(_width, _height) {
 		grids.setAttributeNS(null, 'fill', 'none')
 		grids.setAttributeNS(null, 'stroke', 'black')
 		grids.setAttributeNS(null, 'stroke-width', '1')
+		grids.setAttributeNS(null, 'stroke-opacity', '.5')
 
 		//small lines
 		const smallLines = document.createElementNS(xmlns, 'path')
@@ -104,9 +121,14 @@ export default function ECGpaper(_width, _height) {
 		// add svg element to main element
 		main.appendChild(svg)
 		svg.appendChild(border)
-		// svg.appendChild(grids)
 		svg.appendChild(smallLines)
 		svg.appendChild(bigLines)
+		svg.appendChild(grids)
+
+		// add isoelectric lines
+		isoElectricArray.forEach((el) => {
+			svg.appendChild(isoElectricLines(el))
+		})
 	}
 
 	return {
