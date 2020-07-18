@@ -1,15 +1,22 @@
 export default function CurveGenerator(lead, canvasWidth, canvasHeight) {
 	const svg = document.querySelector('svg')
 	const xmlns = 'http://www.w3.org/2000/svg'
+	const NMBRHORIZSMLBXS = 275
+	let horizontalMM = canvasWidth / NMBRHORIZSMLBXS
+	// const NMBRVERTSMLBXS = 212
+	// let verticalMM = canvasHeight / NMBRVERTSMLBXS
+	// const NMBRHORIZLRGBXS = 55
+	// const NMBRVERTLRGBXS = 42
+	// let horizontalBB = horizontalMM * 5
+	// let verticalBB = verticalMM * 5
 
 	let begin_x = lead.isoelectric.startX * canvasWidth
-	let end_x = lead.isoelectric.endX * canvasWidth
 	let end_y = lead.isoelectric.endY * canvasHeight
 	let curve = lead.curve
 	let origin_x = begin_x + 0.125 * canvasWidth
 	let origin_y = end_y
-	let left_bound = lead.domain[0]
-	let right_bound = lead.domain[1]
+	let left_bound = lead.domain[0] * horizontalMM
+	let right_bound = lead.domain[1] * horizontalMM
 
 	const draw = function () {
 		for (let x = left_bound; x <= right_bound; x += 0.1) {

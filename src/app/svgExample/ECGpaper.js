@@ -57,7 +57,6 @@ export default function ECGpaper(_width, _height) {
 		isoElectricLine.setAttributeNS(null, 'stroke-dasharray', '10 10')
 
 		return isoElectricLine
-		// svg.appendChild(isoElectricLine)
 	}
 
 	const LeadBoxes = function () {

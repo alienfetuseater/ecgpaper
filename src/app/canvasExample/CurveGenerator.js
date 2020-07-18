@@ -19,8 +19,10 @@ export default function CurveGenerator(ctx, lead, canvasWidth, canvasHeight) {
 
 	let origin_x = begin_x + 0.125 * canvasWidth
 	let origin_y = end_y
-	let left_bound = lead.domain[0]
-	let right_bound = lead.domain[1]
+	const NMBRHORIZSMLBXS = 275
+	let horizontalMM = canvasWidth / NMBRHORIZSMLBXS
+	let left_bound = lead.domain[0] * horizontalMM
+	let right_bound = lead.domain[1] * horizontalMM
 
 	// draw draws a short straight line
 	const draw = function () {
