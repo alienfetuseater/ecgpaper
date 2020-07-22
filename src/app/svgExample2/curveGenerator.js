@@ -17,7 +17,6 @@ export default function CurveGenerator(lead, canvasWidth, canvasHeight) {
 	let origin_y = end_y
 	let left_bound = lead.domain[0] * horizontalMM
 	let right_bound = lead.domain[1] * horizontalMM
-	// let amplitude =
 
 	const draw = function () {
 		for (let x = left_bound; x <= right_bound; x += 0.1) {
