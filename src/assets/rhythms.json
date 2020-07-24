@@ -1,7 +1,7 @@
 [
 	{
 		"lead": "lead1",
-		"curve": "Math.pow(X,2)",
+		"curve": "-1 * Math.pow(X,2)",
 		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.0,
@@ -23,7 +23,7 @@
 	},
 	{
 		"lead": "lead3",
-		"curve": "Math.pow(X,2)",
+		"curve": "Math.pow(X,3)",
 		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.0,
@@ -34,7 +34,7 @@
 	},
 	{
 		"lead": "avr",
-		"curve": "Math.pow(X,2)",
+		"curve": "-1 * Math.pow(X,2)",
 		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.25,
@@ -45,7 +45,7 @@
 	},
 	{
 		"lead": "avl",
-		"curve": "Math.pow(X,2)",
+		"curve": "Math.pow(X,8)",
 		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.25,
