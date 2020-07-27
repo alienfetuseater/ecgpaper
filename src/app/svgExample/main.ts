@@ -1,12 +1,13 @@
 import ECGpaper from './ECGpaper'
 import data from '@/assets/rhythms.json'
-import Processor from './CurveGenerator.js'
+import Processor from './Processor'
+import { componentObject } from 'myLib'
 
-export default function mainSVG() {
+export default function mainSVG(): componentObject {
 	const height = window.innerHeight * (13 / 16)
 	const width = height * (11.69 / 8.27)
 
-	let constructor = function () {
+	let constructor = function (): void {
 		const ecgPaper = ECGpaper(width, height)
 		ecgPaper
 

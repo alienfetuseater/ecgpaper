@@ -1,7 +1,13 @@
 {
-	"plugins": ["prettier"],
-	"extends": ["eslint:recommended", "plugin:prettier/recommended"],
-	"parser": "babel-eslint",
+	"plugins": ["@typescript-eslint", "prettier"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		// "plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"plugin:prettier/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
 	"env": {
 		"browser": true,
 		"node": true,

@@ -1,10 +1,12 @@
-export default function Router(Routes) {
+import { routeObject } from 'myLib'
+
+export default function Router(Routes: routeObject[]) {
 	const main = document.querySelector('main')
 	function constructor() {
 		matchRouteObject(Routes[0].name).component()
 	}
 
-	function loadRoute(routeName) {
+	function loadRoute(routeName: string): void {
 		// this makes sure there are no duplicate dom nodes being injected
 		let mainChild = main.firstChild
 		if (mainChild) {
@@ -15,7 +17,7 @@ export default function Router(Routes) {
 		route.component()
 	}
 
-	const matchRouteObject = function (name) {
+	const matchRouteObject = function (name: string) {
 		const matchedRoute = Routes.find((route) => {
 			return route.name == name
 		})
