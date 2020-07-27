@@ -6,15 +6,15 @@ export default function processor(
 	canvasHeight: number,
 ) {
 	const svg = document.querySelector('svg')
-	const xmlns: string = 'http://www.w3.org/2000/svg'
+	const xmlns = 'http://www.w3.org/2000/svg'
 
 	const NMBRHORIZSMLBXS = 275
 	const horizontalMM = canvasWidth / NMBRHORIZSMLBXS
 	const NMBRVERTSMLBXS = 212
 	const verticalMM = canvasHeight / NMBRVERTSMLBXS
 
-	let width = 4
-	let desiredAmplitude = 15
+	const width = 4
+	const desiredAmplitude = 15
 
 	const begin_x = lead.isoelectric.startX * canvasWidth
 	const end_y = lead.isoelectric.endY * canvasHeight
@@ -68,13 +68,13 @@ export default function processor(
 		const line = document.createElementNS(xmlns, 'line')
 
 		let X = x
-		let x1: Number = X + origin_x
-		let y1: Number =
+		const x1: number = X + origin_x
+		const y1: number =
 			eval(curve) * amplitudeMultiplier + origin_y + verticalShift
 
 		X += 0.1
-		let x2: Number = X + origin_x
-		let y2: Number =
+		const x2: number = X + origin_x
+		const y2: number =
 			eval(curve) * amplitudeMultiplier + origin_y + verticalShift
 
 		line.setAttributeNS(null, 'x1', String(x1))

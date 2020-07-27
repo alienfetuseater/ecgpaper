@@ -1,19 +1,22 @@
-import { routeObject } from 'myLib'
+import { routerObject, routeObject } from 'myLib'
 
-export default function Router(Routes: routeObject[]) {
+export default function Router(Routes: routeObject[]): routerObject {
 	const main = document.querySelector('main')
-	function constructor() {
+
+	function constructor(): void {
 		matchRouteObject(Routes[0].name).component()
 	}
 
 	function loadRoute(routeName: string): void {
 		// this makes sure there are no duplicate dom nodes being injected
-		let mainChild = main.firstChild
+		const mainChild = main.firstChild
 		if (mainChild) {
 			main.removeChild(mainChild)
 		}
 		// once old dom elements are removed we can go about adding selected route
 		const route = matchRouteObject(routeName)
+
+		// this appends the component to the dom here
 		route.component()
 	}
 

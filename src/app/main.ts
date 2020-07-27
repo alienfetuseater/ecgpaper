@@ -7,8 +7,8 @@ const router = Router(Routes)
 const navbar = NavigationBar(Routes)
 const main = document.querySelector('main')
 
-const clickHandlr = (<HTMLLIElement>e: EventTarget) => {
-	const routeName = e.target.attributes[0].value
+const clickHandlr = (e: Event) => {
+	const routeName = (e.target as Element).attributes[0].value
 	router.loadRoute(routeName)
 }
 export default function Main(): componentObject {

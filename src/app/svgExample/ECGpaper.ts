@@ -1,17 +1,18 @@
-export default function ECGpaper(_width, _height) {
+import { ECGpaper } from 'myLib'
+export default function ECGpaper(_width: number, _height: number): ECGpaper {
 	const xmlns = 'http://www.w3.org/2000/svg'
-	let width = _width
-	let height = _height
+	const width = _width
+	const height = _height
 	const NMBRHORIZSMLBXS = 275
 	const NMBRVERTSMLBXS = 212
 	const NMBRHORIZLRGBXS = 55
 	const NMBRVERTLRGBXS = 42
-	let horizontalMM = width / NMBRHORIZSMLBXS
-	let verticalMM = height / NMBRVERTSMLBXS
-	let horizontalBB = horizontalMM * 5
-	let verticalBB = verticalMM * 5
+	const horizontalMM = width / NMBRHORIZSMLBXS
+	const verticalMM = height / NMBRVERTSMLBXS
+	const horizontalBB = horizontalMM * 5
+	const verticalBB = verticalMM * 5
 
-	let isoElectricArray = [0.375, 0.625, 0.875]
+	const isoElectricArray = [0.375, 0.625, 0.875]
 
 	const SmallLines = function () {
 		let path = ''
@@ -46,14 +47,14 @@ export default function ECGpaper(_width, _height) {
 		return path
 	}
 
-	const isoElectricLines = function (y) {
+	const isoElectricLines = function (y: number) {
 		const isoElectricLine = document.createElementNS(xmlns, 'line')
-		isoElectricLine.setAttributeNS(null, 'x1', 0)
-		isoElectricLine.setAttributeNS(null, 'y1', y * height)
-		isoElectricLine.setAttributeNS(null, 'x2', width)
-		isoElectricLine.setAttributeNS(null, 'y2', y * height)
+		isoElectricLine.setAttributeNS(null, 'x1', String(0))
+		isoElectricLine.setAttributeNS(null, 'y1', String(y * height))
+		isoElectricLine.setAttributeNS(null, 'x2', String(width))
+		isoElectricLine.setAttributeNS(null, 'y2', String(y * height))
 		isoElectricLine.setAttributeNS(null, 'stroke', 'black')
-		isoElectricLine.setAttributeNS(null, 'stroke-opacity', 0.5)
+		isoElectricLine.setAttributeNS(null, 'stroke-opacity', String(0.5))
 		isoElectricLine.setAttributeNS(null, 'stroke-dasharray', '10 10')
 
 		return isoElectricLine
@@ -79,18 +80,18 @@ export default function ECGpaper(_width, _height) {
 
 		// set up svg
 		svg.setAttributeNS(null, 'viewBox', '0 0 ' + width + ' ' + height)
-		svg.setAttributeNS(null, 'width', width)
-		svg.setAttributeNS(null, 'height', height)
+		svg.setAttributeNS(null, 'width', String(width))
+		svg.setAttributeNS(null, 'height', String(height))
 		svg.style.display = 'block'
 
 		// set up graph paper
 
 		// border
 		const border = document.createElementNS(xmlns, 'rect')
-		border.setAttributeNS(null, 'x', 0)
-		border.setAttributeNS(null, 'y', 0)
-		border.setAttributeNS(null, 'width', width)
-		border.setAttributeNS(null, 'height', height - verticalMM)
+		border.setAttributeNS(null, 'x', String(0))
+		border.setAttributeNS(null, 'y', String(0))
+		border.setAttributeNS(null, 'width', String(width))
+		border.setAttributeNS(null, 'height', String(height - verticalMM))
 		border.setAttributeNS(null, 'fill', 'white')
 		border.setAttributeNS(null, 'stroke', 'black')
 		border.setAttributeNS(null, 'stroke-width', '1')
