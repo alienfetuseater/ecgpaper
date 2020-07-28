@@ -1,5 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const data = require('../../assets/rhythms.json')
 import ECGpaper from './ECGpaper'
-import data from '@/assets/rhythms.json'
 import Processor from './Processor'
 import { componentObject, leadObject } from 'myLib'
 
