@@ -1,6 +1,6 @@
-import Routes from '@/router/routes'
-import Router from '@/router/router'
-import NavigationBar from '@/components/NavigationBar'
+import Routes from '../router/routes'
+import Router from '../router/router'
+import NavigationBar from '../components/NavigationBar'
 import { componentObject, routeObject } from 'myLib'
 
 const router = Router(Routes)

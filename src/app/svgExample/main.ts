@@ -23,8 +23,3 @@ export default function mainSVG(): componentObject {
 		init: constructor(),
 	}
 }
-11353039
-
-7597
-
-11353039
