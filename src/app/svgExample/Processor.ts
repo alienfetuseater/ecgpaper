@@ -4,7 +4,7 @@ export default function processor(
 	lead: leadObject,
 	canvasWidth: number,
 	canvasHeight: number,
-) {
+): { init: void } {
 	const svg = document.querySelector('svg')
 	const xmlns = 'http://www.w3.org/2000/svg'
 

@@ -4,6 +4,7 @@ export default function Router(Routes: routeObject[]): routerObject {
 	const main = document.querySelector('main')
 
 	function constructor(): void {
+		// does the same thing loadRoute does without calling loadRoute
 		matchRouteObject(Routes[0].name).component()
 	}
 
@@ -28,7 +29,7 @@ export default function Router(Routes: routeObject[]): routerObject {
 	}
 
 	return {
-		loadRoute,
 		init: constructor(),
+		loadRoute,
 	}
 }

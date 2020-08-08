@@ -1,7 +1,7 @@
 import Routes from '../router/routes'
 import Router from '../router/router'
 import NavigationBar from '../components/NavigationBar'
-import { componentObject, routeObject } from 'myLib'
+import { routeObject } from 'myLib'
 
 const router = Router(Routes)
 const navbar = NavigationBar(Routes)
@@ -11,7 +11,8 @@ const clickHandlr = (e: Event) => {
 	const routeName = (e.target as Element).attributes[0].value
 	router.loadRoute(routeName)
 }
-export default function Main(): componentObject {
+
+export default function Main(): { init: void } {
 	const constructor = () => {
 		main.insertAdjacentHTML('beforebegin', navbar.init)
 		const li = document.querySelectorAll('li')

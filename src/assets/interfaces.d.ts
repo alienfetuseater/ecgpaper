@@ -17,12 +17,12 @@ declare module 'myLib' {
 	}
 
 	export interface routerObject {
-		loadRoute: void
-		component: any
+		loadRoute: (routeName: string) => void
+		init: any
 	}
 
 	export interface componentObject {
-		init: void
+		init: string
 	}
 	export interface ECGpaper {
 		init: void

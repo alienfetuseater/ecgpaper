@@ -32,7 +32,7 @@ module.exports = {
 			{
 				test: /\.ts?$/,
 				exclude: /node_modules/,
-				use: ['ts-loader', 'babel-loader', 'eslint-loader'],
+				use: ['babel-loader', 'ts-loader', 'eslint-loader'],
 			},
 			{
 				test: /\.(svg|png|jpg|gif)$/,

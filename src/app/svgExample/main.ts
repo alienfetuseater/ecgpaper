@@ -2,9 +2,9 @@
 const data = require('../../assets/rhythms.json')
 import ECGpaper from './ECGpaper'
 import Processor from './Processor'
-import { componentObject, leadObject } from 'myLib'
+import { leadObject } from 'myLib'
 
-export default function mainSVG(): componentObject {
+export default function mainSVG(): { init: void } {
 	const height = window.innerHeight * (13 / 16)
 	const width = height * (11.69 / 8.27)
 
@@ -15,7 +15,7 @@ export default function mainSVG(): componentObject {
 		// processor adds ecg leads to svg document created above
 		data.forEach((el: leadObject) => {
 			const processor = Processor(el, width, height)
-			processor.init()
+			processor.init
 		})
 	}
 
