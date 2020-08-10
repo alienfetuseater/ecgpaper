@@ -1,135 +1,446 @@
 [
 	{
 		"lead": "lead1",
-		"curve": "-1 * Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.0,
 			"startY": 0.375,
 			"endX": 0.25,
 			"endY": 0.375
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "lead2",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.0,
 			"startY": 0.625,
 			"endX": 0.25,
 			"endY": 0.625
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "lead3",
-		"curve": "Math.pow(X,3)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.0,
 			"startY": 0.875,
 			"endX": 0.25,
 			"endY": 0.875
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "avr",
-		"curve": "-1 * Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.25,
 			"startY": 0.375,
 			"endX": 0.5,
 			"endY": 0.375
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "avl",
-		"curve": "Math.pow(X,8)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.25,
 			"startY": 0.625,
 			"endX": 0.5,
 			"endY": 0.625
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "avf",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.25,
 			"startY": 0.875,
 			"endX": 0.5,
 			"endY": 0.875
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "v1",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.5,
 			"startY": 0.375,
 			"endX": 0.75,
 			"endY": 0.375
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "v2",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.5,
 			"startY": 0.625,
 			"endX": 0.75,
 			"endY": 0.625
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "v3",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.5,
 			"startY": 0.875,
 			"endX": 0.75,
 			"endY": 0.875
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "v4",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.75,
 			"startY": 0.375,
 			"endX": 1.0,
 			"endY": 0.375
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "v5",
-		"curve": "Math.pow(X,2)",
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.75,
 			"startY": 0.625,
 			"endX": 1.0,
 			"endY": 0.625
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	},
 	{
 		"lead": "v6",
-		"curve": "Math.pow(X,2)",
-
-		"domain": [-2, 2],
 		"isoelectric": {
 			"startX": 0.75,
 			"startY": 0.875,
 			"endX": 1.0,
 			"endY": 0.875
-		}
+		},
+		"complex": [
+			{
+				"feature": "pwave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "printerval",
+				"width": 2
+			},
+			{
+				"feature": "qrs",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			},
+			{
+				"feature": "stinterval",
+				"width": 2
+			},
+			{
+				"feature": "twave",
+				"curve": "Math.pow(X,2)",
+				"amplitude": 5,
+				"width": 2
+			}
+		]
 	}
 ]

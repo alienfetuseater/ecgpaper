@@ -1,14 +1,20 @@
 declare module 'myLib' {
+	export interface feature {
+		feature: string
+		curve?: string
+		amplitude?: number
+		width: number
+	}
+
 	export interface leadObject {
 		lead: string
-		curve: string
-		width: number
 		isoelectric: {
 			startX: number
 			startY: number
 			endX: number
 			endY: number
 		}
+		complex: feature[]
 	}
 
 	export interface routeObject {
