@@ -95,7 +95,7 @@ export default function processor(
 		amplitudeMultiplier: number,
 		verticalShift: number,
 	) {
-		for (let x = domain[0]; x <= domain[1]; x++) {
+		for (let x = domain[0]; x <= domain[1]; x += 0.1) {
 			drawLine(
 				curve,
 				origin_x,
@@ -107,10 +107,30 @@ export default function processor(
 		}
 	}
 
-	// const drawStrip = function () { }
+	const drawStrip = function (
+		domain: number[],
+		curve: string,
+		origin_x: number,
+		origin_y: number,
+		amplitudeMultiplier: number,
+		verticalShift: number,
+	) {
+		for (let index = 0; index < 2; index++) {
+			drawCurve(
+				domain,
+				curve,
+				origin_x,
+				origin_y,
+				amplitudeMultiplier,
+				verticalShift,
+			)
+
+			origin_x += width * horizontalMM
+		}
+	}
 
 	return {
-		init: drawCurve(
+		init: drawStrip(
 			domain(width),
 			curve,
 			origin_x,
