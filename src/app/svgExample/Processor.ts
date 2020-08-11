@@ -18,7 +18,6 @@ export default function processor(
 	const leadBoxLength = (horizontalMM * NMBRHORIZSMLBXS) / 4
 	const width = util.width(lead)
 	const nmbrComplexes = leadBoxLength / (width * horizontalMM) - 1
-	console.log(nmbrComplexes)
 	// this should be set by user input in the future
 	let desiredAmplitude = 15
 	const tpInterval = 5 * horizontalMM
@@ -35,36 +34,33 @@ export default function processor(
 			for (let wave = 0; wave < lead.complex.length; wave++) {
 				if (lead.complex[wave].curve) {
 					const dom: number[] = util.domain(lead.complex[wave].width)
+					console.log(dom[1], 'dom1')
 					desiredAmplitude = lead.complex[wave].amplitude
 					for (let x = dom[0]; x <= dom[1]; x += 0.1) {
+						const OriginalAmplitude = util.originalAmplitude(
+							dom[1],
+							lead.complex[wave].curve,
+						)
+
+						const AmplitudeMultiplier = util.amplitudeMultiplier(
+							desiredAmplitude,
+							OriginalAmplitude,
+						)
+
+						const VerticalShift = util.verticalShift(
+							OriginalAmplitude,
+							AmplitudeMultiplier,
+						)
+
 						util.drawLine(
 							lead.complex[wave].curve,
 							begin_x,
 							end_y,
 							x,
-							util.amplitudeMultiplier(
-								desiredAmplitude,
-								util.originalAmplitude(
-									dom[1],
-									lead.complex[wave].curve,
-								),
-							),
-							util.verticalShift(
-								util.originalAmplitude(
-									dom[1],
-									lead.complex[wave].curve,
-								),
-								util.amplitudeMultiplier(
-									desiredAmplitude,
-									util.originalAmplitude(
-										dom[1],
-										lead.complex[wave].curve,
-									),
-								),
-							),
+							AmplitudeMultiplier,
+							VerticalShift,
 						)
 					}
-					// begin_x += lead.complex[wave].width * horizontalMM
 				} else {
 					util.drawIntervalLine(
 						begin_x,
@@ -72,9 +68,10 @@ export default function processor(
 						lead.complex[wave].width * horizontalMM,
 						0,
 					)
-					// begin_x += lead.complex[wave].width * horizontalMM
 				}
+				console.log(begin_x, 'prior')
 				begin_x += lead.complex[wave].width * horizontalMM
+				console.log(begin_x, 'after')
 			}
 			util.drawIntervalLine(begin_x, end_y, tpInterval, 0)
 		}
