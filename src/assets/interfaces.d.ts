@@ -19,18 +19,39 @@ declare module 'myLib' {
 
 	export interface routeObject {
 		name: string
-		component: any
+		component: () => { init: void }
 	}
 
 	export interface routerObject {
+		init: void
 		loadRoute: (routeName: string) => void
-		init: any
 	}
 
-	export interface componentObject {
-		init: string
-	}
-	export interface ECGpaper {
-		init: void
+	export interface util {
+		domain: (width: number) => number[]
+		originalAmplitude: (rightBound: number, curve: string) => number
+		amplitudeMultiplier: (
+			desiredAmplitude: number,
+			originalAmplitude: number,
+		) => number
+		verticalShift: (
+			originalAmplitude: number,
+			amplitudeMultiplier: number,
+		) => number
+		width: (lead: leadObject) => number
+		drawLine: (
+			curve: string,
+			origin_x: number,
+			origin_y: number,
+			x: number,
+			amplitudeMultiplier: number,
+			verticalShift: number,
+		) => void
+		drawIntervalLine: (
+			origin_x: number,
+			origin_y: number,
+			length: number,
+			height: number,
+		) => void
 	}
 }

@@ -1,5 +1,8 @@
-import { ECGpaper } from 'myLib'
-export default function ECGpaper(_width: number, _height: number): ECGpaper {
+// import { ECGpaper } from 'myLib'
+export default function ECGpaper(
+	_width: number,
+	_height: number,
+): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
 	const width = _width
 	const height = _height

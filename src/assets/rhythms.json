@@ -11,28 +11,28 @@
 			{
 				"feature": "pwave",
 				"curve": "Math.pow(X,2)",
-				"amplitude": 5,
-				"width": 2
+				"amplitude": 2,
+				"width": 3
 			},
 			{
 				"feature": "printerval",
-				"width": 2
+				"width": 1
 			},
 			{
 				"feature": "qrs",
 				"curve": "Math.pow(X,2)",
-				"amplitude": 5,
-				"width": 2
+				"amplitude": 10,
+				"width": 3
 			},
 			{
 				"feature": "stinterval",
-				"width": 2
+				"width": 1
 			},
 			{
 				"feature": "twave",
 				"curve": "Math.pow(X,2)",
 				"amplitude": 5,
-				"width": 2
+				"width": 5
 			}
 		]
 	},

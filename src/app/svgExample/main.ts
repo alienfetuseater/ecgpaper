@@ -13,13 +13,13 @@ export default function mainSVG(): { init: void } {
 		ecgPaper
 
 		// processor adds ecg leads to svg document created above
-		// data.forEach((el: leadObject) => {
-		// 	const processor = Processor(el, width, height)
-		// 	processor.init
-		// })
+		data.forEach((el: leadObject) => {
+			const processor = Processor(el, width, height)
+			processor.init
+		})
 
-		const processor = Processor(data[0], width, height)
-		processor.init
+		// const processor = Processor(data[0], width, height)
+		// processor.init
 	}
 
 	return {
