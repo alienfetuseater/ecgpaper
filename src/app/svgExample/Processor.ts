@@ -14,16 +14,15 @@ export default function processor(
 	const horizontalMM = canvasWidth / NMBRHORIZSMLBXS
 	const verticalMM = canvasHeight / NMBRVERTSMLBXS
 	const util = Util(horizontalMM, verticalMM, xmlns, svg)
+	const begin_x = lead.isoelectric.startX * canvasWidth + 8 * horizontalMM
+	const end_y = lead.isoelectric.endY * canvasHeight + 5 * verticalMM
 
 	const leadBoxLength = (horizontalMM * NMBRHORIZSMLBXS) / 4
-	const compleWidth = util.width(lead)
+	const compleWidth = util.complexWidth(lead)
 	const nmbrComplexes = leadBoxLength / (compleWidth * horizontalMM) - 3
 	// this should be set by user input in the future
 	let desiredAmplitude = 15
 	const tpInterval = 5 * horizontalMM
-
-	const begin_x = lead.isoelectric.startX * canvasWidth + 8 * horizontalMM
-	const end_y = lead.isoelectric.endY * canvasHeight + 5 * verticalMM
 
 	const drawRhythm = function (
 		lead: leadObject,

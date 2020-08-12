@@ -1,5 +1,4 @@
 body {
-	// background-color: orange;
 	margin: 0;
 	height: 100vh;
 	display: flex;
@@ -26,5 +25,6 @@ nav {
 	li {
 		padding: 0 5px;
 		list-style: none;
+		cursor: pointer;
 	}
 }

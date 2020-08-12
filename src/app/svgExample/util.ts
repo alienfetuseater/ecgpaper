@@ -41,7 +41,7 @@ export default function Util(
 		return originalAmplitude * amplitudeMultiplier
 	}
 
-	const width = function (lead: leadObject): number {
+	const complexWidth = function (lead: leadObject): number {
 		let width = 0
 		lead.complex.forEach((el) => {
 			width += el.width
@@ -106,7 +106,7 @@ export default function Util(
 		originalAmplitude,
 		amplitudeMultiplier,
 		verticalShift,
-		width,
+		complexWidth,
 		drawLine,
 		drawIntervalLine,
 	}

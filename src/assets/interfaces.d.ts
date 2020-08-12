@@ -38,7 +38,7 @@ declare module 'myLib' {
 			originalAmplitude: number,
 			amplitudeMultiplier: number,
 		) => number
-		width: (lead: leadObject) => number
+		complexWidth: (lead: leadObject) => number
 		drawLine: (
 			curve: string,
 			origin_x: number,

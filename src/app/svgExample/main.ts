@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const data = require('../../assets/rhythms.json')
+const data = require('@/assets/rhythms.json')
 import ECGpaper from './ECGpaper'
 import Processor from './Processor'
 import { leadObject } from 'myLib'
@@ -12,14 +12,10 @@ export default function mainSVG(): { init: void } {
 		const ecgPaper = ECGpaper(width, height)
 		ecgPaper
 
-		// processor adds ecg leads to svg document created above
 		data.forEach((el: leadObject) => {
 			const processor = Processor(el, width, height)
 			processor.init
 		})
-
-		// const processor = Processor(data[0], width, height)
-		// processor.init
 	}
 
 	return {
