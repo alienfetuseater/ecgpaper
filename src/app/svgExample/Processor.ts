@@ -16,13 +16,13 @@ export default function processor(
 	const util = Util(horizontalMM, verticalMM, xmlns, svg)
 
 	const leadBoxLength = (horizontalMM * NMBRHORIZSMLBXS) / 4
-	const width = util.width(lead)
-	const nmbrComplexes = leadBoxLength / (width * horizontalMM) - 1
+	const compleWidth = util.width(lead)
+	const nmbrComplexes = leadBoxLength / (compleWidth * horizontalMM) - 3
 	// this should be set by user input in the future
 	let desiredAmplitude = 15
 	const tpInterval = 5 * horizontalMM
 
-	const begin_x = lead.isoelectric.startX * canvasWidth + 7 * horizontalMM
+	const begin_x = lead.isoelectric.startX * canvasWidth + 8 * horizontalMM
 	const end_y = lead.isoelectric.endY * canvasHeight + 5 * verticalMM
 
 	const drawRhythm = function (
@@ -30,11 +30,10 @@ export default function processor(
 		begin_x: number,
 		end_y: number,
 	) {
-		for (let complexes = 0; complexes < 2; complexes++) {
+		for (let complexes = 0; complexes < nmbrComplexes; complexes++) {
 			for (let wave = 0; wave < lead.complex.length; wave++) {
+				const dom: number[] = util.domain(lead.complex[wave].width)
 				if (lead.complex[wave].curve) {
-					const dom: number[] = util.domain(lead.complex[wave].width)
-					console.log(dom[1], 'dom1')
 					desiredAmplitude = lead.complex[wave].amplitude
 					for (let x = dom[0]; x <= dom[1]; x += 0.1) {
 						const OriginalAmplitude = util.originalAmplitude(
@@ -61,19 +60,16 @@ export default function processor(
 							VerticalShift,
 						)
 					}
+					begin_x += dom[1]
 				} else {
-					util.drawIntervalLine(
-						begin_x,
-						end_y,
-						lead.complex[wave].width * horizontalMM,
-						0,
-					)
+					util.drawIntervalLine(begin_x, end_y, dom[1] * 2, 0)
+					begin_x +=
+						lead.complex[wave].width * horizontalMM +
+						0.5 * (lead.complex[wave + 1].width * horizontalMM)
 				}
-				console.log(begin_x, 'prior')
-				begin_x += lead.complex[wave].width * horizontalMM
-				console.log(begin_x, 'after')
 			}
 			util.drawIntervalLine(begin_x, end_y, tpInterval, 0)
+			begin_x += tpInterval + 0.5 * (lead.complex[0].width * horizontalMM)
 		}
 	}
 
