@@ -24,7 +24,7 @@ export default function processor(
 	let desiredAmplitude = 15
 	const tpInterval = 5 * horizontalMM
 
-	const drawRhythm = function (
+	const constructor = function (
 		lead: leadObject,
 		begin_x: number,
 		end_y: number,
@@ -73,6 +73,6 @@ export default function processor(
 	}
 
 	return {
-		init: drawRhythm(lead, begin_x, end_y),
+		init: constructor(lead, begin_x, end_y),
 	}
 }
