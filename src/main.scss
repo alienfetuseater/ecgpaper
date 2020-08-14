@@ -10,6 +10,19 @@ main {
 	// margin: 5px 0 0;
 }
 
+aside {
+	position: absolute;
+	top: 10vh;
+	left: 5px;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
 nav {
 	position: fixed;
 	top: 0;

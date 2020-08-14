@@ -1,5 +1,5 @@
 import Home from '@/app/home/main'
-import canvasECG from '@/app/canvasExample/main'
+import twoWayExample from '@/app/twoWayExample/main'
 import Svg from '@/app/svgExample/main'
 
 export default [
@@ -8,8 +8,8 @@ export default [
 		component: Home,
 	},
 	{
-		name: 'canvas',
-		component: canvasECG,
+		name: '2wb',
+		component: twoWayExample,
 	},
 	{
 		name: 'svg',

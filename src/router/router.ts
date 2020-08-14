@@ -10,9 +10,8 @@ export default function Router(Routes: routeObject[]): routerObject {
 
 	function loadRoute(routeName: string): void {
 		// this makes sure there are no duplicate dom nodes being injected
-		const mainChild = main.firstChild
-		if (mainChild) {
-			main.removeChild(mainChild)
+		while (main.firstChild) {
+			main.removeChild(main.firstChild)
 		}
 		// once old dom elements are removed we can go about adding selected route
 		const route = matchRouteObject(routeName)
