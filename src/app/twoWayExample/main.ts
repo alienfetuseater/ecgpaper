@@ -1,6 +1,6 @@
 import Aside from '@/components/form'
 import data from '@/assets/rhythms.json'
-import Section from './section'
+import Section from '@/components/section'
 
 export default function main2WB(): { init: void } {
 	const store = () => {
