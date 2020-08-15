@@ -1,7 +1,7 @@
 import Routes from '@/router/routes'
 import Router from '@/router/router'
 import NavigationBar from '@/components/NavigationBar'
-import { routeObject } from 'declarationsFile'
+import { routeObject } from 'interfaces'
 
 const router = Router(Routes)
 const navbar = NavigationBar(Routes)

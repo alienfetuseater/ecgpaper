@@ -1,3 +1,5 @@
+import { stateObject } from 'interfaces'
+
 export default function State(
 	_pWaveAmplitude: number,
 	_pWaveDuration: number,
@@ -8,17 +10,7 @@ export default function State(
 	_tWaveAmplitude: number,
 	_tWaveDuration: number,
 	_tpIntervalLength: number,
-): {
-	pWaveAmplitude: number
-	pWaveDuration: number
-	prSegmentLength: number
-	qrsWaveAmplitude: number
-	qrsWaveDuration: number
-	stSegmentLength: number
-	tWaveAmplitude: number
-	tWaveDuration: number
-	tpIntervalLength: number
-} {
+): stateObject {
 	let pWaveAmplitude: number = _pWaveAmplitude
 	let pWaveDuration: number = _pWaveDuration
 	let prSegmentLength: number = _prSegmentLength

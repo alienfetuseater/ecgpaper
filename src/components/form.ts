@@ -1,3 +1,4 @@
+// this component creates the markup for the form and takes user input and sends it to state
 export default function sideForm(): { init: void } {
 	// create an array of data defining buttons and purposess
 	const featureToManipulateArray: string[] = [
@@ -12,7 +13,7 @@ export default function sideForm(): { init: void } {
 		'tp interval length',
 	]
 
-	const constructor = () => {
+	const asideForm = () => {
 		const main = document.querySelector('main')
 		const aside = document.createElement('aside')
 		const form = document.createElement('form')
@@ -33,6 +34,11 @@ export default function sideForm(): { init: void } {
 
 		aside.appendChild(form)
 		main.appendChild(aside)
+	}
+
+	const constructor = () => {
+		asideForm()
+		// after creating the aside and form we have to listen to changes in the values of inputs
 	}
 	return {
 		init: constructor(),

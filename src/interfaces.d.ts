@@ -1,4 +1,4 @@
-declare module 'declarationsFile' {
+declare module 'interfaces' {
 	export interface feature {
 		feature: string
 		curve?: string
@@ -53,5 +53,17 @@ declare module 'declarationsFile' {
 			length: number,
 			height: number,
 		) => void
+	}
+
+	export interface stateObject {
+		pWaveAmplitude: number
+		pWaveDuration: number
+		prSegmentLength: number
+		qrsWaveAmplitude: number
+		qrsWaveDuration: number
+		stSegmentLength: number
+		tWaveAmplitude: number
+		tWaveDuration: number
+		tpIntervalLength: number
 	}
 }

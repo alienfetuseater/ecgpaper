@@ -1,17 +1,20 @@
 import Aside from '@/components/form'
-import data from '@/assets/rhythms.json'
+import Data from '@/assets/rhythms.json'
 import Section from '@/components/section'
+import State from '@/store/state'
+import { leadObject } from 'interfaces'
 
 export default function main2WB(): { init: void } {
-	const store = () => {
-		// store
+	const initializeState = (data: leadObject[]) => {
+		data.forEach((lead) => {
+			// initialize state for each lead
+		})
 	}
 
 	const constructor = () => {
-		const section = Section()
-		const aside = Aside()
-		section
-		aside
+		Section()
+		Aside()
+		initializeState(Data)
 	}
 
 	return {

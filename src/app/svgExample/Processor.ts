@@ -1,4 +1,4 @@
-import { leadObject } from 'declarationsFile'
+import { leadObject } from 'interfaces'
 import Util from '@/lib/util'
 
 export default function processor(

@@ -1,4 +1,4 @@
-import { leadObject, util } from 'declarationsFile'
+import { leadObject, util } from 'interfaces'
 
 export default function Util(
 	horizontalMM: number,
