@@ -1,4 +1,4 @@
-declare module 'myLib' {
+declare module 'declarationsFile' {
 	export interface feature {
 		feature: string
 		curve?: string

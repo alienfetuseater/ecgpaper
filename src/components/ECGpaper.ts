@@ -1,4 +1,3 @@
-// import { ECGpaper } from 'myLib'
 export default function ECGpaper(
 	_width: number,
 	_height: number,

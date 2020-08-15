@@ -1,5 +1,5 @@
-import { leadObject } from 'myLib'
-import Util from './util'
+import { leadObject } from 'declarationsFile'
+import Util from '@/lib/util'
 
 export default function processor(
 	lead: leadObject,

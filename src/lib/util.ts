@@ -1,4 +1,4 @@
-import { leadObject, util } from 'myLib'
+import { leadObject, util } from 'declarationsFile'
 
 export default function Util(
 	horizontalMM: number,

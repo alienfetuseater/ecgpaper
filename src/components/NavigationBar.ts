@@ -1,4 +1,4 @@
-import { routeObject } from 'myLib'
+import { routeObject } from 'declarationsFile'
 
 export default function NavigationBar(routes: routeObject[]): { init: string } {
 	const constructor = (): string => {

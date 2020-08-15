@@ -1,4 +1,4 @@
-import { routerObject, routeObject } from 'myLib'
+import { routerObject, routeObject } from 'declarationsFile'
 
 export default function Router(Routes: routeObject[]): routerObject {
 	const main = document.querySelector('main')

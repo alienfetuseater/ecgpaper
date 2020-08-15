@@ -1,7 +1,7 @@
 import Routes from '@/router/routes'
 import Router from '@/router/router'
 import NavigationBar from '@/components/NavigationBar'
-import { routeObject } from 'myLib'
+import { routeObject } from 'declarationsFile'
 
 const router = Router(Routes)
 const navbar = NavigationBar(Routes)

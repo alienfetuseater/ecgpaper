@@ -1,4 +1,4 @@
-import Aside from './form'
+import Aside from '@/components/form'
 import data from '@/assets/rhythms.json'
 import Section from './section'
 

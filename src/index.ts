@@ -1,4 +1,4 @@
-import './main.scss'
+import '@/assets/main.scss'
 import Main from './app/main'
 const main = Main()
 main
