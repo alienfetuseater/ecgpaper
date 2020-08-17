@@ -64,6 +64,5 @@ declare module 'interfaces' {
 		stSegmentLength: number
 		tWaveAmplitude: number
 		tWaveDuration: number
-		tpIntervalLength: number
 	}
 }

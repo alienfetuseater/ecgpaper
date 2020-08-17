@@ -1,25 +1,34 @@
-import { stateObject } from 'interfaces'
+import { leadObject, stateObject } from 'interfaces'
 
-export default function State(
-	_pWaveAmplitude: number,
-	_pWaveDuration: number,
-	_prSegmentLength: number,
-	_qrsWaveAmplitude: number,
-	_qrsWaveDuration: number,
-	_stSegmentLength: number,
-	_tWaveAmplitude: number,
-	_tWaveDuration: number,
-	_tpIntervalLength: number,
-): stateObject {
-	let pWaveAmplitude: number = _pWaveAmplitude
-	let pWaveDuration: number = _pWaveDuration
-	let prSegmentLength: number = _prSegmentLength
-	let qrsWaveAmplitude: number = _qrsWaveAmplitude
-	let qrsWaveDuration: number = _qrsWaveDuration
-	let stSegmentLength: number = _stSegmentLength
-	let tWaveAmplitude: number = _tWaveAmplitude
-	let tWaveDuration: number = _tWaveDuration
-	let tpIntervalLength: number = _tpIntervalLength
+export default function State(lead: leadObject): stateObject {
+	const pwave = lead.complex.find((el) => {
+		return el.feature === 'pwave'
+	})
+	const printerval = lead.complex.find((el) => {
+		return el.feature === 'printerval'
+	})
+	const qrs = lead.complex.find((el) => {
+		return el.feature === 'qrs'
+	})
+	const stinterval = lead.complex.find((el) => {
+		return el.feature === 'stinterval'
+	})
+	const twave = lead.complex.find((el) => {
+		return el.feature === 'twave'
+	})
+
+	let pWaveDuration: number = pwave.width
+	let pWaveAmplitude: number = pwave.amplitude
+
+	let prSegmentLength: number = printerval.width
+
+	let qrsWaveAmplitude: number = qrs.amplitude
+	let qrsWaveDuration: number = qrs.width
+
+	let stSegmentLength: number = stinterval.width
+
+	let tWaveAmplitude: number = twave.amplitude
+	let tWaveDuration: number = twave.width
 
 	return {
 		get pWaveAmplitude() {
@@ -77,13 +86,6 @@ export default function State(
 		},
 		set tWaveDuration(newTWaveDuration) {
 			tWaveDuration = newTWaveDuration
-		},
-
-		get tpIntervalLength() {
-			return tpIntervalLength
-		},
-		set tpIntervalLength(newTpIntervalLength) {
-			tpIntervalLength = newTpIntervalLength
 		},
 	}
 }

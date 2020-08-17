@@ -8,9 +8,9 @@ export default function section(): { init: void } {
 		main.appendChild(section)
 	}
 	const constructor = () => {
-		// constructor
+		section()
 	}
 	return {
-		init: section(),
+		init: constructor(),
 	}
 }
