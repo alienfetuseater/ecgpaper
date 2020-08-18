@@ -1,20 +1,10 @@
-import { stateObject } from 'interfaces'
+import { stateObject, formFeatureInterface } from 'interfaces'
 
-// this component creates the markup for the form and takes user input and sends it to state
-export default function sideForm(store: stateObject[]): { init: void } {
+export default function sideForm(
+	store: stateObject[],
+	featureToManipulateArray: formFeatureInterface[],
+): { init: void } {
 	const main = document.querySelector('main')
-
-	const featureToManipulateArray: string[] = [
-		'p-wave amplitude',
-		'p-wave duration',
-		'pr segment length',
-		'qrs-wave amplitude',
-		'qrs-wave duration',
-		'st segment length',
-		't wave amplitude',
-		't wave duration',
-		'tp interval length',
-	]
 
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
@@ -27,16 +17,31 @@ export default function sideForm(store: stateObject[]): { init: void } {
 
 		featureToManipulateArray.forEach((el) => {
 			const label = document.createElement('label')
-			label.setAttribute('for', el)
-			label.innerHTML = el
+			label.setAttribute('for', el.feature)
+			label.textContent = el.feature
 
 			const input = document.createElement('input')
 			input.setAttribute('type', 'range')
-			input.setAttribute('id', el)
-			input.setAttribute('data-wave-feature', el)
+			input.setAttribute('id', el.feature)
+			input.setAttribute('min', String(el.min))
+			input.setAttribute('max', String(el.max))
+			input.setAttribute('increment', String(el.increment))
+			input.setAttribute('data-wave-feature', el.feature)
+
+			const datalist = document.createElement('datalist')
+			datalist.setAttribute('id', 'tickmarks')
+
+			const incrementer = (el.max - el.min) / 10
+			for (let i = el.min; i < el.max; i += incrementer) {
+				const option = document.createElement('option')
+				option.setAttribute('value', String(i))
+				datalist.appendChild(option)
+			}
+			input.setAttribute('list', 'tickmarks')
 
 			form.appendChild(label)
 			form.appendChild(input)
+			form.appendChild(datalist)
 		})
 		return form
 	}

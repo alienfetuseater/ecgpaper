@@ -65,4 +65,11 @@ declare module 'interfaces' {
 		tWaveAmplitude: number
 		tWaveDuration: number
 	}
+
+	export interface formFeatureInterface {
+		feature: string
+		min: number
+		max: number
+		increment: number
+	}
 }
