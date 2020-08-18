@@ -1,6 +1,9 @@
+import { stateObject } from 'interfaces'
+
 // this component creates the markup for the form and takes user input and sends it to state
-export default function sideForm(): { init: void } {
-	// create an array of data defining buttons and purposess
+export default function sideForm(store: stateObject[]): { init: void } {
+	const main = document.querySelector('main')
+
 	const featureToManipulateArray: string[] = [
 		'p-wave amplitude',
 		'p-wave duration',
@@ -13,9 +16,13 @@ export default function sideForm(): { init: void } {
 		'tp interval length',
 	]
 
-	const asideForm = () => {
-		const main = document.querySelector('main')
+	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
+		aside.appendChild(form)
+		main.appendChild(aside)
+	}
+
+	const form = (): HTMLFormElement => {
 		const form = document.createElement('form')
 
 		featureToManipulateArray.forEach((el) => {
@@ -31,14 +38,11 @@ export default function sideForm(): { init: void } {
 			form.appendChild(label)
 			form.appendChild(input)
 		})
-
-		aside.appendChild(form)
-		main.appendChild(aside)
+		return form
 	}
 
 	const constructor = () => {
-		asideForm()
-		// after creating the aside and form we have to listen to changes in the values of inputs
+		aside(form())
 	}
 	return {
 		init: constructor(),

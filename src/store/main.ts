@@ -7,7 +7,6 @@ export default function Store(leads: leadObject[]): { init: stateObject[] } {
 		leads.forEach((lead) => {
 			stateArray.push(State(lead))
 		})
-		// console.log(stateArray)
 		return stateArray
 	}
 	return {

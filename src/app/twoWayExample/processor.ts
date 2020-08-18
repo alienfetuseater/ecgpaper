@@ -1,7 +1,4 @@
 export default function Processor() {
-	const store = () => {
-		// store
-	}
 	const processor = () => {
 		// processor
 	}

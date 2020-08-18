@@ -1,10 +1,19 @@
-export default function section(): { init: void } {
+import { stateObject } from 'interfaces'
+
+export default function section(data: stateObject[]): { init: void } {
 	const section = () => {
 		const main = document.querySelector('main')
 		const section = document.createElement('section')
 		section.style.position = 'relative'
 		section.style.top = section.style.left = '50%'
-		section.innerHTML = 'sections inner html'
+
+		const ul = document.createElement('ul')
+		for (let i = 0; i < data.length; i++) {
+			const li = document.createElement('li')
+			li.innerHTML = String(data[i].pWaveAmplitude)
+			ul.appendChild(li)
+		}
+		section.appendChild(ul)
 		main.appendChild(section)
 	}
 	const constructor = () => {
