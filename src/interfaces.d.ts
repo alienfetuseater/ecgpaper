@@ -56,6 +56,8 @@ declare module 'interfaces' {
 	}
 
 	export interface stateObject {
+		[index: string]: string | number
+		readonly Lead: string
 		pWaveAmplitude: number
 		pWaveDuration: number
 		prSegmentLength: number

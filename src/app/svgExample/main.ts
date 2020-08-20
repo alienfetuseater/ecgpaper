@@ -1,7 +1,7 @@
 import data from '@/assets/rhythms.json'
 import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
-// import Aside from '@/components/form'
+// import Form from '@/components/Form'
 // import Store from '@/store/main'
 import { leadObject } from 'interfaces'
 
@@ -12,7 +12,7 @@ export default function mainSVG(): { init: void } {
 	const constructor = function (): void {
 		ECGpaper(width, height)
 		// const store = Store(data).init
-		// Aside(store)
+		// Form(store)
 
 		data.forEach((el: leadObject) => {
 			const processor = Processor(el, width, height)

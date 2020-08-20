@@ -1,6 +1,8 @@
 import { leadObject, stateObject } from 'interfaces'
 
 export default function State(lead: leadObject): stateObject {
+	const Lead = lead.lead
+
 	const pwave = lead.complex.find((el) => {
 		return el.feature === 'pwave'
 	})
@@ -31,6 +33,10 @@ export default function State(lead: leadObject): stateObject {
 	let tWaveDuration: number = twave.width
 
 	return {
+		get Lead() {
+			return Lead
+		},
+
 		get pWaveAmplitude() {
 			return pWaveAmplitude
 		},

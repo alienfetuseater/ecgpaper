@@ -10,7 +10,9 @@ export default function section(data: stateObject[]): { init: void } {
 		const ul = document.createElement('ul')
 		for (let i = 0; i < data.length; i++) {
 			const li = document.createElement('li')
-			li.innerHTML = String(data[i].pWaveAmplitude)
+			li.textContent = `pwave amplitude is: ${String(
+				data[i].pWaveAmplitude,
+			)} for lead: ${data[i].Lead}`
 			ul.appendChild(li)
 		}
 		section.appendChild(ul)

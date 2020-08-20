@@ -1,6 +1,6 @@
-import Aside from '@/components/form'
+import Form from '@/components/Form'
 import Data from '@/assets/rhythms.json'
-import Section from '@/components/section'
+import Section from '@/components/Section'
 import Store from '@/store/main'
 import { formFeatureInterface } from 'interfaces'
 
@@ -9,42 +9,37 @@ export default function main2WB(): { init: void } {
 		const store = Store(Data).init
 		Section(store)
 		const featureToManipulateArray: formFeatureInterface[] = [
-			{ feature: 'p-wave amplitude', min: 0, max: 5, increment: 0.1 },
-			{ feature: 'p-wave duration', min: 0, max: 5, increment: 0.1 },
+			{ feature: 'pWaveAmplitude', min: 0, max: 5, increment: 0.1 },
+			{ feature: 'pWaveDuration', min: 0, max: 5, increment: 0.1 },
 			{
-				feature: 'pr segment length',
+				feature: 'prSegmentLength',
 				min: 0,
 				max: 5,
 				increment: 0.1,
 			},
 			{
-				feature: 'qrs-wave amplitude',
+				feature: 'qrsWaveAmplitude',
 				min: 0,
 				max: 5,
 				increment: 0.1,
 			},
 			{
-				feature: 'qrs-wave duration',
+				feature: 'qrsWaveDuration',
 				min: 0,
 				max: 5,
 				increment: 0.1,
 			},
 			{
-				feature: 'st segment length',
+				feature: 'stSegmentLength',
 				min: 0,
 				max: 5,
 				increment: 0.1,
 			},
-			{ feature: 't wave amplitude', min: 0, max: 5, increment: 0.1 },
-			{ feature: 't wave duration', min: 0, max: 5, increment: 0.1 },
-			{
-				feature: 'tp interval length',
-				min: 0,
-				max: 5,
-				increment: 0.1,
-			},
+			{ feature: 'tWaveAmplitude', min: 0, max: 5, increment: 0.1 },
+			{ feature: 'tWaveDuration', min: 0, max: 5, increment: 0.1 },
 		]
-		Aside(store, featureToManipulateArray)
+
+		Form(store, featureToManipulateArray)
 	}
 
 	return {
