@@ -6,7 +6,7 @@ export default function sideForm(
 ): { init: void } {
 	const main = document.querySelector('main')
 
-	let lead: number | undefined = undefined
+	let lead: number | string | undefined = undefined
 
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
@@ -29,6 +29,11 @@ export default function sideForm(
 		option.textContent = '--Please Select A Value--'
 		select.appendChild(option)
 
+		const optionTwo = document.createElement('option')
+		optionTwo.setAttribute('value', 'global')
+		optionTwo.textContent = 'global'
+		select.appendChild(optionTwo)
+
 		store.forEach((lead, index) => {
 			const option = document.createElement('option')
 			option.setAttribute('value', String(index))
@@ -36,7 +41,7 @@ export default function sideForm(
 			select.appendChild(option)
 		})
 		select.addEventListener('change', (e: Event) => {
-			lead = Number((e.target as HTMLSelectElement).value)
+			lead = (e.target as HTMLSelectElement).value
 		})
 		form.appendChild(label)
 		form.appendChild(select)
@@ -64,9 +69,17 @@ export default function sideForm(
 					for (const key in stateObject) {
 						if (key === el.feature) {
 							stateObject[key] = input.value
-							// console.log(stateObject[key])
 						}
 					}
+				} else if (lead === 'global') {
+					console.log('global was selected')
+					store.forEach((lead) => {
+						for (const key in lead) {
+							if (key === el.feature) {
+								lead[key] = input.value
+							}
+						}
+					})
 				} else {
 					console.log('you need to choose a lead first')
 				}
