@@ -64,7 +64,7 @@ export default function sideForm(
 					for (const key in stateObject) {
 						if (key === el.feature) {
 							stateObject[key] = input.value
-							console.log(stateObject[key])
+							// console.log(stateObject[key])
 						}
 					}
 				} else {

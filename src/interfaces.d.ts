@@ -7,6 +7,7 @@ declare module 'interfaces' {
 	}
 
 	export interface leadObject {
+		// [index: string]: string | number
 		lead: string
 		isoelectric: {
 			startX: number

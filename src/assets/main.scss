@@ -6,12 +6,15 @@ body {
 	align-items: center;
 }
 
-main {
-	// margin: 5px 0 0;
+section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 aside {
-	position: absolute;
+	position: relative;
 	top: 10vh;
 	left: 5px;
 

@@ -1,8 +1,6 @@
 import { leadObject, stateObject } from 'interfaces'
 
 export default function State(lead: leadObject): stateObject {
-	const Lead = lead.lead
-
 	const pwave = lead.complex.find((el) => {
 		return el.feature === 'pwave'
 	})
@@ -19,79 +17,19 @@ export default function State(lead: leadObject): stateObject {
 		return el.feature === 'twave'
 	})
 
-	let pWaveDuration: number = pwave.width
-	let pWaveAmplitude: number = pwave.amplitude
-
-	let prSegmentLength: number = printerval.width
-
-	let qrsWaveAmplitude: number = qrs.amplitude
-	let qrsWaveDuration: number = qrs.width
-
-	let stSegmentLength: number = stinterval.width
-
-	let tWaveAmplitude: number = twave.amplitude
-	let tWaveDuration: number = twave.width
-
 	return {
-		get Lead() {
-			return Lead
-		},
+		Lead: lead.lead,
+		pWaveDuration: pwave.width,
+		pWaveAmplitude: pwave.amplitude,
 
-		get pWaveAmplitude() {
-			return pWaveAmplitude
-		},
-		set pWaveAmplitude(newPwaveA) {
-			pWaveAmplitude = newPwaveA
-		},
+		prSegmentLength: printerval.width,
 
-		get pWaveDuration() {
-			return pWaveDuration
-		},
-		set pWaveDuration(newPwaveD) {
-			pWaveDuration = newPwaveD
-		},
+		qrsWaveAmplitude: qrs.amplitude,
+		qrsWaveDuration: qrs.width,
 
-		get prSegmentLength() {
-			return prSegmentLength
-		},
-		set prSegmentLength(newPrSegmentLength) {
-			prSegmentLength = newPrSegmentLength
-		},
+		stSegmentLength: stinterval.width,
 
-		get qrsWaveAmplitude() {
-			return qrsWaveAmplitude
-		},
-		set qrsWaveAmplitude(newQrsWaveAmplitude) {
-			qrsWaveAmplitude = newQrsWaveAmplitude
-		},
-
-		get qrsWaveDuration() {
-			return qrsWaveDuration
-		},
-		set qrsWaveDuration(newQrsWaveDuration) {
-			qrsWaveDuration = newQrsWaveDuration
-		},
-
-		get stSegmentLength() {
-			return stSegmentLength
-		},
-		set stSegmentLength(newStSegmentLength) {
-			stSegmentLength = newStSegmentLength
-		},
-
-		get tWaveAmplitude() {
-			return tWaveAmplitude
-		},
-
-		set tWaveAmplitude(newTWaveAmplitude) {
-			tWaveAmplitude = newTWaveAmplitude
-		},
-
-		get tWaveDuration() {
-			return tWaveDuration
-		},
-		set tWaveDuration(newTWaveDuration) {
-			tWaveDuration = newTWaveDuration
-		},
+		tWaveAmplitude: twave.amplitude,
+		tWaveDuration: twave.width,
 	}
 }
