@@ -7,7 +7,15 @@ declare module 'interfaces' {
 	}
 
 	export interface leadObject {
-		// [index: string]: string | number
+		[index: string]:
+			| string
+			| {
+					startX: number
+					startY: number
+					endX: number
+					endY: number
+			  }
+			| feature[]
 		lead: string
 		isoelectric: {
 			startX: number
@@ -15,6 +23,7 @@ declare module 'interfaces' {
 			endX: number
 			endY: number
 		}
+		[key: number]: feature[]
 		complex: feature[]
 	}
 

@@ -4,16 +4,16 @@ import State from '@/store/state'
 export default function Store(leads: leadObject[]): { init: stateObject[] } {
 	//
 
-	const createProxies = (stateObject: leadObject) => {
+	const createProxies = (stateObject: stateObject) => {
 		return new Proxy(stateObject, {
 			set(target, property, value) {
 				console.log('attempt to set new value')
-				target[property] = value
+				target[String(property)] = value
 				console.log(value)
 				const li = document.querySelector(
-					'[data-model=`${target.Lead}-${String(property)}`]',
+					`[data-model=${target.Lead}-${String(property)}]`,
 				)
-				li.textContent = String(value)
+				li.textContent = `${String(property)}: ${String(value)}`
 				return true
 			},
 		})
@@ -23,8 +23,9 @@ export default function Store(leads: leadObject[]): { init: stateObject[] } {
 		const stateArray: stateObject[] = []
 
 		leads.forEach((lead) => {
-			const stateObject = createProxies(lead)
-			stateArray.push(State(stateObject))
+			const stateObject = State(lead)
+			const proxiedObject = createProxies(stateObject)
+			stateArray.push(proxiedObject)
 		})
 		return stateArray
 	}
