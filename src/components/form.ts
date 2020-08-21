@@ -8,24 +8,12 @@ export default function sideForm(
 
 	let lead: number | string | undefined = undefined
 
-	const aside = (form: HTMLFormElement) => {
-		const aside = document.createElement('aside')
-		aside.appendChild(form)
-		main.appendChild(aside)
-	}
-
-	const form = (): HTMLFormElement => {
-		const form = document.createElement('form')
-
-		const label = document.createElement('label')
-		label.setAttribute('for', 'lead-select')
-		label.textContent = 'which lead do you want to edit?'
-
+	const Select = (): HTMLSelectElement => {
 		const select = document.createElement('select')
 		select.setAttribute('id', 'lead-select')
 
 		const option = document.createElement('option')
-		option.setAttribute('value', '')
+		option.setAttribute('value', undefined)
 		option.textContent = '--Please Select A Value--'
 		select.appendChild(option)
 
@@ -43,6 +31,16 @@ export default function sideForm(
 		select.addEventListener('change', (e: Event) => {
 			lead = (e.target as HTMLSelectElement).value
 		})
+		return select
+	}
+
+	const form = (): HTMLFormElement => {
+		const form = document.createElement('form')
+		const label = document.createElement('label')
+		label.setAttribute('for', 'lead-select')
+		label.textContent = 'which lead do you want to edit?'
+
+		const select = Select()
 		form.appendChild(label)
 		form.appendChild(select)
 
@@ -63,15 +61,7 @@ export default function sideForm(
 			input.setAttribute('data-wave-feature', el.feature)
 
 			input.addEventListener('input', (e: Event) => {
-				if (typeof lead === 'number') {
-					const stateObject = store[lead]
-
-					for (const key in stateObject) {
-						if (key === el.feature) {
-							stateObject[key] = input.value
-						}
-					}
-				} else if (lead === 'global') {
+				if (lead === 'global') {
 					console.log('global was selected')
 					store.forEach((lead) => {
 						for (const key in lead) {
@@ -80,8 +70,16 @@ export default function sideForm(
 							}
 						}
 					})
-				} else {
+				} else if (lead === undefined) {
 					console.log('you need to choose a lead first')
+				} else {
+					const stateObject = store[Number(lead)]
+
+					for (const key in stateObject) {
+						if (key === el.feature) {
+							stateObject[key] = input.value
+						}
+					}
 				}
 			})
 
@@ -103,10 +101,13 @@ export default function sideForm(
 		return form
 	}
 
-	const constructor = () => {
-		aside(form())
+	const aside = (form: HTMLFormElement) => {
+		const aside = document.createElement('aside')
+		aside.appendChild(form)
+		main.appendChild(aside)
 	}
+
 	return {
-		init: constructor(),
+		init: aside(form()),
 	}
 }

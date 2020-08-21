@@ -48,7 +48,7 @@ declare module 'interfaces' {
 			originalAmplitude: number,
 			amplitudeMultiplier: number,
 		) => number
-		complexWidth: (lead: leadObject) => number
+		complexWidth: (lead: stateObject) => number
 		drawLine: (
 			curve: string,
 			origin_x: number,
@@ -63,11 +63,23 @@ declare module 'interfaces' {
 			length: number,
 			height: number,
 		) => void
+		processor: (
+			lead: stateObject,
+			begin_x: number,
+			end_y: number,
+			nmbrComplexes: number,
+			desiredAmplitude: number,
+			tpInterval: number,
+		) => void
 	}
 
 	export interface stateObject {
-		[index: string]: string | number
+		[index: string]: string | number | feature[]
 		readonly Lead: string
+		startX: number
+		startY: number
+		endX: number
+		endY: number
 		pWaveAmplitude: number
 		pWaveDuration: number
 		prSegmentLength: number
@@ -76,6 +88,7 @@ declare module 'interfaces' {
 		stSegmentLength: number
 		tWaveAmplitude: number
 		tWaveDuration: number
+		complex: feature[]
 	}
 
 	export interface formFeatureInterface {

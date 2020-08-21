@@ -1,5 +1,6 @@
 import { leadObject, stateObject } from 'interfaces'
 import State from '@/store/state'
+import Processor from '@/app/svgExample/Processor'
 
 export default function Store(leads: leadObject[]): { init: stateObject[] } {
 	//
@@ -9,11 +10,9 @@ export default function Store(leads: leadObject[]): { init: stateObject[] } {
 			set(target, property, value) {
 				console.log('attempt to set new value')
 				target[String(property)] = value
-				console.log(value)
-				const li = document.querySelector(
-					`[data-model=${target.Lead}-${String(property)}]`,
-				)
-				li.textContent = `${String(property)}: ${String(value)}`
+				// this part needs to be abstracted so that multiple different components can use this proxy with their own imjplementation
+				const processor = Processor(target)
+				processor.init
 				return true
 			},
 		})
