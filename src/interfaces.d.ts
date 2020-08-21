@@ -56,12 +56,14 @@ declare module 'interfaces' {
 			x: number,
 			amplitudeMultiplier: number,
 			verticalShift: number,
+			g: Element,
 		) => void
 		drawIntervalLine: (
 			origin_x: number,
 			origin_y: number,
 			length: number,
 			height: number,
+			g: Element,
 		) => void
 		processor: (
 			lead: stateObject,

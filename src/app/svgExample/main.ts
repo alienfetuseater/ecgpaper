@@ -72,10 +72,12 @@ export default function mainSVG(): { init: void } {
 		]
 		Form(store, featureToManipulateArray)
 
-		store.forEach((el: stateObject) => {
-			const processor = Processor(el)
-			processor.init
-		})
+		// store.forEach((el: stateObject) => {
+		// 	const processor = Processor(el)
+		// 	processor.init
+		// })
+
+		Processor(store[0])
 	}
 
 	return {

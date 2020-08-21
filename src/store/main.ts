@@ -10,7 +10,11 @@ export default function Store(leads: leadObject[]): { init: stateObject[] } {
 			set(target, property, value) {
 				console.log('attempt to set new value')
 				target[String(property)] = value
-				// this part needs to be abstracted so that multiple different components can use this proxy with their own imjplementation
+
+				const g = document.querySelector(`#${target.Lead}`)
+				while (g.firstChild) {
+					g.removeChild(g.firstChild)
+				}
 				const processor = Processor(target)
 				processor.init
 				return true

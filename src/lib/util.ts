@@ -59,6 +59,7 @@ export default function Util(
 		x: number,
 		amplitudeMultiplier: number,
 		verticalShift: number,
+		g: Element,
 	) {
 		const line = document.createElementNS(xmlns, 'line')
 
@@ -79,7 +80,8 @@ export default function Util(
 		line.setAttributeNS(null, 'stroke', 'black')
 		line.setAttributeNS(null, 'stroke-width', '1')
 
-		svg.appendChild(line)
+		g.appendChild(line)
+		// svg.appendChild(line)
 	}
 
 	const drawIntervalLine = function (
@@ -87,6 +89,7 @@ export default function Util(
 		origin_y: number,
 		length: number,
 		height: number,
+		g: Element,
 	) {
 		const line = document.createElementNS(xmlns, 'line')
 
@@ -101,7 +104,9 @@ export default function Util(
 		line.setAttributeNS(null, 'y2', String(y2))
 		line.setAttributeNS(null, 'stroke', 'black')
 		line.setAttributeNS(null, 'stroke-width', '1')
-		svg.appendChild(line)
+
+		g.appendChild(line)
+		// svg.appendChild(line)
 	}
 
 	const processor = function (
@@ -112,6 +117,8 @@ export default function Util(
 		desiredAmplitude: number,
 		tpInterval: number,
 	) {
+		const g = document.createElementNS(xmlns, 'g')
+		g.setAttributeNS(null, 'id', lead.Lead)
 		for (let complexes = 0; complexes < nmbrComplexes; complexes++) {
 			for (let wave = 0; wave < lead.complex.length; wave++) {
 				const dom: number[] = domain(lead.complex[wave].width)
@@ -140,19 +147,21 @@ export default function Util(
 							x,
 							AmplitudeMultiplier,
 							VerticalShift,
+							g,
 						)
 					}
 					begin_x += dom[1]
 				} else {
-					drawIntervalLine(begin_x, end_y, dom[1] * 2, 0)
+					drawIntervalLine(begin_x, end_y, dom[1] * 2, 0, g)
 					begin_x +=
 						lead.complex[wave].width * horizontalMM +
 						0.5 * (lead.complex[wave + 1].width * horizontalMM)
 				}
 			}
-			drawIntervalLine(begin_x, end_y, tpInterval, 0)
+			drawIntervalLine(begin_x, end_y, tpInterval, 0, g)
 			begin_x += tpInterval + 0.5 * (lead.complex[0].width * horizontalMM)
 		}
+		svg.appendChild(g)
 	}
 
 	return {
