@@ -57,6 +57,7 @@ export default function sideForm(
 			input.setAttribute('id', el.feature)
 			input.setAttribute('min', String(el.min))
 			input.setAttribute('max', String(el.max))
+			input.setAttribute('value', String(el.value))
 			input.setAttribute('increment', String(el.increment))
 			input.setAttribute('data-wave-feature', el.feature)
 

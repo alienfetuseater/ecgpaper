@@ -95,6 +95,7 @@ declare module 'interfaces' {
 		feature: string
 		min: number
 		max: number
+		value: number
 		increment: number
 	}
 }

@@ -13,34 +13,62 @@ export default function mainSVG(): { init: void } {
 		const store = Store(data).init
 		ECGpaper(width, height)
 		const featureToManipulateArray: formFeatureInterface[] = [
-			{ feature: 'pWaveAmplitude', min: 0, max: 5, increment: 0.1 },
-			{ feature: 'pWaveDuration', min: 0, max: 5, increment: 0.1 },
+			{
+				feature: 'pWaveAmplitude',
+				min: 1,
+				max: 5,
+				value: 2,
+				increment: 0.1,
+			},
+			{
+				feature: 'pWaveDuration',
+				min: 1,
+				max: 3,
+				value: 3,
+				increment: 0.1,
+			},
 			{
 				feature: 'prSegmentLength',
-				min: 0,
-				max: 5,
+				min: 1,
+				max: 3,
+				value: 1,
 				increment: 0.1,
 			},
 			{
 				feature: 'qrsWaveAmplitude',
-				min: 0,
-				max: 5,
+				min: -10,
+				max: 15,
+				value: 10,
 				increment: 0.1,
 			},
 			{
 				feature: 'qrsWaveDuration',
-				min: 0,
+				min: 2,
 				max: 5,
+				value: 3,
 				increment: 0.1,
 			},
 			{
 				feature: 'stSegmentLength',
-				min: 0,
-				max: 5,
+				min: 1,
+				max: 3,
+				value: 1,
 				increment: 0.1,
 			},
-			{ feature: 'tWaveAmplitude', min: 0, max: 5, increment: 0.1 },
-			{ feature: 'tWaveDuration', min: 0, max: 5, increment: 0.1 },
+			{
+				feature: 'tWaveAmplitude',
+				min: -3,
+				max: 10,
+				value: 5,
+				increment: 0.1,
+			},
+			{
+				feature: 'tWaveDuration',
+				min: 5,
+				max: 10,
+				value: 5,
+				increment: 0.1,
+			},
 		]
 		Form(store, featureToManipulateArray)
 
