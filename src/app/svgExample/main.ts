@@ -6,78 +6,92 @@ import Store from '@/store/main'
 import { stateObject, formFeatureInterface } from 'interfaces'
 
 export default function mainSVG(): { init: void } {
-	const height = window.innerHeight * (13 / 16)
-	const width = height * (11.69 / 8.27)
+	const xmlns = 'http://www.w3.org/2000/svg'
+	const canvasHeight = window.innerHeight * (13 / 16)
+	const canvasWidth = canvasHeight * (11.69 / 8.27)
+	const NMBRHORIZSMLBXS = 275
+	const NMBRVERTSMLBXS = 212
+	const horizontalMM = canvasWidth / NMBRHORIZSMLBXS
+	const verticalMM = canvasHeight / NMBRVERTSMLBXS
+	const featureToManipulateArray: formFeatureInterface[] = [
+		{
+			feature: 'pWaveAmplitude',
+			min: 1,
+			max: 5,
+			value: 2,
+			increment: 0.1,
+		},
+		{
+			feature: 'pWaveDuration',
+			min: 1,
+			max: 3,
+			value: 3,
+			increment: 0.1,
+		},
+		{
+			feature: 'prSegmentLength',
+			min: 1,
+			max: 3,
+			value: 1,
+			increment: 0.1,
+		},
+		{
+			feature: 'qrsWaveAmplitude',
+			min: -10,
+			max: 15,
+			value: 10,
+			increment: 0.1,
+		},
+		{
+			feature: 'qrsWaveDuration',
+			min: 2,
+			max: 5,
+			value: 3,
+			increment: 0.1,
+		},
+		{
+			feature: 'stSegmentLength',
+			min: 1,
+			max: 3,
+			value: 1,
+			increment: 0.1,
+		},
+		{
+			feature: 'tWaveAmplitude',
+			min: -3,
+			max: 10,
+			value: 5,
+			increment: 0.1,
+		},
+		{
+			feature: 'tWaveDuration',
+			min: 5,
+			max: 10,
+			value: 5,
+			increment: 0.1,
+		},
+	]
 
 	const constructor = function (): void {
-		const store = Store(data).init
-		ECGpaper(width, height)
-		const featureToManipulateArray: formFeatureInterface[] = [
-			{
-				feature: 'pWaveAmplitude',
-				min: 1,
-				max: 5,
-				value: 2,
-				increment: 0.1,
-			},
-			{
-				feature: 'pWaveDuration',
-				min: 1,
-				max: 3,
-				value: 3,
-				increment: 0.1,
-			},
-			{
-				feature: 'prSegmentLength',
-				min: 1,
-				max: 3,
-				value: 1,
-				increment: 0.1,
-			},
-			{
-				feature: 'qrsWaveAmplitude',
-				min: -10,
-				max: 15,
-				value: 10,
-				increment: 0.1,
-			},
-			{
-				feature: 'qrsWaveDuration',
-				min: 2,
-				max: 5,
-				value: 3,
-				increment: 0.1,
-			},
-			{
-				feature: 'stSegmentLength',
-				min: 1,
-				max: 3,
-				value: 1,
-				increment: 0.1,
-			},
-			{
-				feature: 'tWaveAmplitude',
-				min: -3,
-				max: 10,
-				value: 5,
-				increment: 0.1,
-			},
-			{
-				feature: 'tWaveDuration',
-				min: 5,
-				max: 10,
-				value: 5,
-				increment: 0.1,
-			},
-		]
+		ECGpaper(canvasWidth, canvasHeight)
+		const svg = document.querySelector('svg')
+
+		const processor = Processor(
+			svg,
+			xmlns,
+			canvasHeight,
+			canvasWidth,
+			NMBRHORIZSMLBXS,
+			NMBRVERTSMLBXS,
+			horizontalMM,
+			verticalMM,
+		)
+		const store = Store(data, processor).init
 		Form(store, featureToManipulateArray)
 
-		// store.forEach((el: stateObject) => {
-		// 	const processor = Processor(el)
-		// 	processor.init
-		// })
-
-		Processor(store[0])
+		store.forEach((el: stateObject) => {
+			processor(el)
+		})
 	}
 
 	return {

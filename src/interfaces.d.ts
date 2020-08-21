@@ -65,14 +65,6 @@ declare module 'interfaces' {
 			height: number,
 			g: Element,
 		) => void
-		processor: (
-			lead: stateObject,
-			begin_x: number,
-			end_y: number,
-			nmbrComplexes: number,
-			desiredAmplitude: number,
-			tpInterval: number,
-		) => void
 	}
 
 	export interface stateObject {

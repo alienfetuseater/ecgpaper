@@ -45,9 +45,6 @@ export default function sideForm(
 		form.appendChild(select)
 
 		featureToManipulateArray.forEach((el) => {
-			/**
-			 * el just comes from the array thats used to populate structure of form, not from the store or state
-			 */
 			const label = document.createElement('label')
 			label.setAttribute('for', el.feature)
 			label.textContent = el.feature
@@ -61,7 +58,7 @@ export default function sideForm(
 			input.setAttribute('increment', String(el.increment))
 			input.setAttribute('data-wave-feature', el.feature)
 
-			input.addEventListener('input', (e: Event) => {
+			input.addEventListener('change', (e: Event) => {
 				if (lead === 'global') {
 					console.log('global was selected')
 					store.forEach((lead) => {
@@ -75,7 +72,6 @@ export default function sideForm(
 					console.log('you need to choose a lead first')
 				} else {
 					const stateObject = store[Number(lead)]
-
 					for (const key in stateObject) {
 						if (key === el.feature) {
 							stateObject[key] = input.value

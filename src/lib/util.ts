@@ -4,7 +4,6 @@ export default function Util(
 	horizontalMM: number,
 	verticalMM: number,
 	xmlns: string,
-	svg: SVGElement,
 ): util {
 	const domain = function (width: number): number[] {
 		const domain: number[] = []
@@ -109,61 +108,6 @@ export default function Util(
 		// svg.appendChild(line)
 	}
 
-	const processor = function (
-		lead: stateObject,
-		begin_x: number,
-		end_y: number,
-		nmbrComplexes: number,
-		desiredAmplitude: number,
-		tpInterval: number,
-	) {
-		const g = document.createElementNS(xmlns, 'g')
-		g.setAttributeNS(null, 'id', lead.Lead)
-		for (let complexes = 0; complexes < nmbrComplexes; complexes++) {
-			for (let wave = 0; wave < lead.complex.length; wave++) {
-				const dom: number[] = domain(lead.complex[wave].width)
-				if (lead.complex[wave].curve) {
-					desiredAmplitude = lead.complex[wave].amplitude
-					for (let x = dom[0]; x <= dom[1]; x += 0.1) {
-						const OriginalAmplitude = originalAmplitude(
-							dom[1],
-							lead.complex[wave].curve,
-						)
-
-						const AmplitudeMultiplier = amplitudeMultiplier(
-							desiredAmplitude,
-							OriginalAmplitude,
-						)
-
-						const VerticalShift = verticalShift(
-							OriginalAmplitude,
-							AmplitudeMultiplier,
-						)
-
-						drawLine(
-							lead.complex[wave].curve,
-							begin_x,
-							end_y,
-							x,
-							AmplitudeMultiplier,
-							VerticalShift,
-							g,
-						)
-					}
-					begin_x += dom[1]
-				} else {
-					drawIntervalLine(begin_x, end_y, dom[1] * 2, 0, g)
-					begin_x +=
-						lead.complex[wave].width * horizontalMM +
-						0.5 * (lead.complex[wave + 1].width * horizontalMM)
-				}
-			}
-			drawIntervalLine(begin_x, end_y, tpInterval, 0, g)
-			begin_x += tpInterval + 0.5 * (lead.complex[0].width * horizontalMM)
-		}
-		svg.appendChild(g)
-	}
-
 	return {
 		domain,
 		originalAmplitude,
@@ -172,6 +116,5 @@ export default function Util(
 		complexWidth,
 		drawLine,
 		drawIntervalLine,
-		processor,
 	}
 }
