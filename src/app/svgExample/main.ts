@@ -82,7 +82,6 @@ export default function mainSVG(): { init: void } {
 			canvasHeight,
 			canvasWidth,
 			NMBRHORIZSMLBXS,
-			NMBRVERTSMLBXS,
 			horizontalMM,
 			verticalMM,
 		)
