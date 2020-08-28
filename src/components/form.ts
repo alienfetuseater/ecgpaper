@@ -5,7 +5,6 @@ export default function sideForm(
 	featureToManipulateArray: formFeatureInterface[],
 ): { init: void } {
 	const main = document.querySelector('main')
-	const form = document.createElement('form')
 
 	let lead: number | string | undefined = undefined
 
@@ -34,49 +33,6 @@ export default function sideForm(
 			lead = (e.target as HTMLSelectElement).value
 		})
 		return select
-	}
-
-	const leadSelect = (): HTMLSelectElement => {
-		let lead: number | string | undefined = undefined
-
-		const label = document.createElement('label')
-		label.setAttribute('for', 'lead-select')
-		label.textContent = 'select lead you wish to edit'
-		form.appendChild(label)
-
-		const select = document.createElement('select')
-		select.setAttribute('id', 'lead-select')
-
-		const option = document.createElement('option')
-		option.setAttribute('value', undefined)
-		option.textContent = '--Please Select A Value--'
-		select.appendChild(option)
-
-		const optionTwo = document.createElement('option')
-		optionTwo.setAttribute('value', 'global')
-		optionTwo.textContent = 'global'
-		select.appendChild(optionTwo)
-
-		store.forEach((lead, index) => {
-			const option = document.createElement('option')
-			option.setAttribute('value', String(index))
-			option.textContent = lead.lead
-			select.appendChild(option)
-		})
-		select.addEventListener('change', (e: Event) => {
-			lead = (e.target as HTMLSelectElement).value
-		})
-		return select
-	}
-
-	const featureSelect = (): HTMLSelectElement => {
-		let feature: string
-		return feature
-	}
-
-	const characteristicSelect = (): HTMLSelectElement => {
-		let characteristic: string
-		return characteristic
 	}
 
 	// actual form for inputs and sliders to adjust things
