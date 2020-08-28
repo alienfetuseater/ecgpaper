@@ -3,11 +3,11 @@ import Svg from '@/app/svgExample/main'
 
 export default [
 	{
-		name: 'home',
-		component: Home,
-	},
-	{
 		name: 'svg',
 		component: Svg,
+	},
+	{
+		name: 'home',
+		component: Home,
 	},
 ]

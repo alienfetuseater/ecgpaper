@@ -8,6 +8,7 @@ export default function sideForm(
 
 	let lead: number | string | undefined = undefined
 
+	// function defining drop down menu for selecting which lead to edit
 	const Select = (): HTMLSelectElement => {
 		const select = document.createElement('select')
 		select.setAttribute('id', 'lead-select')
@@ -25,7 +26,7 @@ export default function sideForm(
 		store.forEach((lead, index) => {
 			const option = document.createElement('option')
 			option.setAttribute('value', String(index))
-			option.textContent = lead.Lead
+			option.textContent = lead.lead
 			select.appendChild(option)
 		})
 		select.addEventListener('change', (e: Event) => {
@@ -34,12 +35,14 @@ export default function sideForm(
 		return select
 	}
 
+	// actual form for inputs and sliders to adjust things
 	const form = (): HTMLFormElement => {
 		const form = document.createElement('form')
 		const label = document.createElement('label')
 		label.setAttribute('for', 'lead-select')
 		label.textContent = 'which lead do you want to edit?'
 
+		// invocation for select menu function and appending to form
 		const select = Select()
 		form.appendChild(label)
 		form.appendChild(select)
@@ -62,42 +65,39 @@ export default function sideForm(
 				if (lead === 'global') {
 					console.log('global was selected')
 					store.forEach((lead) => {
-						for (const key in lead) {
-							if (key === el.feature) {
-								lead[key] = input.value
+						lead.complex.forEach((featureObject) => {
+							for (const property in featureObject) {
+								if (property === el.feature) {
+									featureObject[property] = input.value
+								}
 							}
-						}
+						})
 					})
 				} else if (lead === undefined) {
 					console.log('you need to choose a lead first')
 				} else {
 					const stateObject = store[Number(lead)]
-					for (const key in stateObject) {
-						if (key === el.feature) {
-							stateObject[key] = input.value
+					console.log('feature: ', el.feature)
+					stateObject.complex.forEach((featureObject) => {
+						for (const property in featureObject) {
+							console.log(featureObject[property])
+							if (property === el.feature) {
+								// console.log('feature: ', featureObject.feature)
+								// console.log('property: ', property)
+								featureObject[property] = input.value
+							}
 						}
-					}
+					})
 				}
 			})
 
-			const datalist = document.createElement('datalist')
-			datalist.setAttribute('id', 'tickmarks')
-
-			const incrementer = (el.max - el.min) / 10
-			for (let i = el.min; i < el.max; i += incrementer) {
-				const option = document.createElement('option')
-				option.setAttribute('value', String(i))
-				datalist.appendChild(option)
-			}
-			input.setAttribute('list', 'tickmarks')
-
 			form.appendChild(label)
 			form.appendChild(input)
-			form.appendChild(datalist)
 		})
 		return form
 	}
 
+	// layout section for form on side
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
 		aside.appendChild(form)

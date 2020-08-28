@@ -19,28 +19,13 @@ export default function State(lead: leadObject): stateObject {
 	const isoelectric = lead.isoelectric
 
 	return {
-		Lead: lead.lead,
-
-		startX: isoelectric.startX,
-		startY: isoelectric.startY,
-		endX: isoelectric.endX,
-		endY: isoelectric.endY,
-
-		pWaveDuration: pwave.width,
-		pWaveAmplitude: pwave.amplitude,
-		pWaveCurve: pwave.curve,
-
-		prSegmentLength: printerval.width,
-
-		qrsWaveAmplitude: qrs.amplitude,
-		qrsWaveDuration: qrs.width,
-		qrsWaveCurve: pwave.curve,
-
-		stSegmentLength: stinterval.width,
-
-		tWaveAmplitude: twave.amplitude,
-		tWaveDuration: twave.width,
-		tWaveCurve: pwave.curve,
+		lead: lead.lead,
+		isoelectric: {
+			startX: isoelectric.startX,
+			startY: isoelectric.startY,
+			endX: isoelectric.endX,
+			endY: isoelectric.endY,
+		},
 
 		complex: [
 			{

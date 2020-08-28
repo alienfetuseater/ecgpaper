@@ -5,15 +5,25 @@ export default function Store(
 	leads: leadObject[],
 	processor: (lead: stateObject) => void,
 ): { init: stateObject[] } {
+	// create proxies
+
 	const createProxies = (stateObject: stateObject) => {
+		processor(stateObject)
+
 		return new Proxy(stateObject, {
-			set(target, property, value) {
-				const g = document.querySelector(`#${target.Lead}`)
+			get(target, property: string | number) {
+				return target[property]
+			},
+
+			set(target, property: string | number, value) {
+				console.log(target)
+				const g = document.querySelector(`#${target.lead}`)
 				while (g.firstChild) {
 					g.removeChild(g.firstChild)
 				}
-				target[String(property)] = value
+				target[property] = value
 				processor(target)
+
 				return true
 			},
 		})

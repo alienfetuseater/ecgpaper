@@ -14,16 +14,16 @@ export default function Processor(
 	const leadBoxLength = (horizontalMM * NMBRHORIZSMLBXS) / 4
 	const tpInterval = 5 * horizontalMM
 
-	return (lead: stateObject) => {
+	return (lead: stateObject): void => {
 		const complexWidth = util.complexWidth(lead)
 
 		// magic numbers here are for placement of ecg in proper relation to grid lines to start
-		let begin_x = lead.startX * canvasWidth + 8 * horizontalMM
-		const end_y = lead.endY * canvasHeight + 5 * verticalMM
+		let begin_x = lead.isoelectric.startX * canvasWidth + 8 * horizontalMM
+		const end_y = lead.isoelectric.endY * canvasHeight + 5 * verticalMM
 		const nmbrComplexes = leadBoxLength / (complexWidth * horizontalMM) - 3
 
 		const g = document.createElementNS(xmlns, 'g')
-		g.setAttributeNS(null, 'id', lead.Lead)
+		g.setAttributeNS(null, 'id', lead.lead)
 		for (let complexes = 0; complexes < nmbrComplexes; complexes++) {
 			for (let wave = 0; wave < lead.complex.length; wave++) {
 				const dom: number[] = util.domain(lead.complex[wave].width)

@@ -17,7 +17,7 @@ export default function mainSVG(): { init: void } {
 		{
 			feature: 'pWaveAmplitude',
 			min: 1,
-			max: 5,
+			max: 15,
 			value: 2,
 			increment: 0.1,
 		},
@@ -88,9 +88,10 @@ export default function mainSVG(): { init: void } {
 		const store = Store(data, processor).init
 		Form(store, featureToManipulateArray)
 
-		store.forEach((el: stateObject) => {
-			processor(el)
-		})
+		// store.forEach((el: stateObject) => {
+		// 	processor(el)
+		// })
+		// processor(store[3])
 	}
 
 	return {

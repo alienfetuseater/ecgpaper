@@ -1,5 +1,6 @@
 declare module 'interfaces' {
 	export interface feature {
+		[index: string]: string | number
 		feature: string
 		curve?: string
 		amplitude?: number
@@ -68,20 +69,23 @@ declare module 'interfaces' {
 	}
 
 	export interface stateObject {
-		[index: string]: string | number | feature[]
-		readonly Lead: string
-		startX: number
-		startY: number
-		endX: number
-		endY: number
-		pWaveAmplitude: number
-		pWaveDuration: number
-		prSegmentLength: number
-		qrsWaveAmplitude: number
-		qrsWaveDuration: number
-		stSegmentLength: number
-		tWaveAmplitude: number
-		tWaveDuration: number
+		[index: string]:
+			| string
+			| {
+					startX: number
+					startY: number
+					endX: number
+					endY: number
+			  }
+			| feature[]
+		lead: string
+		isoelectric: {
+			startX: number
+			startY: number
+			endX: number
+			endY: number
+		}
+		[key: number]: feature[]
 		complex: feature[]
 	}
 

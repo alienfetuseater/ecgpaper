@@ -41,13 +41,10 @@ export default function Util(
 	}
 
 	const complexWidth = function (lead: stateObject): number {
-		const width =
-			lead.pWaveDuration +
-			lead.prSegmentLength +
-			lead.qrsWaveDuration +
-			lead.stSegmentLength +
-			lead.tWaveDuration
-
+		let width = 0
+		lead.complex.forEach((el) => {
+			width += el.width
+		})
 		return width
 	}
 
@@ -80,7 +77,6 @@ export default function Util(
 		line.setAttributeNS(null, 'stroke-width', '1')
 
 		g.appendChild(line)
-		// svg.appendChild(line)
 	}
 
 	const drawIntervalLine = function (
@@ -105,7 +101,6 @@ export default function Util(
 		line.setAttributeNS(null, 'stroke-width', '1')
 
 		g.appendChild(line)
-		// svg.appendChild(line)
 	}
 
 	return {
