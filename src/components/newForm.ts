@@ -3,88 +3,62 @@ import { stateObject } from 'interfaces'
 export default function sideForm(store: stateObject[]): { init: void } {
 	const main = document.querySelector('main')
 
-	let lead: number | string | undefined = undefined
-	let feature: string | undefined = undefined
-	let characteristic: string | undefined = undefined
+	interface Lead {
+		[index: string]: string | undefined
+		leadIndex: string | undefined
+		leadName: string | undefined
+	}
+	const lead: Lead = {
+		leadIndex: undefined,
+		leadName: undefined,
+	}
+
+	const leadProxy = new Proxy(lead, {
+		get(target, property: string | undefined) {
+			return target[property]
+		},
+		set(target, property: string | undefined, value) {
+			const legend = document.querySelector('legend')
+			switch (value) {
+				case 'undefined':
+					legend.textContent = 'lead: undefined'
+					break
+
+				case 'global':
+					legend.textContent = 'lead: global'
+					break
+				default:
+					target.leadName = store[value].lead
+					legend.textContent = `lead: ${target.leadName}`
+					break
+			}
+			target[property] = value
+			return true
+		},
+	})
 
 	const LeadSelect = (): HTMLSelectElement => {
-		// let lead: number | string | undefined = undefined
-
 		const select = document.createElement('select')
 		select.setAttribute('id', 'lead-select')
 
 		const option = document.createElement('option')
 		option.setAttribute('value', undefined)
-		option.textContent = '--Please Select A Lead--'
+		option.setAttribute('label', '--Please Select A Lead--')
 		select.appendChild(option)
 
 		const optionTwo = document.createElement('option')
 		optionTwo.setAttribute('value', 'global')
-		optionTwo.textContent = 'global'
+		optionTwo.setAttribute('label', 'global')
 		select.appendChild(optionTwo)
 
 		store.forEach((lead, index) => {
 			const option = document.createElement('option')
 			option.setAttribute('value', String(index))
-			option.textContent = lead.lead
+			option.setAttribute('label', lead.lead)
 			select.appendChild(option)
 		})
 		select.addEventListener('change', (e: Event) => {
-			lead = (e.target as HTMLSelectElement).value
-		})
-		return select
-	}
-
-	const FeatureSelect = (): HTMLSelectElement => {
-		// let feature: string | undefined = undefined
-
-		const select = document.createElement('select')
-		select.setAttribute('id', 'feature-select')
-
-		const option = document.createElement('option')
-		option.setAttribute('value', undefined)
-		option.textContent = '--Select Wave Feature--'
-		select.appendChild(option)
-
-		const featuresArray = [
-			'pwave',
-			'printerval',
-			'qrs',
-			'stinterval',
-			'twave',
-		]
-
-		for (let i = 0; i < featuresArray.length; i++) {
-			const option = document.createElement('option')
-			option.setAttribute('value', featuresArray[i])
-			option.textContent = featuresArray[i]
-			select.appendChild(option)
-		}
-		select.addEventListener('change', (e: Event) => {
-			feature = (e.target as HTMLSelectElement).value
-		})
-		return select
-	}
-
-	const CharacteristicSelect = (): HTMLSelectElement => {
-		const select = document.createElement('select')
-		select.setAttribute('id', 'characteristic-select')
-
-		const option = document.createElement('option')
-		option.setAttribute('value', undefined)
-		option.textContent = '--Select characteristic Feature--'
-		select.appendChild(option)
-
-		const characteristicArray = ['amplitude', 'width']
-
-		for (let i = 0; i < characteristicArray.length; i++) {
-			const option = document.createElement('option')
-			option.setAttribute('value', characteristicArray[i])
-			option.textContent = characteristicArray[i]
-			select.appendChild(option)
-		}
-		select.addEventListener('change', (e: Event) => {
-			characteristic = (e.target as HTMLSelectElement).value
+			leadProxy.leadIndex = (e.target as HTMLSelectElement).value
 		})
 		return select
 	}
@@ -100,20 +74,78 @@ export default function sideForm(store: stateObject[]): { init: void } {
 		const leadSelect = LeadSelect()
 		form.appendChild(leadSelect)
 
-		const featureLabel = document.createElement('label')
-		featureLabel.setAttribute('for', 'feature-select')
-		featureLabel.textContent = 'select feature you wish to edit'
-		form.appendChild(featureLabel)
-		const featureSelect = FeatureSelect()
-		form.appendChild(featureSelect)
+		const fieldSet = document.createElement('fieldset')
+		const legend = document.createElement('legend')
+		legend.textContent = 'lead: undefined'
+		fieldSet.appendChild(legend)
 
-		const characteristiclabel = document.createElement('label')
-		characteristiclabel.setAttribute('for', 'characteristic-select')
-		characteristiclabel.textContent =
-			'select characteristic you wish to edit'
-		form.appendChild(characteristiclabel)
-		const characteristicSelect = CharacteristicSelect()
-		form.appendChild(characteristicSelect)
+		const fieldet = `
+		<fieldset>
+		<legend>lead: undefined</legend>
+
+		<label>
+		pwave</br>
+		<label for="pwaveamplitude">amplitude</label></br>
+		<input id="pwaveamplitude" type="range" min="-5" max="10" name="pwave.amplitude"></br>
+		<label for="pwavewidth">duration</label></br>
+		<input id="pwavewidth" type="range" min="-5" max="10" name="pwave.width"></br>
+		</label>
+
+		<label>
+		pr segment</br>
+		<label for="prwidth">duration</label></br>
+		<input id="prwidth" type="range" min="-5" max="10" name="pr.width"></br>
+		</label>
+
+		<label>
+		qrs</br>
+		<label for="qrsamplitude">amplitude</label></br>
+		<input id="qrsamplitude" type="range" min="-5" max="10" name="qrs.amplitude"></br>
+		<label for="qrswidth">duration</label></br>
+		<input id="qrswidth" type="range" min="-5" max="10" name="qrs.width"></br>
+		</label>
+
+		<label>
+		st segment</br>
+		<label for="stwidth">duration</label></br>
+		<input id="stwidth" type="range" min="-5" max="10" name="st.width"></br>
+		</label>
+
+		<label>
+		twave</br>
+		<label for="twaveamplitude">amplitude</label></br>
+		<input id="twaveamplitude" type="range" min="-5" max="10" name="twave.amplitude"></br>
+		<label for="twavewidth">duration</label></br>
+		<input id="pwavewidth" type="range" min="-5" max="10" name="twave.width"></br>
+		</label>
+		</fieldset>
+		`
+		leadSelect.insertAdjacentHTML('afterend', fieldSet)
+
+		// add event listeners
+		const inputs = document.querySelectorAll('input')
+		inputs.forEach((input) => {
+			// switch (leadProxy.leadName) {
+			// 	case 'undefined':
+			// 		console.log('must pick a lead first')
+			// 		break
+			// 	case 'global':
+			// 		// handle global here
+			// 		break
+			// 	default:
+			// 		// handle single lead here
+			// 		input.addEventListener('change', (e: Event) => {
+			// 			/**
+			// 			 * need to find lead in store that matches leadProxy.leadIndex
+			// 			 * find characteristic to mutate (pwave, pr segment...)
+			// 			 * find property to mutate (width, amplitude)
+			// 			 */
+			// 			const inputName = input.attributes
+			// 			// store[Number(leadProxy.leadIndex)].complex[]
+			// 		})
+			// 		break
+			// }
+		})
 
 		return form
 	}
