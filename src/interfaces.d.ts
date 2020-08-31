@@ -89,8 +89,9 @@ declare module 'interfaces' {
 		complex: feature[]
 	}
 
-	export interface formFeatureInterface {
+	export interface FormFeatures {
 		feature: string
+		characteristic: string
 		min: number
 		max: number
 		value: number

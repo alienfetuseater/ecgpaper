@@ -4,7 +4,7 @@ import Processor from './Processor'
 import Form from '@/components/newForm'
 // import Form from '@/components/Form'
 import Store from '@/store/main'
-import { stateObject, formFeatureInterface } from 'interfaces'
+import { stateObject, FormFeatures } from 'interfaces'
 
 export default function mainSVG(): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
@@ -14,58 +14,66 @@ export default function mainSVG(): { init: void } {
 	const NMBRVERTSMLBXS = 212
 	const horizontalMM = canvasWidth / NMBRHORIZSMLBXS
 	const verticalMM = canvasHeight / NMBRVERTSMLBXS
-	const featureToManipulateArray: formFeatureInterface[] = [
+	const formFeatures: FormFeatures[] = [
 		{
-			feature: 'pWaveAmplitude',
+			feature: 'pWave',
+			characteristic: 'amplitude',
 			min: 1,
 			max: 15,
 			value: 2,
 			increment: 0.1,
 		},
 		{
-			feature: 'pWaveDuration',
+			feature: 'pWave',
+			characteristic: 'width',
 			min: 1,
 			max: 3,
 			value: 3,
 			increment: 0.1,
 		},
 		{
-			feature: 'prSegmentLength',
+			feature: 'prSegment',
+			characteristic: 'width',
 			min: 1,
 			max: 3,
 			value: 1,
 			increment: 0.1,
 		},
 		{
-			feature: 'qrsWaveAmplitude',
+			feature: 'qrsWave',
+			characteristic: 'amplitude',
 			min: -10,
 			max: 15,
 			value: 10,
 			increment: 0.1,
 		},
 		{
-			feature: 'qrsWaveDuration',
+			feature: 'qrsWave',
+			characteristic: 'width',
 			min: 2,
 			max: 5,
 			value: 3,
 			increment: 0.1,
 		},
 		{
-			feature: 'stSegmentLength',
+			feature: 'stSegment',
+			characteristic: 'width',
 			min: 1,
 			max: 3,
 			value: 1,
 			increment: 0.1,
 		},
 		{
-			feature: 'tWaveAmplitude',
+			feature: 'tWave',
+			characteristic: 'amplitude',
 			min: -3,
 			max: 10,
 			value: 5,
 			increment: 0.1,
 		},
 		{
-			feature: 'tWaveDuration',
+			feature: 'tWave',
+			characteristic: 'width',
 			min: 5,
 			max: 10,
 			value: 5,
@@ -87,7 +95,7 @@ export default function mainSVG(): { init: void } {
 			verticalMM,
 		)
 		const store = Store(data, processor).init
-		Form(store)
+		Form(store, formFeatures)
 		// Form(store, featureToManipulateArray)
 
 		// store.forEach((el: stateObject) => {

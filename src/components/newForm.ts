@@ -1,6 +1,9 @@
-import { stateObject } from 'interfaces'
+import { stateObject, FormFeatures } from 'interfaces'
 
-export default function sideForm(store: stateObject[]): { init: void } {
+export default function sideForm(
+	store: stateObject[],
+	formFeatures: FormFeatures[],
+): { init: void } {
 	const main = document.querySelector('main')
 
 	interface Lead {
@@ -78,49 +81,20 @@ export default function sideForm(store: stateObject[]): { init: void } {
 		const legend = document.createElement('legend')
 		legend.textContent = 'lead: undefined'
 		fieldSet.appendChild(legend)
-
-		const fieldet = `
-		<fieldset>
-		<legend>lead: undefined</legend>
-
-		<label>
-		pwave</br>
-		<label for="pwaveamplitude">amplitude</label></br>
-		<input id="pwaveamplitude" type="range" min="-5" max="10" name="pwave.amplitude"></br>
-		<label for="pwavewidth">duration</label></br>
-		<input id="pwavewidth" type="range" min="-5" max="10" name="pwave.width"></br>
-		</label>
-
-		<label>
-		pr segment</br>
-		<label for="prwidth">duration</label></br>
-		<input id="prwidth" type="range" min="-5" max="10" name="pr.width"></br>
-		</label>
-
-		<label>
-		qrs</br>
-		<label for="qrsamplitude">amplitude</label></br>
-		<input id="qrsamplitude" type="range" min="-5" max="10" name="qrs.amplitude"></br>
-		<label for="qrswidth">duration</label></br>
-		<input id="qrswidth" type="range" min="-5" max="10" name="qrs.width"></br>
-		</label>
-
-		<label>
-		st segment</br>
-		<label for="stwidth">duration</label></br>
-		<input id="stwidth" type="range" min="-5" max="10" name="st.width"></br>
-		</label>
-
-		<label>
-		twave</br>
-		<label for="twaveamplitude">amplitude</label></br>
-		<input id="twaveamplitude" type="range" min="-5" max="10" name="twave.amplitude"></br>
-		<label for="twavewidth">duration</label></br>
-		<input id="pwavewidth" type="range" min="-5" max="10" name="twave.width"></br>
-		</label>
-		</fieldset>
-		`
-		leadSelect.insertAdjacentHTML('afterend', fieldSet)
+		;((formFeatures: FormFeatures[]) => {
+			formFeatures.forEach((element: FormFeatures) => {
+				/**
+				 * need to first setlegend label for wave were working on
+				 * then set input and labels for the characteristics we're changing
+				 * if wave has amplitude and width characteristics to change, do so.
+				 * do this by setting a feature variable, then check with each iteration
+				 * if the feature has changed, if it hasnt, dont create new legend
+				 * and create second input/labels
+				 * if it has then set new feature variable and create new input/labels
+				 *
+				 */
+			})
+		})(formFeatures)
 
 		// add event listeners
 		const inputs = document.querySelectorAll('input')
