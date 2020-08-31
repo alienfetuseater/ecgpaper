@@ -81,10 +81,11 @@ export default function sideForm(
 		const legend = document.createElement('legend')
 		legend.textContent = 'lead: undefined'
 		fieldSet.appendChild(legend)
+		// iife
 		;((formFeatures: FormFeatures[]) => {
 			formFeatures.forEach((element: FormFeatures) => {
 				/**
-				 * need to first setlegend label for wave were working on
+				 * need to first set legend label for wave were working on
 				 * then set input and labels for the characteristics we're changing
 				 * if wave has amplitude and width characteristics to change, do so.
 				 * do this by setting a feature variable, then check with each iteration
