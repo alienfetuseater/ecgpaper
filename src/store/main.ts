@@ -12,11 +12,12 @@ export default function Store(
 
 		return new Proxy(stateObject, {
 			get(target, property: string | number) {
+				// console.log('STORE PROPERTIES ACCESSED')
 				return target[property]
 			},
 
-			set(target, property: string | number, value) {
-				console.log('change detected in store')
+			set: function (target, property: string | number, value) {
+				console.log('CHANGE DETECTED IN STORE')
 				const g = document.querySelector(`#${target.lead}`)
 				while (g.firstChild) {
 					g.removeChild(g.firstChild)

@@ -116,23 +116,29 @@ export default function sideForm(
 						break
 					default:
 						input.addEventListener('change', (e: Event) => {
-							const stateObject =
-								store[Number(leadProxy.leadIndex)]
-
-							const featureArray = stateObject.complex
-							const feature = featureArray.find(
-								(featureObject) => {
-									return (
-										featureObject.feature === el.feature &&
-										featureObject.characteristic ===
-											el.characteristic
-									)
+							const lead = store[Number(leadProxy.leadIndex)]
+							const leadComplexArray = lead.complex
+							const leadFeatureObject = leadComplexArray.find(
+								(feature) => {
+									return feature.feature === el.feature
 								},
 							)
-							for (const [property] of Object.entries(feature)) {
-								if (property === el.characteristic) {
-									feature[property] = input.value
-								}
+							switch (el.characteristic) {
+								case 'width':
+									leadFeatureObject['width'] = Number(
+										input.value,
+									)
+									break
+								case 'amplitude':
+									leadFeatureObject['amplitude'] = Number(
+										(e.target as HTMLInputElement).value,
+									)
+									console.log(
+										(e.target as HTMLInputElement).value,
+									)
+									break
+								default:
+									break
 							}
 						})
 						break
