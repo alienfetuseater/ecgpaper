@@ -1,4 +1,4 @@
-import { stateObject, FormFeatures } from 'interfaces'
+import { stateObject, FormFeatures, Lead } from 'interfaces'
 
 export default function sideForm(
 	store: stateObject[],
@@ -6,11 +6,6 @@ export default function sideForm(
 ): { init: void } {
 	const main = document.querySelector('main')
 
-	interface Lead {
-		[index: string]: string | undefined
-		leadIndex: string | undefined
-		leadName: string | undefined
-	}
 	const lead: Lead = {
 		leadIndex: undefined,
 		leadName: undefined,
@@ -24,18 +19,22 @@ export default function sideForm(
 			const legend = document.querySelector('legend')
 			switch (value) {
 				case 'undefined':
+					target.leadName = 'undefined'
+					target.leadIndex = 'undefined'
 					legend.textContent = 'lead: undefined'
 					break
 
 				case 'global':
+					target.leadName = 'global'
+					target.leadIndex = 'global'
 					legend.textContent = 'lead: global'
 					break
 				default:
 					target.leadName = store[value].lead
+					target.leadIndex = value
 					legend.textContent = `lead: ${target.leadName}`
 					break
 			}
-			target[property] = value
 			return true
 		},
 	})
@@ -66,7 +65,6 @@ export default function sideForm(
 		return select
 	}
 
-	// actual form for inputs and sliders to adjust things
 	const form = (): HTMLFormElement => {
 		const form = document.createElement('form')
 
@@ -107,25 +105,38 @@ export default function sideForm(
 				input.setAttribute('max', String(el.max))
 				input.setAttribute('min', String(el.min))
 				input.setAttribute('value', String(el.value))
-				switch (leadProxy.leadName) {
-					case 'undefined':
-						console.log('must pick a lead first')
-						break
-					case 'global':
-						// handle global here
-						break
-					default:
-						input.addEventListener('change', (e: Event) => {
-							const stateObject =
-								store[Number(leadProxy.leadIndex)]
-							for (const property in stateObject) {
+
+				input.addEventListener('change', (e: Event) => {
+					switch (leadProxy.leadName) {
+						case 'undefined':
+							console.log(
+								'must pick a lead first',
+								String(leadProxy.leadName),
+							)
+							break
+						case 'global':
+							console.log('global lead selected and changed')
+							store.forEach((stateObject) => {
+								for (const property in stateObject) {
+									if (property === input.id) {
+										stateObject[property] = input.value
+									}
+								}
+							})
+							break
+						default:
+							for (const property in store[
+								Number(leadProxy.leadIndex)
+							]) {
 								if (property === input.id) {
-									stateObject[property] = input.value
+									store[Number(leadProxy.leadIndex)][
+										property
+									] = input.value
 								}
 							}
-						})
-						break
-				}
+							break
+					}
+				})
 
 				label.appendChild(input)
 				p.appendChild(label)

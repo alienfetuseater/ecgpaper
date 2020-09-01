@@ -1,4 +1,9 @@
 declare module 'interfaces' {
+	export interface Lead {
+		[index: string]: string | undefined
+		leadIndex: string | undefined
+		leadName: string | undefined
+	}
 	export interface feature {
 		[index: string]: string | number
 		feature: string
