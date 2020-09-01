@@ -11,18 +11,15 @@ export default function Store(
 		processor(stateObject)
 
 		return new Proxy(stateObject, {
-			get(target, property: string | number) {
+			get: function (target, property: string | number) {
 				return target[property]
 			},
 
 			set: function (target, property: string | number, value) {
-				const g = document.querySelector(`#${target.lead}`)
-				while (g.firstChild) {
-					g.removeChild(g.firstChild)
-				}
 				target[property] = value
+				const g: SVGElement = document.querySelector(`#${target.lead}`)
+				g.remove()
 				processor(target)
-
 				return true
 			},
 		})

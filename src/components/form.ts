@@ -116,10 +116,11 @@ export default function sideForm(
 						break
 					default:
 						input.addEventListener('change', (e: Event) => {
-							const lead = store[Number(leadProxy.leadIndex)]
-							for (const property in lead) {
+							const stateObject =
+								store[Number(leadProxy.leadIndex)]
+							for (const property in stateObject) {
 								if (property === input.id) {
-									lead[property] = input.value
+									stateObject[property] = input.value
 								}
 							}
 						})
