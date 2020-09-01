@@ -41,11 +41,13 @@ export default function Util(
 	}
 
 	const complexWidth = function (lead: stateObject): number {
-		let width = 0
-		lead.complex.forEach((el) => {
-			width += el.width
-		})
-		return width
+		return (
+			lead.pwavewidth +
+			lead.printerval +
+			lead.qrswidth +
+			lead.stinterval +
+			lead.twavewidth
+		)
 	}
 
 	const drawLine = function (

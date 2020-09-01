@@ -26,34 +26,20 @@ export default function State(lead: leadObject): stateObject {
 			endX: isoelectric.endX,
 			endY: isoelectric.endY,
 		},
+		qrscurve: qrs.curve,
+		qrsamplitude: qrs.amplitude,
+		qrswidth: qrs.width,
 
-		complex: [
-			{
-				feature: 'pwave',
-				curve: pwave.curve,
-				amplitude: pwave.amplitude,
-				width: pwave.width,
-			},
-			{
-				feature: 'printerval',
-				width: printerval.width,
-			},
-			{
-				feature: 'qrs',
-				curve: qrs.curve,
-				amplitude: qrs.amplitude,
-				width: qrs.width,
-			},
-			{
-				feature: 'stinterval',
-				width: stinterval.width,
-			},
-			{
-				feature: 'twave',
-				curve: twave.curve,
-				amplitude: twave.amplitude,
-				width: twave.width,
-			},
-		],
+		printerval: printerval.width,
+
+		pwavecurve: pwave.curve,
+		pwaveamplitude: pwave.amplitude,
+		pwavewidth: pwave.width,
+
+		stinterval: stinterval.width,
+
+		twavecurve: twave.curve,
+		twaveamplitude: twave.amplitude,
+		twavewidth: twave.width,
 	}
 }

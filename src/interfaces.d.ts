@@ -77,7 +77,7 @@ declare module 'interfaces' {
 					endX: number
 					endY: number
 			  }
-			| feature[]
+			| number
 		lead: string
 		isoelectric: {
 			startX: number
@@ -85,8 +85,21 @@ declare module 'interfaces' {
 			endX: number
 			endY: number
 		}
-		[key: number]: feature[]
-		complex: feature[]
+		qrscurve: string
+		qrsamplitude: number
+		qrswidth: number
+
+		printerval: number
+
+		pwavecurve: string
+		pwaveamplitude: number
+		pwavewidth: number
+
+		stinterval: number
+
+		twavecurve: string
+		twaveamplitude: number
+		twavewidth: number
 	}
 
 	export interface FormFeatures {

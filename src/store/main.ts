@@ -12,12 +12,10 @@ export default function Store(
 
 		return new Proxy(stateObject, {
 			get(target, property: string | number) {
-				// console.log('STORE PROPERTIES ACCESSED')
 				return target[property]
 			},
 
 			set: function (target, property: string | number, value) {
-				console.log('CHANGE DETECTED IN STORE')
 				const g = document.querySelector(`#${target.lead}`)
 				while (g.firstChild) {
 					g.removeChild(g.firstChild)
@@ -35,8 +33,8 @@ export default function Store(
 
 		leads.forEach((lead) => {
 			const stateObject = State(lead)
-			const proxiedObject = createProxies(stateObject)
-			stateArray.push(proxiedObject)
+			const proxiedStateObject = createProxies(stateObject)
+			stateArray.push(proxiedStateObject)
 		})
 		return stateArray
 	}

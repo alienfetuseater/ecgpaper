@@ -1,8 +1,7 @@
 import data from '@/assets/rhythms.json'
 import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
-import Form from '@/components/newForm'
-// import Form from '@/components/Form'
+import Form from '@/components/Form'
 import Store from '@/store/main'
 import { FormFeatures } from 'interfaces'
 
