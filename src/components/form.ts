@@ -1,8 +1,8 @@
-import { stateObject, formFeatureInterface } from 'interfaces'
+import { stateObject, FormFeatures } from 'interfaces'
 
 export default function sideForm(
 	store: stateObject[],
-	featureToManipulateArray: formFeatureInterface[],
+	featureToManipulateArray: FormFeatures[],
 ): { init: void } {
 	const main = document.querySelector('main')
 

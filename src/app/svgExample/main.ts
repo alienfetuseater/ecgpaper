@@ -4,7 +4,7 @@ import Processor from './Processor'
 import Form from '@/components/newForm'
 // import Form from '@/components/Form'
 import Store from '@/store/main'
-import { stateObject, FormFeatures } from 'interfaces'
+import { FormFeatures } from 'interfaces'
 
 export default function mainSVG(): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
@@ -16,7 +16,7 @@ export default function mainSVG(): { init: void } {
 	const verticalMM = canvasHeight / NMBRVERTSMLBXS
 	const formFeatures: FormFeatures[] = [
 		{
-			feature: 'pWave',
+			feature: 'pwave',
 			characteristic: 'amplitude',
 			min: 1,
 			max: 15,
@@ -24,15 +24,15 @@ export default function mainSVG(): { init: void } {
 			increment: 0.1,
 		},
 		{
-			feature: 'pWave',
+			feature: 'pwave',
 			characteristic: 'width',
 			min: 1,
-			max: 3,
+			max: 10,
 			value: 3,
 			increment: 0.1,
 		},
 		{
-			feature: 'prSegment',
+			feature: 'prsegment',
 			characteristic: 'width',
 			min: 1,
 			max: 3,
@@ -40,7 +40,7 @@ export default function mainSVG(): { init: void } {
 			increment: 0.1,
 		},
 		{
-			feature: 'qrsWave',
+			feature: 'qrswave',
 			characteristic: 'amplitude',
 			min: -10,
 			max: 15,
@@ -48,7 +48,7 @@ export default function mainSVG(): { init: void } {
 			increment: 0.1,
 		},
 		{
-			feature: 'qrsWave',
+			feature: 'qrswave',
 			characteristic: 'width',
 			min: 2,
 			max: 5,
@@ -56,7 +56,7 @@ export default function mainSVG(): { init: void } {
 			increment: 0.1,
 		},
 		{
-			feature: 'stSegment',
+			feature: 'stsegment',
 			characteristic: 'width',
 			min: 1,
 			max: 3,
@@ -64,7 +64,7 @@ export default function mainSVG(): { init: void } {
 			increment: 0.1,
 		},
 		{
-			feature: 'tWave',
+			feature: 'twave',
 			characteristic: 'amplitude',
 			min: -3,
 			max: 10,
@@ -72,7 +72,7 @@ export default function mainSVG(): { init: void } {
 			increment: 0.1,
 		},
 		{
-			feature: 'tWave',
+			feature: 'twave',
 			characteristic: 'width',
 			min: 5,
 			max: 10,
@@ -96,12 +96,6 @@ export default function mainSVG(): { init: void } {
 		)
 		const store = Store(data, processor).init
 		Form(store, formFeatures)
-		// Form(store, featureToManipulateArray)
-
-		// store.forEach((el: stateObject) => {
-		// 	processor(el)
-		// })
-		// processor(store[3])
 	}
 
 	return {

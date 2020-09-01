@@ -83,44 +83,68 @@ export default function sideForm(
 		fieldSet.appendChild(legend)
 		// iife
 		;((formFeatures: FormFeatures[]) => {
-			formFeatures.forEach((element: FormFeatures) => {
-				/**
-				 * need to first set legend label for wave were working on
-				 * then set input and labels for the characteristics we're changing
-				 * if wave has amplitude and width characteristics to change, do so.
-				 * do this by setting a feature variable, then check with each iteration
-				 * if the feature has changed, if it hasnt, dont create new legend
-				 * and create second input/labels
-				 * if it has then set new feature variable and create new input/labels
-				 *
-				 */
+			let featureName: string | undefined = undefined
+			formFeatures.forEach((el: FormFeatures) => {
+				const p = document.createElement('p')
+				if (featureName != el.feature) {
+					const h4 = document.createElement('h4')
+					h4.textContent = el.feature
+					p.appendChild(h4)
+				}
+				const label = document.createElement('label')
+				label.textContent = el.characteristic
+				label.setAttribute(
+					'for',
+					`${el.feature.concat(el.characteristic)}`,
+				)
+				const input = document.createElement('input')
+				input.setAttribute('type', 'range')
+				input.setAttribute('name', `${el.feature}.${el.characteristic}`)
+				input.setAttribute(
+					'id',
+					`${el.feature.concat(el.characteristic)}`,
+				)
+				input.setAttribute('max', String(el.max))
+				input.setAttribute('min', String(el.min))
+				input.setAttribute('value', String(el.value))
+				switch (leadProxy.leadName) {
+					case 'undefined':
+						console.log('must pick a lead first')
+						break
+					case 'global':
+						// handle global here
+						break
+					default:
+						input.addEventListener('change', (e: Event) => {
+							const stateObject =
+								store[Number(leadProxy.leadIndex)]
+
+							const featureArray = stateObject.complex
+							const feature = featureArray.find(
+								(featureObject) => {
+									return (
+										featureObject.feature === el.feature &&
+										featureObject.characteristic ===
+											el.characteristic
+									)
+								},
+							)
+							for (const [property] of Object.entries(feature)) {
+								if (property === el.characteristic) {
+									feature[property] = input.value
+								}
+							}
+						})
+						break
+				}
+
+				label.appendChild(input)
+				p.appendChild(label)
+				fieldSet.appendChild(p)
+				featureName = el.feature
 			})
 		})(formFeatures)
-
-		// add event listeners
-		const inputs = document.querySelectorAll('input')
-		inputs.forEach((input) => {
-			// switch (leadProxy.leadName) {
-			// 	case 'undefined':
-			// 		console.log('must pick a lead first')
-			// 		break
-			// 	case 'global':
-			// 		// handle global here
-			// 		break
-			// 	default:
-			// 		// handle single lead here
-			// 		input.addEventListener('change', (e: Event) => {
-			// 			/**
-			// 			 * need to find lead in store that matches leadProxy.leadIndex
-			// 			 * find characteristic to mutate (pwave, pr segment...)
-			// 			 * find property to mutate (width, amplitude)
-			// 			 */
-			// 			const inputName = input.attributes
-			// 			// store[Number(leadProxy.leadIndex)].complex[]
-			// 		})
-			// 		break
-			// }
-		})
+		form.appendChild(fieldSet)
 
 		return form
 	}

@@ -16,7 +16,7 @@ export default function Store(
 			},
 
 			set(target, property: string | number, value) {
-				console.log(target)
+				console.log('change detected in store')
 				const g = document.querySelector(`#${target.lead}`)
 				while (g.firstChild) {
 					g.removeChild(g.firstChild)
