@@ -1,69 +1,43 @@
 import { stateObject, FormFeatures, Lead } from 'interfaces'
-
+import Select from './Select'
 export default function sideForm(
 	store: stateObject[],
 	formFeatures: FormFeatures[],
 ): { init: void } {
 	const main = document.querySelector('main')
-
-	const lead: Lead = {
-		leadIndex: undefined,
-		leadName: undefined,
-	}
-
-	const leadProxy = new Proxy(lead, {
-		get(target, property: string | undefined) {
-			return target[property]
+	const leadProxy = new Proxy(
+		{
+			leadIndex: undefined,
+			leadName: undefined,
 		},
-		set(target, property: string | undefined, value) {
-			const legend = document.querySelector('legend')
-			switch (value) {
-				case 'undefined':
-					target.leadName = 'undefined'
-					target.leadIndex = 'undefined'
-					legend.textContent = 'lead: undefined'
-					break
+		{
+			get(target: Lead, property: string | undefined) {
+				return target[property]
+			},
+			set(target, property: string | undefined, value) {
+				const legend = document.querySelector('legend')
+				switch (value) {
+					case 'undefined':
+						target.leadName = 'undefined'
+						target.leadIndex = 'undefined'
+						legend.textContent = 'lead: undefined'
+						break
 
-				case 'global':
-					target.leadName = 'global'
-					target.leadIndex = 'global'
-					legend.textContent = 'lead: global'
-					break
-				default:
-					target.leadName = store[value].lead
-					target.leadIndex = value
-					legend.textContent = `lead: ${target.leadName}`
-					break
-			}
-			return true
+					case 'global':
+						target.leadName = 'global'
+						target.leadIndex = 'global'
+						legend.textContent = 'lead: global'
+						break
+					default:
+						target.leadName = store[value].lead
+						target.leadIndex = value
+						legend.textContent = `lead: ${target.leadName}`
+						break
+				}
+				return true
+			},
 		},
-	})
-
-	const LeadSelect = (): HTMLSelectElement => {
-		const select = document.createElement('select')
-		select.setAttribute('id', 'lead-select')
-
-		const option = document.createElement('option')
-		option.setAttribute('value', undefined)
-		option.setAttribute('label', '--Please Select A Lead--')
-		select.appendChild(option)
-
-		const optionTwo = document.createElement('option')
-		optionTwo.setAttribute('value', 'global')
-		optionTwo.setAttribute('label', 'global')
-		select.appendChild(optionTwo)
-
-		store.forEach((lead, index) => {
-			const option = document.createElement('option')
-			option.setAttribute('value', String(index))
-			option.setAttribute('label', lead.lead)
-			select.appendChild(option)
-		})
-		select.addEventListener('change', (e: Event) => {
-			leadProxy.leadIndex = (e.target as HTMLSelectElement).value
-		})
-		return select
-	}
+	)
 
 	const form = (): HTMLFormElement => {
 		const form = document.createElement('form')
@@ -72,7 +46,7 @@ export default function sideForm(
 		leadLabel.setAttribute('for', 'lead-select')
 		leadLabel.textContent = 'select lead you wish to edit'
 		form.appendChild(leadLabel)
-		const leadSelect = LeadSelect()
+		const leadSelect = Select(store, leadProxy)
 		form.appendChild(leadSelect)
 
 		const fieldSet = document.createElement('fieldset')
@@ -149,7 +123,6 @@ export default function sideForm(
 		return form
 	}
 
-	// layout section for form on side
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
 		aside.appendChild(form)
