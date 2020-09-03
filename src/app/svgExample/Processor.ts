@@ -66,7 +66,12 @@ export default function Processor(
 							OriginalAmplitude,
 							AmplitudeMultiplier,
 						)
-
+						/**
+						 * need to include control here that if x < isoelectric.endX then  drawLine,
+						 * but if x >= isoelectric.endX then we break
+						 * i dont think this would negative the need for nmbrcomplexes function
+						 * we would just add 1 to current nmbrcompelxes and the last complex would only be partially drawy
+						 */
 						util.drawLine(
 							waves[wave] as string,
 
