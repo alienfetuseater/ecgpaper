@@ -5,8 +5,6 @@ export default function Store(
 	leads: leadObject[],
 	processor: (lead: stateObject) => void,
 ): { init: stateObject[] } {
-	// create proxies
-
 	const createProxies = (stateObject: stateObject) => {
 		processor(stateObject)
 

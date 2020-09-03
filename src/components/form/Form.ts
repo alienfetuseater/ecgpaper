@@ -105,7 +105,7 @@ export default function sideForm(
 								if (property === input.id) {
 									store[Number(leadProxy.leadIndex)][
 										property
-									] = input.value
+									] = Number(input.value)
 								}
 							}
 							break
