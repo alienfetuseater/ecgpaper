@@ -93,13 +93,13 @@ declare module 'interfaces' {
 		qrsamplitude: number
 		qrswidth: number
 
-		printerval: number
+		printervalwidth: number
 
 		pwavecurve: string
 		pwaveamplitude: number
 		pwavewidth: number
 
-		stinterval: number
+		stintervalwidth: number
 
 		twavecurve: string
 		twaveamplitude: number

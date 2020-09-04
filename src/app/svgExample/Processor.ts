@@ -16,24 +16,24 @@ export default function Processor(
 	return (lead: stateObject) => {
 		const waves = [
 			lead.pwavecurve,
-			lead.printerval,
+			lead.printervalwidth,
 			lead.qrscurve,
-			lead.stinterval,
+			lead.stintervalwidth,
 			lead.twavecurve,
 		]
 		const waveWidth = [
 			lead.pwavewidth,
-			lead.printerval,
+			lead.printervalwidth,
 			lead.qrswidth,
-			lead.stinterval,
+			lead.stintervalwidth,
 			lead.twavewidth,
 		]
 
 		const waveHeight = [
 			lead.pwaveamplitude,
-			lead.printerval,
+			lead.printervalwidth,
 			lead.qrsamplitude,
-			lead.stinterval,
+			lead.stintervalwidth,
 			lead.twaveamplitude,
 		]
 

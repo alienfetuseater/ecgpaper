@@ -30,13 +30,13 @@ export default function State(lead: leadObject): stateObject {
 		qrsamplitude: qrs.amplitude,
 		qrswidth: qrs.width,
 
-		printerval: printerval.width,
+		printervalwidth: printerval.width,
 
 		pwavecurve: pwave.curve,
 		pwaveamplitude: pwave.amplitude,
 		pwavewidth: pwave.width,
 
-		stinterval: stinterval.width,
+		stintervalwidth: stinterval.width,
 
 		twavecurve: twave.curve,
 		twaveamplitude: twave.amplitude,
