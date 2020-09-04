@@ -337,7 +337,7 @@
 		"isoelectric": {
 			"startX": 0.75,
 			"startY": 0.375,
-			"endX": 1.0,
+			"endX": 0.98,
 			"endY": 0.375
 		},
 		"complex": [
@@ -374,7 +374,7 @@
 		"isoelectric": {
 			"startX": 0.75,
 			"startY": 0.625,
-			"endX": 1.0,
+			"endX": 0.98,
 			"endY": 0.625
 		},
 		"complex": [
@@ -411,7 +411,7 @@
 		"isoelectric": {
 			"startX": 0.75,
 			"startY": 0.875,
-			"endX": 1.0,
+			"endX": 0.98,
 			"endY": 0.875
 		},
 		"complex": [

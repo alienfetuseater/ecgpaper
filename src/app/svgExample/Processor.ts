@@ -11,11 +11,9 @@ export default function Processor(
 	verticalMM: number,
 ): (lead: stateObject) => void {
 	const util = Util(horizontalMM, verticalMM, xmlns)
-	const leadBoxLength = (horizontalMM * NMBRHORIZSMLBXS) / 4
 	const tpInterval = 5 * horizontalMM
 
 	return (lead: stateObject) => {
-		const complexWidth = util.complexWidth(lead)
 		const waves = [
 			lead.pwavecurve,
 			lead.printerval,
@@ -42,11 +40,10 @@ export default function Processor(
 		// magic numbers here are for placement of ecg in proper relation to grid lines to start
 		let begin_x = lead.isoelectric.startX * canvasWidth + 8 * horizontalMM
 		const end_y = lead.isoelectric.endY * canvasHeight + 5 * verticalMM
-		const nmbrComplexes = leadBoxLength / (complexWidth * horizontalMM) - 3
 
 		const g = document.createElementNS(xmlns, 'g')
 		g.setAttributeNS(null, 'id', lead.lead)
-		for (let complexes = 0; complexes < nmbrComplexes; complexes++) {
+		while (begin_x < lead.isoelectric.endX * canvasWidth) {
 			for (let wave = 0; wave < waves.length; wave++) {
 				const dom: number[] = util.domain(waveWidth[wave])
 				if (typeof waves[wave] === 'string') {
@@ -66,33 +63,39 @@ export default function Processor(
 							OriginalAmplitude,
 							AmplitudeMultiplier,
 						)
-						/**
-						 * need to include control here that if x < isoelectric.endX then  drawLine,
-						 * but if x >= isoelectric.endX then we break
-						 * i dont think this would negative the need for nmbrcomplexes function
-						 * we would just add 1 to current nmbrcompelxes and the last complex would only be partially drawy
-						 */
-						util.drawLine(
-							waves[wave] as string,
+						if (x + begin_x < lead.isoelectric.endX * canvasWidth) {
+							util.drawLine(
+								waves[wave] as string,
 
-							begin_x,
-							end_y,
-							x,
-							AmplitudeMultiplier,
-							VerticalShift,
-							g,
-						)
+								begin_x,
+								end_y,
+								x,
+								AmplitudeMultiplier,
+								VerticalShift,
+								g,
+							)
+						} else {
+							break
+						}
 					}
 					begin_x += dom[1]
 				} else {
-					util.drawIntervalLine(begin_x, end_y, dom[1] * 2, 0, g)
-					begin_x +=
-						waveWidth[wave] * horizontalMM +
-						0.5 * (waveWidth[wave + 1] * horizontalMM)
+					if (begin_x < lead.isoelectric.endX * canvasWidth) {
+						util.drawIntervalLine(begin_x, end_y, dom[1] * 2, 0, g)
+						begin_x +=
+							waveWidth[wave] * horizontalMM +
+							0.5 * (waveWidth[wave + 1] * horizontalMM)
+					} else {
+						break
+					}
 				}
 			}
-			util.drawIntervalLine(begin_x, end_y, tpInterval, 0, g)
-			begin_x += tpInterval + 0.5 * (waveWidth[0] * horizontalMM)
+			if (begin_x < lead.isoelectric.endX * canvasWidth) {
+				util.drawIntervalLine(begin_x, end_y, tpInterval, 0, g)
+				begin_x += tpInterval + 0.5 * (waveWidth[0] * horizontalMM)
+			} else {
+				break
+			}
 		}
 		svg.appendChild(g)
 	}

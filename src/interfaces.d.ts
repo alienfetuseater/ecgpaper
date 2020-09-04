@@ -54,7 +54,6 @@ declare module 'interfaces' {
 			originalAmplitude: number,
 			amplitudeMultiplier: number,
 		) => number
-		complexWidth: (lead: stateObject) => number
 		drawLine: (
 			curve: string,
 			origin_x: number,

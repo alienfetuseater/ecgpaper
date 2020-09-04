@@ -40,16 +40,6 @@ export default function Util(
 		return originalAmplitude * amplitudeMultiplier
 	}
 
-	const complexWidth = function (lead: stateObject): number {
-		return (
-			lead.pwavewidth +
-			lead.printerval +
-			lead.qrswidth +
-			lead.stinterval +
-			lead.twavewidth
-		)
-	}
-
 	const drawLine = function (
 		curve: string,
 		origin_x: number,
@@ -110,7 +100,6 @@ export default function Util(
 		originalAmplitude,
 		amplitudeMultiplier,
 		verticalShift,
-		complexWidth,
 		drawLine,
 		drawIntervalLine,
 	}
