@@ -27,8 +27,8 @@ export default function State(lead: leadObject): stateObject {
 			endY: isoelectric.endY,
 		},
 		qrscurve: qrs.curve,
-		qrsamplitude: qrs.amplitude,
-		qrswidth: qrs.width,
+		qrswaveamplitude: qrs.amplitude,
+		qrswavewidth: qrs.width,
 
 		printervalwidth: printerval.width,
 

@@ -90,8 +90,8 @@ declare module 'interfaces' {
 			endY: number
 		}
 		qrscurve: string
-		qrsamplitude: number
-		qrswidth: number
+		qrswaveamplitude: number
+		qrswavewidth: number
 
 		printervalwidth: number
 

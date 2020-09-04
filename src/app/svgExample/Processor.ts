@@ -24,7 +24,7 @@ export default function Processor(
 		const waveWidth = [
 			lead.pwavewidth,
 			lead.printervalwidth,
-			lead.qrswidth,
+			lead.qrswavewidth,
 			lead.stintervalwidth,
 			lead.twavewidth,
 		]
@@ -32,7 +32,7 @@ export default function Processor(
 		const waveHeight = [
 			lead.pwaveamplitude,
 			lead.printervalwidth,
-			lead.qrsamplitude,
+			lead.qrswaveamplitude,
 			lead.stintervalwidth,
 			lead.twaveamplitude,
 		]
