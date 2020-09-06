@@ -1,4 +1,4 @@
-import { stateObject, util } from 'interfaces'
+import { util, curveFN } from 'interfaces'
 
 export default function Util(
 	horizontalMM: number,
@@ -14,12 +14,10 @@ export default function Util(
 
 	const originalAmplitude = function (
 		rightBound: number,
-		curve: string,
+		curve: curveFN,
 	): number {
-		let X: number = rightBound
-		const rightBoundYValue: number = eval(curve)
-		X = 0
-		const originYValue: number = eval(curve)
+		const rightBoundYValue: number = curve(rightBound)
+		const originYValue: number = curve(0)
 		return originYValue - rightBoundYValue
 	}
 
@@ -30,7 +28,21 @@ export default function Util(
 		const correctedDesiredAmplitude = desiredAmplitude * verticalMM
 		const amplitudeMultiplier =
 			correctedDesiredAmplitude / originalAmplitude
-		return Math.sqrt(Math.pow(amplitudeMultiplier, 2))
+		const correctedAmplitudeMultiplier = Math.sqrt(
+			Math.pow(amplitudeMultiplier, 2),
+		)
+		let cooefficient: number | undefined = undefined
+		switch (true) {
+			case desiredAmplitude > 0:
+				cooefficient = 1
+				break
+			case desiredAmplitude < 0:
+				cooefficient = -1
+				break
+			case desiredAmplitude == 0:
+				return 0
+		}
+		return correctedAmplitudeMultiplier * cooefficient
 	}
 
 	const verticalShift = function (
@@ -41,7 +53,7 @@ export default function Util(
 	}
 
 	const drawLine = function (
-		curve: string,
+		curve: curveFN,
 		origin_x: number,
 		origin_y: number,
 		x: number,
@@ -51,15 +63,14 @@ export default function Util(
 	) {
 		const line = document.createElementNS(xmlns, 'line')
 
-		let X = x
-		const x1: number = X + origin_x
+		const x1: number = x + origin_x
 		const y1: number =
-			eval(curve) * amplitudeMultiplier + origin_y + verticalShift
+			curve(x) * amplitudeMultiplier + origin_y + verticalShift
 
-		X += 0.1
-		const x2: number = X + origin_x
+		x += 0.1
+		const x2: number = x + origin_x
 		const y2: number =
-			eval(curve) * amplitudeMultiplier + origin_y + verticalShift
+			curve(x) * amplitudeMultiplier + origin_y + verticalShift
 
 		line.setAttributeNS(null, 'x1', String(x1))
 		line.setAttributeNS(null, 'y1', String(y1))

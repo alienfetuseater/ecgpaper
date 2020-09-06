@@ -1,4 +1,4 @@
-import data from '@/assets/rhythms.json'
+import data from '@/store/rhythms/nsr'
 import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
 import Form from '@/components/form/Form'

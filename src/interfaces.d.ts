@@ -4,10 +4,12 @@ declare module 'interfaces' {
 		leadIndex: string | undefined
 		leadName: string | undefined
 	}
+
+	type curveFN = (X: number) => number
 	export interface feature {
-		[index: string]: string | number
+		[index: string]: string | number | curveFN
 		feature: string
-		curve?: string
+		curve?: curveFN
 		amplitude?: number
 		width: number
 	}
@@ -45,7 +47,7 @@ declare module 'interfaces' {
 
 	export interface util {
 		domain: (width: number) => number[]
-		originalAmplitude: (rightBound: number, curve: string) => number
+		originalAmplitude: (rightBound: number, curve: curveFN) => number
 		amplitudeMultiplier: (
 			desiredAmplitude: number,
 			originalAmplitude: number,
@@ -55,7 +57,7 @@ declare module 'interfaces' {
 			amplitudeMultiplier: number,
 		) => number
 		drawLine: (
-			curve: string,
+			curve: curveFN,
 			origin_x: number,
 			origin_y: number,
 			x: number,
@@ -82,6 +84,7 @@ declare module 'interfaces' {
 					endY: number
 			  }
 			| number
+			| curveFN
 		lead: string
 		isoelectric: {
 			startX: number
@@ -89,19 +92,19 @@ declare module 'interfaces' {
 			endX: number
 			endY: number
 		}
-		qrscurve: string
+		qrscurve: curveFN
 		qrswaveamplitude: number
 		qrswavewidth: number
 
 		printervalwidth: number
 
-		pwavecurve: string
+		pwavecurve: curveFN
 		pwaveamplitude: number
 		pwavewidth: number
 
 		stintervalwidth: number
 
-		twavecurve: string
+		twavecurve: curveFN
 		twaveamplitude: number
 		twavewidth: number
 	}

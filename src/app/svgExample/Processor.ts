@@ -1,4 +1,4 @@
-import { stateObject } from 'interfaces'
+import { stateObject, curveFN } from 'interfaces'
 import Util from '@/lib/util'
 
 export default function Processor(
@@ -46,12 +46,12 @@ export default function Processor(
 		while (begin_x < lead.isoelectric.endX * canvasWidth) {
 			for (let wave = 0; wave < waves.length; wave++) {
 				const dom: number[] = util.domain(waveWidth[wave])
-				if (typeof waves[wave] === 'string') {
+				if (typeof waves[wave] !== 'number') {
 					const desiredAmplitude = waveHeight[wave]
 					for (let x = dom[0]; x <= dom[1]; x += 0.1) {
 						const OriginalAmplitude = util.originalAmplitude(
 							dom[1],
-							waves[wave] as string,
+							waves[wave] as curveFN,
 						)
 
 						const AmplitudeMultiplier = util.amplitudeMultiplier(
@@ -65,7 +65,7 @@ export default function Processor(
 						)
 						if (x + begin_x < lead.isoelectric.endX * canvasWidth) {
 							util.drawLine(
-								waves[wave] as string,
+								waves[wave] as curveFN,
 
 								begin_x,
 								end_y,

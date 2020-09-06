@@ -14,7 +14,6 @@ export default function Store(
 			},
 
 			set: function (target, property: string | number, value) {
-				console.log(value)
 				target[property] = value
 				const g: SVGElement = document.querySelector(`#${target.lead}`)
 				g.remove()
