@@ -6,7 +6,6 @@ export default function Processor(
 	xmlns: string,
 	canvasHeight: number,
 	canvasWidth: number,
-	NMBRHORIZSMLBXS: number,
 	horizontalMM: number,
 	verticalMM: number,
 ): (lead: stateObject) => void {
@@ -39,7 +38,7 @@ export default function Processor(
 
 		// magic numbers here are for placement of ecg in proper relation to grid lines to start
 		let begin_x = lead.isoelectric.startX * canvasWidth + 8 * horizontalMM
-		const end_y = lead.isoelectric.endY * canvasHeight + 5 * verticalMM
+		const end_y = lead.isoelectric.endY * canvasHeight
 
 		const g = document.createElementNS(xmlns, 'g')
 		g.setAttributeNS(null, 'id', lead.lead)

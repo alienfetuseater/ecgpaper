@@ -49,19 +49,6 @@ export default function ECGpaper(
 		return path
 	}
 
-	const isoElectricLines = function (y: number) {
-		const isoElectricLine = document.createElementNS(xmlns, 'line')
-		isoElectricLine.setAttributeNS(null, 'x1', String(0))
-		isoElectricLine.setAttributeNS(null, 'y1', String(y * height))
-		isoElectricLine.setAttributeNS(null, 'x2', String(width))
-		isoElectricLine.setAttributeNS(null, 'y2', String(y * height))
-		isoElectricLine.setAttributeNS(null, 'stroke', 'black')
-		isoElectricLine.setAttributeNS(null, 'stroke-opacity', String(0.5))
-		isoElectricLine.setAttributeNS(null, 'stroke-dasharray', '10 10')
-
-		return isoElectricLine
-	}
-
 	const LeadBoxes = function () {
 		let path = ''
 
@@ -126,11 +113,6 @@ export default function ECGpaper(
 		svg.appendChild(smallLines)
 		svg.appendChild(bigLines)
 		svg.appendChild(grids)
-
-		// add isoelectric lines
-		isoElectricArray.forEach((el) => {
-			svg.appendChild(isoElectricLines(el))
-		})
 	}
 
 	return {
