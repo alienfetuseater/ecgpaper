@@ -1,8 +1,8 @@
-import { stateObject, FormFeatures, Lead } from 'interfaces'
+import { leadStateObject, formFeatureObject, Lead } from 'interfaces'
 import Select from './Select'
 export default function sideForm(
-	store: stateObject[],
-	formFeatures: FormFeatures[],
+	leadStore: leadStateObject[],
+	formStore: formFeatureObject[],
 ): { init: void } {
 	const main = document.querySelector('main')
 	const leadProxy = new Proxy(
@@ -29,7 +29,7 @@ export default function sideForm(
 						legend.textContent = 'lead: global'
 						break
 					default:
-						target.leadName = store[value].lead
+						target.leadName = leadStore[value].lead
 						target.leadIndex = value
 						legend.textContent = `lead: ${target.leadName}`
 						break
@@ -46,7 +46,23 @@ export default function sideForm(
 		leadLabel.setAttribute('for', 'lead-select')
 		leadLabel.textContent = 'select lead you wish to edit'
 		form.appendChild(leadLabel)
-		const leadSelect = Select(store, leadProxy)
+		const leadSelect = Select(leadStore, leadProxy)
+		leadSelect.addEventListener('change', (e: Event) => {
+			const lead = (e.target as HTMLSelectElement).value
+			const inputs = document.querySelectorAll('input')
+
+			console.log(lead)
+			inputs.forEach((input, index) => {
+				if (lead === undefined) {
+					input.setAttribute('disabled', '')
+				} else {
+					input.removeAttribute('disabled')
+				}
+
+				input.value = String(formStore[index].value)
+				// load diffs from formState for selected leads values
+			})
+		})
 		form.appendChild(leadSelect)
 
 		const fieldSet = document.createElement('fieldset')
@@ -54,9 +70,9 @@ export default function sideForm(
 		legend.textContent = 'lead: undefined'
 		fieldSet.appendChild(legend)
 		// iife
-		;((formFeatures: FormFeatures[]) => {
+		;((formStore: formFeatureObject[]) => {
 			let featureName: string | undefined = undefined
-			formFeatures.forEach((el: FormFeatures) => {
+			formStore.forEach((el: formFeatureObject) => {
 				const p = document.createElement('p')
 				if (featureName != el.feature) {
 					const h4 = document.createElement('h4')
@@ -79,18 +95,15 @@ export default function sideForm(
 				input.setAttribute('max', String(el.max))
 				input.setAttribute('min', String(el.min))
 				input.setAttribute('value', String(el.value))
+				input.setAttribute('disabled', '')
 
 				input.addEventListener('change', (e: Event) => {
 					switch (leadProxy.leadName) {
 						case 'undefined':
-							console.log(
-								'must pick a lead first',
-								String(leadProxy.leadName),
-							)
+							console.log('must pick a lead first')
 							break
 						case 'global':
-							console.log('global lead selected and changed')
-							store.forEach((stateObject) => {
+							leadStore.forEach((stateObject) => {
 								for (const property in stateObject) {
 									if (property === input.id) {
 										stateObject[property] = input.value
@@ -99,11 +112,11 @@ export default function sideForm(
 							})
 							break
 						default:
-							for (const property in store[
+							for (const property in leadStore[
 								Number(leadProxy.leadIndex)
 							]) {
 								if (property === input.id) {
-									store[Number(leadProxy.leadIndex)][
+									leadStore[Number(leadProxy.leadIndex)][
 										property
 									] = Number(input.value)
 								}
@@ -117,7 +130,7 @@ export default function sideForm(
 				fieldSet.appendChild(p)
 				featureName = el.feature
 			})
-		})(formFeatures)
+		})(formStore)
 		form.appendChild(fieldSet)
 
 		return form

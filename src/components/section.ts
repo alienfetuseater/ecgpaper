@@ -1,6 +1,6 @@
-import { stateObject } from 'interfaces'
+import { leadStateObject } from 'interfaces'
 
-export default function section(data: stateObject[]): { init: void } {
+export default function section(data: leadStateObject[]): { init: void } {
 	const section = () => {
 		const main = document.querySelector('main')
 		const section = document.createElement('section')

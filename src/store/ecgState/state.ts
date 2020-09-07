@@ -1,6 +1,6 @@
-import { leadObject, stateObject } from 'interfaces'
+import { leadObject, leadStateObject } from 'interfaces'
 
-export default function State(lead: leadObject): stateObject {
+export default function State(lead: leadObject): leadStateObject {
 	const pwave = lead.complex.find((el) => {
 		return el.feature === 'pwave'
 	})

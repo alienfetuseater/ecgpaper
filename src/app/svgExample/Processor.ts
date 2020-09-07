@@ -1,4 +1,4 @@
-import { stateObject, curveFN } from 'interfaces'
+import { leadStateObject, curveFN } from 'interfaces'
 import Util from '@/lib/util'
 
 export default function Processor(
@@ -8,11 +8,11 @@ export default function Processor(
 	canvasWidth: number,
 	horizontalMM: number,
 	verticalMM: number,
-): (lead: stateObject) => void {
+): (lead: leadStateObject) => void {
 	const util = Util(horizontalMM, verticalMM, xmlns)
 	const tpInterval = 5 * horizontalMM
 
-	return (lead: stateObject) => {
+	return (lead: leadStateObject) => {
 		const waves = [
 			lead.pwavecurve,
 			lead.printervalwidth,

@@ -1,7 +1,7 @@
-import { stateObject, Lead } from 'interfaces'
+import { leadStateObject, Lead } from 'interfaces'
 
 export default function Select(
-	store: stateObject[],
+	store: leadStateObject[],
 	leadProxy: Lead,
 ): HTMLSelectElement {
 	const select = document.createElement('select')

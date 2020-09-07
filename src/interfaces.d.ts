@@ -74,7 +74,7 @@ declare module 'interfaces' {
 		) => void
 	}
 
-	export interface stateObject {
+	export interface leadStateObject {
 		[index: string]:
 			| string
 			| {
@@ -109,7 +109,7 @@ declare module 'interfaces' {
 		twavewidth: number
 	}
 
-	export interface FormFeatures {
+	export interface formFeatureObject {
 		feature: string
 		characteristic: string
 		min: number
@@ -117,4 +117,6 @@ declare module 'interfaces' {
 		value: number
 		increment: number
 	}
+
+	export interface formStateObject {}
 }
