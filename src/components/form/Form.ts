@@ -47,6 +47,11 @@ export default function sideForm(
 		leadLabel.textContent = 'select lead you wish to edit'
 		form.appendChild(leadLabel)
 		const leadSelect = Select(leadStore, leadProxy)
+
+		/**
+		 * everytime the lead is changed, a call is made to the form state
+		 * to load all the values for that lead into the form values
+		 */
 		leadSelect.addEventListener('change', (e: Event) => {
 			const lead = (e.target as HTMLSelectElement).value
 			const inputs = document.querySelectorAll('input')
@@ -130,7 +135,7 @@ export default function sideForm(
 				fieldSet.appendChild(p)
 				featureName = el.feature
 			})
-		})(formStore)
+		})(formStore) // so here formStore will be an array and we will need to pass an index based on the selected lead
 		form.appendChild(fieldSet)
 
 		return form
