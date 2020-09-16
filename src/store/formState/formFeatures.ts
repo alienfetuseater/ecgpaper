@@ -1,7 +1,7 @@
-export default [
-	{
-		lead: 'lead1',
-		formValues: [
+export default new Map([
+	[
+		'lead1',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -67,10 +67,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'lead2',
-		formValues: [
+	],
+	[
+		'lead2',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -136,10 +136,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'lead3',
-		formValues: [
+	],
+	[
+		'lead3',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -205,10 +205,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'avr',
-		formValues: [
+	],
+	[
+		'avr',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -274,10 +274,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'avf',
-		formValues: [
+	],
+	[
+		'avl',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -343,10 +343,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'avl',
-		formValues: [
+	],
+	[
+		'avf',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -412,10 +412,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'v1',
-		formValues: [
+	],
+	[
+		'v1',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -481,10 +481,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'v2',
-		formValues: [
+	],
+	[
+		'v2',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -550,10 +550,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'v3',
-		formValues: [
+	],
+	[
+		'v3',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -619,10 +619,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'v4',
-		formValues: [
+	],
+	[
+		'v4',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -688,10 +688,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'v5',
-		formValues: [
+	],
+	[
+		'v5',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -757,10 +757,10 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-	{
-		lead: 'v6',
-		formValues: [
+	],
+	[
+		'v6',
+		[
 			{
 				feature: 'pwave',
 				characteristic: 'amplitude',
@@ -826,5 +826,5 @@ export default [
 				increment: 0.1,
 			},
 		],
-	},
-]
+	],
+])
