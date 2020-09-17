@@ -110,6 +110,7 @@ declare module 'interfaces' {
 	}
 
 	export interface formFeatureObject {
+		[index: string]: string | number
 		feature: string
 		characteristic: string
 		min: number

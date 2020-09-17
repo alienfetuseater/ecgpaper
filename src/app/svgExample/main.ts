@@ -1,5 +1,5 @@
 import leadData from '@/store/ecgState/rhythms/nsr'
-import formData from '@/store/formState/formFeatures'
+import formData from '@/store/formState/formFeaturesState'
 import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
 import Form from '@/components/form/Form'

@@ -1,8 +1,8 @@
-import { leadStateObject, formFeatureObject, Lead } from 'interfaces'
+import { leadStateObject, formFeatureStateObject, Lead } from 'interfaces'
 import Select from './Select'
 export default function sideForm(
 	leadStore: leadStateObject[],
-	formStore: formFeatureObject[],
+	formStore: Map<string, formFeatureStateObject>,
 ): { init: void } {
 	const main = document.querySelector('main')
 	const leadProxy = new Proxy(
