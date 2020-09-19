@@ -2,7 +2,9 @@ import { formFeatureStateObject, Lead } from 'interfaces'
 
 export default function Select(
 	store: Map<string, formFeatureStateObject>,
-	leadProxy: Lead,
+	leadProxy: {
+		lead: formFeatureStateObject[];
+	},
 ): HTMLSelectElement {
 	const select = document.createElement('select')
 	select.setAttribute('id', 'lead-select')

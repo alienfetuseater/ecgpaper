@@ -1,4 +1,4 @@
-import { leadStateObject, formFeatureStateObject, Lead } from 'interfaces'
+import { leadStateObject, formFeatureStateObject } from 'interfaces'
 import Select from './Select'
 
 export default function sideForm(
@@ -7,34 +7,23 @@ export default function sideForm(
 ): { init: void } {
 	const main = document.querySelector('main')
 
-	// this proxy needs to be reconfigured to hold the formStateObject for the lead selected
-	const leadProxy = new Proxy(
+	const formStateObjectProxy = new Proxy(
 		{
-			leadIndex: undefined,
-			leadName: undefined,
+			lead: formStore.get('lead1'),
 		},
 		{
-			get(target: Lead, property: string | undefined) {
-				return target[property]
+			get(target, property: string | undefined) {
+				return target.lead
 			},
 			set(target, property: string | undefined, value) {
 				const legend = document.querySelector('legend')
 				switch (value) {
-					case 'undefined':
-						target.leadName = 'undefined'
-						target.leadIndex = 'undefined'
-						legend.textContent = 'lead: undefined'
-						break
-
 					case 'global':
-						target.leadName = 'global'
-						target.leadIndex = 'global'
 						legend.textContent = 'lead: global'
 						break
 					default:
-						target.leadName = leadStore[value].lead
-						target.leadIndex = value
-						legend.textContent = `lead: ${target.leadName}`
+						target.formStateObject = formStore.get(value)
+						legend.textContent = `lead: ${value}`
 						break
 				}
 				return true
@@ -50,7 +39,7 @@ export default function sideForm(
 		leadSelectLabel.textContent = 'select lead you wish to edit'
 		form.appendChild(leadSelectLabel)
 
-		const leadSelect = Select(formStore, leadProxy)
+		const leadSelect = Select(formStore, formStateObjectProxy)
 		leadSelect.addEventListener('change', (e: Event) => {
 			const leadSelected = (e.target as HTMLSelectElement).value
 
@@ -68,18 +57,13 @@ export default function sideForm(
 		legend.textContent = 'lead: undefined'
 
 		fieldSet.appendChild(legend)
-			/**
-			 * iife for generating form fields
-			 * 
-			 * need to reconfigure to generate formFields on load
-			 * with respect to lead 1
-			 * and then the event listener will change the values of the 
-			 * fields when new leads are selected
-			 */
-			; ((formStore: Map<string, formFeatureStateObject>) => {
+
+			; ((formStateObjectProxy: {
+				lead: formFeatureStateObject[];
+			}) => {
 				let featureName: string | undefined = undefined
 
-				formStore.forEach((el: formFeatureObject) => {
+				formStateObjectProxy.lead.forEach((el: formFeatureObject) => {
 					const p = document.createElement('p')
 					if (featureName != el.feature) {
 						const h4 = document.createElement('h4')
@@ -104,7 +88,7 @@ export default function sideForm(
 					input.setAttribute('value', String(el.value))
 
 					input.addEventListener('change', (e: Event) => {
-						switch (leadProxy.leadName) {
+						switch (formStateObjectProxy.leadName) {
 							case 'undefined':
 								console.log('must pick a lead first')
 								break
@@ -119,10 +103,10 @@ export default function sideForm(
 								break
 							default:
 								for (const property in leadStore[
-									Number(leadProxy.leadIndex)
+									Number(formStateObjectProxy.leadIndex)
 								]) {
 									if (property === input.id) {
-										leadStore[Number(leadProxy.leadIndex)][
+										leadStore[Number(formStateObjectProxy.leadIndex)][
 											property
 										] = Number(input.value)
 									}
@@ -136,7 +120,7 @@ export default function sideForm(
 					fieldSet.appendChild(p)
 					featureName = el.feature
 				})
-			})(formStore) // so here formStore will be an array and we will need to pass an index based on the selected lead
+			})(formStateObjectProxy.lead)
 		form.appendChild(fieldSet)
 
 		return form
