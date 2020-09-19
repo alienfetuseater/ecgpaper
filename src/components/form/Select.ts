@@ -1,7 +1,7 @@
 import { formFeatureStateObject, Lead } from 'interfaces'
 
 export default function Select(
-	store: Map<string, formFeatureStateObject>,
+	store: Map<string, formFeatureStateObject[]>,
 	leadProxy: {
 		lead: formFeatureStateObject[];
 	},
@@ -22,8 +22,7 @@ export default function Select(
 	select.appendChild(option)
 
 	select.addEventListener('change', (e: Event) => {
-		// leadProxy.leadIndex = (e.target as HTMLSelectElement).value
-		return store.get((e.target as HTMLSelectElement).value)
+		leadProxy.lead = store.get((e.target as HTMLSelectElement).value)
 	})
 	return select
 }

@@ -3,17 +3,18 @@ import Select from './Select'
 
 export default function sideForm(
 	leadStore: leadStateObject[],
-	formStore: Map<string, formFeatureStateObject>,
+	formStore: Map<string, formFeatureStateObject[]>,
 ): { init: void } {
 	const main = document.querySelector('main')
 
-	const formStateObjectProxy = new Proxy(
+	const formStateProxy = new Proxy(
 		{
-			lead: formStore.get('lead1'),
+			leadKey: 'lead1',
+			leadValue: formStore.get('lead1'),
 		},
 		{
 			get(target, property: string | undefined) {
-				return target.lead
+				return target[property]
 			},
 			set(target, property: string | undefined, value) {
 				const legend = document.querySelector('legend')
@@ -39,7 +40,7 @@ export default function sideForm(
 		leadSelectLabel.textContent = 'select lead you wish to edit'
 		form.appendChild(leadSelectLabel)
 
-		const leadSelect = Select(formStore, formStateObjectProxy)
+		const leadSelect = Select(formStore, formStateProxy)
 		leadSelect.addEventListener('change', (e: Event) => {
 			const leadSelected = (e.target as HTMLSelectElement).value
 
@@ -58,12 +59,12 @@ export default function sideForm(
 
 		fieldSet.appendChild(legend)
 
-			; ((formStateObjectProxy: {
+			; ((formStateProxy: {
 				lead: formFeatureStateObject[];
 			}) => {
 				let featureName: string | undefined = undefined
 
-				formStateObjectProxy.lead.forEach((el: formFeatureObject) => {
+				formStateProxy.lead.forEach((el: formFeatureStateObject) => {
 					const p = document.createElement('p')
 					if (featureName != el.feature) {
 						const h4 = document.createElement('h4')
@@ -88,10 +89,7 @@ export default function sideForm(
 					input.setAttribute('value', String(el.value))
 
 					input.addEventListener('change', (e: Event) => {
-						switch (formStateObjectProxy.leadName) {
-							case 'undefined':
-								console.log('must pick a lead first')
-								break
+						switch (formStateProxy.leadName) {
 							case 'global':
 								leadStore.forEach((stateObject) => {
 									for (const property in stateObject) {
@@ -103,10 +101,10 @@ export default function sideForm(
 								break
 							default:
 								for (const property in leadStore[
-									Number(formStateObjectProxy.leadIndex)
+									Number(formStateProxy.leadIndex)
 								]) {
 									if (property === input.id) {
-										leadStore[Number(formStateObjectProxy.leadIndex)][
+										leadStore[Number(formStateProxy.leadIndex)][
 											property
 										] = Number(input.value)
 									}
@@ -120,7 +118,7 @@ export default function sideForm(
 					fieldSet.appendChild(p)
 					featureName = el.feature
 				})
-			})(formStateObjectProxy.lead)
+			})(formStateProxy)
 		form.appendChild(fieldSet)
 
 		return form
