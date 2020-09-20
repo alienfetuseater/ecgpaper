@@ -26,7 +26,6 @@ export default function sideForm(
 					legend.textContent = 'lead: global'
 					break
 				default:
-					target.leadValue = formStore.get(value as string)
 					target.leadKey = value as string
 					legend.textContent = `lead: ${value}`
 					break

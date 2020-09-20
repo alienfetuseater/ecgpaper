@@ -21,9 +21,6 @@ export default function Select(
 
 	select.addEventListener('change', (e: Event) => {
 		formStateProxy.leadKey = (e.target as HTMLSelectElement).value
-		formStateProxy.leadValue = store.get(
-			(e.target as HTMLSelectElement).value,
-		)
 	})
 	return select
 }
