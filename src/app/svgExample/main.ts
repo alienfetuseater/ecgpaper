@@ -2,7 +2,7 @@ import leadData from '@/store/ecgState/rhythms/nsr'
 import formData from '@/store/formState/formFeaturesState'
 import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
-import Form from '@/components/form/Form'
+import Form from '@/components/form/main'
 import Store from '@/store/ecgState/main'
 
 export default function mainSVG(): { init: void } {

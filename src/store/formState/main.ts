@@ -1,8 +1,8 @@
-import { formFeatureObject, formFeatureStateObject } from 'interfaces'
+import { formFeatureObject } from 'interfaces'
 
 export default function formStore(
 	formFeatureMap: Map<string, formFeatureObject>,
-): { init: Map<string, formFeatureStateObject> } {
+): { init: Map<string, formFeatureObject> } {
 	const createProxies = (formFeature: formFeatureObject) => {
 		return new Proxy(formFeature, {
 			get: function (target, property: number | string) {
@@ -15,10 +15,7 @@ export default function formStore(
 		})
 	}
 	const constructor = () => {
-		const formFeatureStateMap: Map<
-			string,
-			formFeatureStateObject
-		> = new Map()
+		const formFeatureStateMap: Map<string, formFeatureObject> = new Map()
 		formFeatureMap.forEach((value, key) => {
 			const proxiedFeature = createProxies(value)
 			formFeatureStateMap.set(key, proxiedFeature)

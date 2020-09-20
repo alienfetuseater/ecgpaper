@@ -119,12 +119,9 @@ declare module 'interfaces' {
 		increment: number
 	}
 
-	export interface formFeatureStateObject {
-		feature: string
-		characteristic: string
-		min: number
-		max: number
-		value: number
-		increment: number
+	export interface FormStateProxy {
+		[index: string]: string | formFeatureObject[]
+		leadKey: string
+		leadValue: formFeatureObject[]
 	}
 }
