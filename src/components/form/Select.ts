@@ -1,13 +1,13 @@
 import { formFeatureObject, FormStateProxy } from 'interfaces'
 
 export default function Select(
-	store: Map<string, formFeatureObject[]>,
+	formStore: Map<string, formFeatureObject[]>,
 	formStateProxy: FormStateProxy,
 ): HTMLSelectElement {
 	const select = document.createElement('select')
 	select.setAttribute('id', 'lead-select')
 
-	store.forEach((value, key) => {
+	formStore.forEach((value, key) => {
 		const option = document.createElement('option')
 		option.setAttribute('value', key)
 		option.setAttribute('label', key)
