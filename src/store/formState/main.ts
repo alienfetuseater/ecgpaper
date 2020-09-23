@@ -1,8 +1,16 @@
 import { formFeatureObject } from 'interfaces'
 
 export default function formStore(
-	formFeatureMap: Map<string, formFeatureObject>,
-): { init: Map<string, formFeatureObject> } {
+	formDataMap: Map<string, formFeatureObject[]>,
+): { init: Map<string, formFeatureObject[]> } {
+	/**
+	 *
+	 * part of the problem is the data has not been proxied,
+	 * this script isnt being called any where yet
+	 * we need to fix these errors and then figure out where to call this script
+	 * probably in svgExample/main.
+	 */
+
 	const createProxies = (formFeature: formFeatureObject) => {
 		return new Proxy(formFeature, {
 			get: function (target, property: number | string) {
@@ -15,12 +23,17 @@ export default function formStore(
 		})
 	}
 	const constructor = () => {
-		const formFeatureStateMap: Map<string, formFeatureObject> = new Map()
-		formFeatureMap.forEach((value, key) => {
+		const formStateMap: Map<string, formFeatureObject[]> = new Map()
+		formDataMap.forEach((value, key) => {
+			/**
+			 * so 'value' here is an formfeatureObject array, which is an array of objects
+			 * and just like with the ecg state, we will have to proxy each object in the array,
+			 * we cant just proxy the array itself
+			 */
 			const proxiedFeature = createProxies(value)
-			formFeatureStateMap.set(key, proxiedFeature)
+			formStateMap.set(key, proxiedFeature)
 		})
-		return formFeatureStateMap
+		return formStateMap
 	}
 	return {
 		init: constructor(),

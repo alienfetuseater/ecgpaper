@@ -22,6 +22,8 @@ export default function Form(
 
 			const inputs = document.querySelectorAll('input')
 			inputs.forEach((input, index) => {
+				// this is why the original values in the form are set after change
+				// input.value = String(formStateProxy[index].value)
 				input.value = String(formStore.get(leadSelected)[index].value)
 			})
 		})

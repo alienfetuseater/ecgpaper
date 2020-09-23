@@ -3,13 +3,13 @@ import Form from './Form'
 
 export default function sideForm(
 	leadStore: leadStateObject[],
-	formStore: Map<string, formFeatureObject[]>,
+	formData: Map<string, formFeatureObject[]>,
 ): { init: void } {
 	const main = document.querySelector('main')
 
 	const target = {
 		leadKey: 'lead1',
-		leadValue: formStore.get('lead1'),
+		leadValue: formData.get('lead1'),
 	}
 	const handler = {
 		get: function (target: FormStateProxy, property: string) {
@@ -35,7 +35,7 @@ export default function sideForm(
 	}
 	const formStateProxy = new Proxy(target, handler)
 
-	const form = Form(leadStore, formStore, formStateProxy)
+	const form = Form(leadStore, formData, formStateProxy)
 
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
