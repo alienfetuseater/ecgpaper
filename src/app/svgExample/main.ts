@@ -4,6 +4,7 @@ import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
 import Form from '@/components/form/main'
 import EcgStore from '@/store/ecgState/main'
+import FormStore from '@/store/formState/main'
 
 export default function mainSVG(): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
@@ -27,7 +28,8 @@ export default function mainSVG(): { init: void } {
 			verticalMM,
 		)
 		const leadStore = EcgStore(leadData, processor).init
-		Form(leadStore, formData)
+		const formStore = FormStore(formData).init
+		Form(leadStore, formStore)
 	}
 
 	return {
