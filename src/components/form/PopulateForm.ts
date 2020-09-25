@@ -15,6 +15,7 @@ export default function formPopulator(
 				h4.textContent = el.feature
 				p.appendChild(h4)
 			}
+
 			const label = document.createElement('label')
 			label.textContent = el.characteristic
 			label.setAttribute('for', `${el.feature.concat(el.characteristic)}`)

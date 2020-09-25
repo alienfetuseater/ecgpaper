@@ -18,12 +18,6 @@ export default function Form(
 		form.appendChild(leadSelectLabel)
 
 		const leadSelect = Select(formStore, formStateProxy)
-		leadSelect.addEventListener('change', (e: Event) => {
-			const inputs = document.querySelectorAll('input')
-			inputs.forEach((input, index) => {
-				input.value = String(formStateProxy.leadValue[index].value)
-			})
-		})
 		form.appendChild(leadSelect)
 
 		const fieldSet = document.createElement('fieldset')

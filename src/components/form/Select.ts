@@ -21,6 +21,10 @@ export default function Select(
 
 	select.addEventListener('change', (e: Event) => {
 		formStateProxy.leadKey = (e.target as HTMLSelectElement).value
+		const inputs = document.querySelectorAll('input')
+		inputs.forEach((input, index) => {
+			input.value = String(formStateProxy.leadValue[index].value)
+		})
 	})
 	return select
 }
