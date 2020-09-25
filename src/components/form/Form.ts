@@ -25,7 +25,7 @@ export default function Form(
 		legend.textContent = 'lead: undefined'
 
 		fieldSet.appendChild(legend)
-		PopulateForm(formStateProxy, leadStore, fieldSet)
+		PopulateForm(formStateProxy, leadStore, fieldSet, formStore)
 		form.appendChild(fieldSet)
 
 		return form

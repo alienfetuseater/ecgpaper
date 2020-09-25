@@ -4,6 +4,7 @@ export default function formPopulator(
 	formStateProxy: FormStateProxy,
 	leadStore: leadStateObject[],
 	fieldSet: HTMLFieldSetElement,
+	formStore: Map<string, formFeatureObject[]>,
 ): void {
 	;((formStateProxy: FormStateProxy): void => {
 		let featureName: string | undefined = undefined
@@ -31,12 +32,19 @@ export default function formPopulator(
 				const leadStoreObject = leadStore.find((el) => {
 					return el.lead === formStateProxy.leadKey
 				})
+				// change this to use formStore instead of formStateProxy
+				// will prob need to use get method first to find right lead
+				// then use below technique to find correct formFeatureObject
+				const formFeature = formStateProxy.leadValue.find((el) => {
+					return el.feature.concat(el.characteristic) === input.id
+				})
 				switch (formStateProxy.leadKey) {
 					case 'global':
 						leadStore.forEach((leadStateObject) => {
 							for (const property in leadStateObject) {
 								if (property === input.id) {
 									leadStateObject[property] = input.value
+									formFeature.value = Number(input.value)
 								}
 							}
 						})
@@ -45,6 +53,7 @@ export default function formPopulator(
 						for (const property in leadStoreObject) {
 							if (property === input.id) {
 								leadStoreObject[property] = Number(input.value)
+								formFeature.value = Number(input.value)
 							}
 						}
 						break
