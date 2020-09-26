@@ -1,4 +1,4 @@
-import { leadStateObject, FormStateProxy, formFeatureObject } from 'interfaces'
+import { leadStateObject, FormLeadProxy, formFeatureObject } from 'interfaces'
 import Form from './Form'
 
 export default function sideForm(
@@ -9,33 +9,23 @@ export default function sideForm(
 
 	const target = {
 		leadKey: 'lead1',
-		leadValue: formStore.get('lead1'),
 	}
+
 	const handler = {
-		get: function (target: FormStateProxy, property: string) {
+		get: function (target: FormLeadProxy, property: string) {
 			return target[property]
 		},
-		set: function (
-			target: FormStateProxy,
-			property: string,
-			value: string | formFeatureObject[],
-		) {
+		set: function (target: FormLeadProxy, property: string, value: string) {
 			const legend = document.querySelector('legend')
-			switch (value) {
-				case 'global':
-					legend.textContent = 'lead: global'
-					break
-				default:
-					target.leadKey = value as string
-					legend.textContent = `lead: ${value}`
-					break
-			}
+			target.leadKey = value as string
+			legend.textContent = `lead: ${value}`
 			return true
 		},
 	}
-	const formStateProxy = new Proxy(target, handler)
 
-	const form = Form(leadStore, formStore, formStateProxy)
+	const formLeadProxy = new Proxy(target, handler)
+
+	const form = Form(leadStore, formStore, formLeadProxy)
 
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')

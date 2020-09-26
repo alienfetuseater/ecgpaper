@@ -1,8 +1,8 @@
-import { formFeatureObject, FormStateProxy } from 'interfaces'
+import { formFeatureObject, FormLeadProxy } from 'interfaces'
 
 export default function Select(
 	formStore: Map<string, formFeatureObject[]>,
-	formStateProxy: FormStateProxy,
+	formLeadProxy: FormLeadProxy,
 ): HTMLSelectElement {
 	const select = document.createElement('select')
 	select.setAttribute('id', 'lead-select')
@@ -14,16 +14,15 @@ export default function Select(
 		select.appendChild(option)
 	})
 
-	const option = document.createElement('option')
-	option.setAttribute('value', 'global')
-	option.setAttribute('label', 'global')
-	select.appendChild(option)
-
 	select.addEventListener('change', (e: Event) => {
-		formStateProxy.leadKey = (e.target as HTMLSelectElement).value
+		formLeadProxy.leadKey = (e.target as HTMLSelectElement).value
+
 		const inputs = document.querySelectorAll('input')
 		inputs.forEach((input, index) => {
-			input.value = String(formStateProxy.leadValue[index].value)
+			input.value = String(
+				formStore.get((e.target as HTMLSelectElement).value)[index]
+					.value,
+			)
 		})
 	})
 	return select

@@ -1,11 +1,11 @@
-import { FormStateProxy, formFeatureObject, leadStateObject } from 'interfaces'
+import { FormLeadProxy, formFeatureObject, leadStateObject } from 'interfaces'
 import Select from './Select'
 import PopulateForm from './PopulateForm'
 
 export default function Form(
 	leadStore: leadStateObject[],
 	formStore: Map<string, formFeatureObject[]>,
-	formStateProxy: FormStateProxy,
+	formLeadProxy: FormLeadProxy,
 ): {
 	init: HTMLFormElement
 } {
@@ -17,7 +17,7 @@ export default function Form(
 		leadSelectLabel.textContent = 'select lead you wish to edit'
 		form.appendChild(leadSelectLabel)
 
-		const leadSelect = Select(formStore, formStateProxy)
+		const leadSelect = Select(formStore, formLeadProxy)
 		form.appendChild(leadSelect)
 
 		const fieldSet = document.createElement('fieldset')
@@ -25,7 +25,7 @@ export default function Form(
 		legend.textContent = 'lead: undefined'
 
 		fieldSet.appendChild(legend)
-		PopulateForm(formStateProxy, leadStore, fieldSet, formStore)
+		PopulateForm(formLeadProxy, leadStore, fieldSet, formStore)
 		form.appendChild(fieldSet)
 
 		return form

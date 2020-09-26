@@ -119,9 +119,8 @@ declare module 'interfaces' {
 		increment: number
 	}
 
-	export interface FormStateProxy {
-		[index: string]: string | formFeatureObject[]
+	export interface FormLeadProxy {
+		[index: string]: string
 		leadKey: string
-		leadValue: formFeatureObject[]
 	}
 }
