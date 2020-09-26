@@ -55,8 +55,10 @@ export default function formPopulator(
 							leadStore.forEach((leadStateObject) => {
 								for (const property in leadStateObject) {
 									if (property === input.id) {
-										leadStateObject[property] = input.value
-										formFeature.value = Number(input.value)
+										;(leadStateObject[
+											property
+										] as number) += Number(input.value)
+										formFeature.value += Number(input.value)
 									}
 								}
 							})

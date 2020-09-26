@@ -1,11 +1,6 @@
 declare module 'interfaces' {
-	export interface Lead {
-		[index: string]: string | undefined
-		leadIndex: string | undefined
-		leadName: string | undefined
-	}
-
 	type curveFN = (X: number) => number
+
 	export interface feature {
 		[index: string]: string | number | curveFN
 		feature: string
