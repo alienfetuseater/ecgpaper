@@ -1,6 +1,6 @@
 import { FormLeadProxy, formFeatureObject, leadStateObject } from 'interfaces'
 import Select from './Select'
-import PopulateForm from './PopulateForm'
+import FormContent from './FormContent'
 
 export default function Form(
 	leadStore: leadStateObject[],
@@ -25,7 +25,8 @@ export default function Form(
 		legend.textContent = 'lead: undefined'
 
 		fieldSet.appendChild(legend)
-		PopulateForm(formLeadProxy, leadStore, fieldSet, formStore)
+
+		FormContent(formLeadProxy, leadStore, fieldSet, formStore)
 		form.appendChild(fieldSet)
 
 		return form

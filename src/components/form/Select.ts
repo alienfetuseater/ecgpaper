@@ -1,4 +1,5 @@
 import { formFeatureObject, FormLeadProxy } from 'interfaces'
+import SelectEventListener from './eventListeners/selectEventListener'
 
 export default function Select(
 	formStore: Map<string, formFeatureObject[]>,
@@ -14,16 +15,7 @@ export default function Select(
 		select.appendChild(option)
 	})
 
-	select.addEventListener('change', (e: Event) => {
-		formLeadProxy.leadKey = (e.target as HTMLSelectElement).value
+	SelectEventListener(select, formLeadProxy, formStore)
 
-		const inputs = document.querySelectorAll('input')
-		inputs.forEach((input, index) => {
-			input.value = String(
-				formStore.get((e.target as HTMLSelectElement).value)[index]
-					.value,
-			)
-		})
-	})
 	return select
 }
