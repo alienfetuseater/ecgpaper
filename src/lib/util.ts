@@ -1,4 +1,4 @@
-import { util, curveFN } from 'interfaces'
+import { util, curveFN, leadStateObject } from 'interfaces'
 
 export default function Util(
 	horizontalMM: number,
@@ -54,7 +54,7 @@ export default function Util(
 
 	const drawLine = function (
 		curve: curveFN,
-		origin_x: number,
+		begin_x: number,
 		origin_y: number,
 		x: number,
 		amplitudeMultiplier: number,
@@ -63,12 +63,12 @@ export default function Util(
 	) {
 		const line = document.createElementNS(xmlns, 'line')
 
-		const x1: number = x + origin_x
+		const x1: number = x + begin_x
 		const y1: number =
 			curve(x) * amplitudeMultiplier + origin_y + verticalShift
 
 		x += 0.1
-		const x2: number = x + origin_x
+		const x2: number = x + begin_x
 		const y2: number =
 			curve(x) * amplitudeMultiplier + origin_y + verticalShift
 
@@ -83,7 +83,7 @@ export default function Util(
 	}
 
 	const drawIntervalLine = function (
-		origin_x: number,
+		begin_x: number,
 		origin_y: number,
 		length: number,
 		height: number,
@@ -91,7 +91,7 @@ export default function Util(
 	) {
 		const line = document.createElementNS(xmlns, 'line')
 
-		const x1 = origin_x
+		const x1 = begin_x
 		const y1 = origin_y
 		const x2 = x1 + length
 		const y2 = y1 + height
@@ -106,6 +106,91 @@ export default function Util(
 		g.appendChild(line)
 	}
 
+	const drawComplex = function (
+		waves: (curveFN | number)[],
+		begin_x: number,
+		lead: leadStateObject,
+		canvasWidth: number,
+		end_y: number,
+		g: Element,
+		waveWidth: number[],
+		waveHeight: number[],
+	) {
+		for (let wave = 0; wave < waves.length; wave++) {
+			const dom: number[] = domain(waveWidth[wave])
+			if (typeof waves[wave] !== 'number') {
+				const desiredAmplitude = waveHeight[wave]
+
+				drawIndividualWave(
+					dom,
+					waves,
+					wave,
+					desiredAmplitude,
+					begin_x,
+					lead,
+					canvasWidth,
+					end_y,
+					g,
+				)
+
+				begin_x += dom[1]
+			} else {
+				if (begin_x < lead.isoelectric.endX * canvasWidth) {
+					drawIntervalLine(begin_x, end_y, dom[1] * 2, 0, g)
+					begin_x +=
+						waveWidth[wave] * horizontalMM +
+						0.5 * (waveWidth[wave + 1] * horizontalMM)
+				} else {
+					break
+				}
+			}
+		}
+		return begin_x
+	}
+
+	const drawIndividualWave = function (
+		dom: number[],
+		waves: (curveFN | number)[],
+		wave: number,
+		desiredAmplitude: number,
+		begin_x: number,
+		lead: leadStateObject,
+		canvasWidth: number,
+		end_y: number,
+		g: Element,
+	) {
+		for (let x = dom[0]; x <= dom[1]; x += 0.1) {
+			const OriginalAmplitude = originalAmplitude(
+				dom[1],
+				waves[wave] as curveFN,
+			)
+
+			const AmplitudeMultiplier = amplitudeMultiplier(
+				desiredAmplitude,
+				OriginalAmplitude,
+			)
+
+			const VerticalShift = verticalShift(
+				OriginalAmplitude,
+				AmplitudeMultiplier,
+			)
+
+			if (x + begin_x < lead.isoelectric.endX * canvasWidth) {
+				drawLine(
+					waves[wave] as curveFN,
+					begin_x,
+					end_y,
+					x,
+					AmplitudeMultiplier,
+					VerticalShift,
+					g,
+				)
+			} else {
+				break
+			}
+		}
+	}
+
 	return {
 		domain,
 		originalAmplitude,
@@ -113,5 +198,7 @@ export default function Util(
 		verticalShift,
 		drawLine,
 		drawIntervalLine,
+		drawComplex,
+		drawIndividualWave,
 	}
 }
