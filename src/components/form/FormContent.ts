@@ -1,4 +1,5 @@
 import { FormLeadProxy, formFeatureObject, leadStateObject } from 'interfaces'
+import InputEvenListener from './eventListeners/inputEventListener'
 
 export default function formPopulator(
 	formLeadProxy: FormLeadProxy,
@@ -36,45 +37,7 @@ export default function formPopulator(
 				input.setAttribute('min', String(el.min))
 				input.setAttribute('value', String(el.value))
 
-				input.addEventListener('change', (e: Event) => {
-					const leadStoreObject = leadStore.find((el) => {
-						return el.lead === formLeadProxy.leadKey
-					})
-
-					const formFeature = formStore
-						.get(formLeadProxy.leadKey)
-						.find((el) => {
-							return (
-								el.feature.concat(el.characteristic) ===
-								input.id
-							)
-						})
-
-					switch (formLeadProxy.leadKey) {
-						case 'global':
-							leadStore.forEach((leadStateObject) => {
-								for (const property in leadStateObject) {
-									if (property === input.id) {
-										;(leadStateObject[
-											property
-										] as number) += Number(input.value)
-										formFeature.value += Number(input.value)
-									}
-								}
-							})
-							break
-						default:
-							for (const property in leadStoreObject) {
-								if (property === input.id) {
-									leadStoreObject[property] = Number(
-										input.value,
-									)
-									formFeature.value = Number(input.value)
-								}
-							}
-							break
-					}
-				})
+				InputEvenListener(input, formLeadProxy, leadStore, formStore)
 
 				label.appendChild(input)
 				p.appendChild(label)

@@ -14,8 +14,6 @@ export default function ECGpaper(
 	const horizontalBB = horizontalMM * 5
 	const verticalBB = verticalMM * 5
 
-	const isoElectricArray = [0.375, 0.625, 0.875]
-
 	const SmallLines = function () {
 		let path = ''
 		for (let i = 5; i < NMBRHORIZSMLBXS - 5; i++) {

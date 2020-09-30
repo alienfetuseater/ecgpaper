@@ -30,45 +30,6 @@ declare module 'interfaces' {
 		complex: feature[]
 	}
 
-	export interface routeObject {
-		name: string
-		component: () => { init: void }
-	}
-
-	export interface routerObject {
-		init: void
-		loadRoute: (routeName: string) => void
-	}
-
-	export interface util {
-		domain: (width: number) => number[]
-		originalAmplitude: (rightBound: number, curve: curveFN) => number
-		amplitudeMultiplier: (
-			desiredAmplitude: number,
-			originalAmplitude: number,
-		) => number
-		verticalShift: (
-			originalAmplitude: number,
-			amplitudeMultiplier: number,
-		) => number
-		drawLine: (
-			curve: curveFN,
-			origin_x: number,
-			origin_y: number,
-			x: number,
-			amplitudeMultiplier: number,
-			verticalShift: number,
-			g: Element,
-		) => void
-		drawIntervalLine: (
-			origin_x: number,
-			origin_y: number,
-			length: number,
-			height: number,
-			g: Element,
-		) => void
-	}
-
 	export interface leadStateObject {
 		[index: string]:
 			| string
@@ -104,6 +65,16 @@ declare module 'interfaces' {
 		twavewidth: number
 	}
 
+	export interface routeObject {
+		name: string
+		component: () => { init: void }
+	}
+
+	export interface routerObject {
+		init: void
+		loadRoute: (routeName: string) => void
+	}
+
 	export interface formFeatureObject {
 		[index: string]: string | number
 		feature: string
@@ -117,5 +88,55 @@ declare module 'interfaces' {
 	export interface FormLeadProxy {
 		[index: string]: string
 		leadKey: string
+	}
+
+	export interface util {
+		domain: (width: number) => number[]
+		originalAmplitude: (rightBound: number, curve: curveFN) => number
+		amplitudeMultiplier: (
+			desiredAmplitude: number,
+			originalAmplitude: number,
+		) => number
+		verticalShift: (
+			originalAmplitude: number,
+			amplitudeMultiplier: number,
+		) => number
+		drawLine: (
+			curve: curveFN,
+			begin_x: number,
+			origin_y: number,
+			x: number,
+			amplitudeMultiplier: number,
+			verticalShift: number,
+			g: Element,
+		) => void
+		drawIntervalLine: (
+			begin_x: number,
+			origin_y: number,
+			length: number,
+			height: number,
+			g: Element,
+		) => void
+		drawComplex: (
+			waves: (curveFN | number)[],
+			begin_x: number,
+			lead: leadStateObject,
+			canvasWidth: number,
+			end_y: number,
+			g: Element,
+			waveWidth: number[],
+			waveHeight: number[],
+		) => number
+		drawIndividualWave: (
+			dom: number[],
+			waves: (curveFN | number)[],
+			wave: number,
+			desiredAmplitude: number,
+			begin_x: number,
+			lead: leadStateObject,
+			canvasWidth: number,
+			end_y: number,
+			g: Element,
+		) => void
 	}
 }

@@ -1,7 +1,7 @@
 import { leadStateObject, FormLeadProxy, formFeatureObject } from 'interfaces'
-import Form from './Form'
+import FormStructure from './FormStructure'
 
-export default function sideForm(
+export default function aside(
 	leadStore: leadStateObject[],
 	formStore: Map<string, formFeatureObject[]>,
 ): { init: void } {
@@ -25,7 +25,7 @@ export default function sideForm(
 
 	const formLeadProxy = new Proxy(target, handler)
 
-	const form = Form(leadStore, formStore, formLeadProxy)
+	const form = FormStructure(leadStore, formStore, formLeadProxy)
 
 	const aside = (form: HTMLFormElement) => {
 		const aside = document.createElement('aside')
