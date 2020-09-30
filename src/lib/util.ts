@@ -60,7 +60,7 @@ export default function Util(
 		amplitudeMultiplier: number,
 		verticalShift: number,
 		g: Element,
-	) {
+	): void {
 		const line = document.createElementNS(xmlns, 'line')
 
 		const x1: number = x + begin_x
@@ -88,7 +88,7 @@ export default function Util(
 		length: number,
 		height: number,
 		g: Element,
-	) {
+	): void {
 		const line = document.createElementNS(xmlns, 'line')
 
 		const x1 = begin_x
@@ -115,7 +115,7 @@ export default function Util(
 		g: Element,
 		waveWidth: number[],
 		waveHeight: number[],
-	) {
+	): number {
 		for (let wave = 0; wave < waves.length; wave++) {
 			const dom: number[] = domain(waveWidth[wave])
 			if (typeof waves[wave] !== 'number') {
@@ -158,7 +158,7 @@ export default function Util(
 		canvasWidth: number,
 		end_y: number,
 		g: Element,
-	) {
+	): void {
 		for (let x = dom[0]; x <= dom[1]; x += 0.1) {
 			const OriginalAmplitude = originalAmplitude(
 				dom[1],

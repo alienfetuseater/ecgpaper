@@ -42,6 +42,7 @@ export default function Processor(
 
 		const g = document.createElementNS(xmlns, 'g')
 		g.setAttributeNS(null, 'id', lead.lead)
+
 		while (begin_x < lead.isoelectric.endX * canvasWidth) {
 			begin_x = util.drawComplex(
 				waves,
