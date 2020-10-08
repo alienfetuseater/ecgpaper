@@ -10,24 +10,17 @@ main {
 	margin-top: 10vh;
 }
 
-section {
+form {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-aside {
-	position: absolute;
-	top: 10vh;
-	left: 5px;
-
-	form {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 nav {

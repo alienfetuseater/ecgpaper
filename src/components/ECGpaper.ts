@@ -1,6 +1,7 @@
 export default function ECGpaper(
 	_width: number,
 	_height: number,
+	svg: SVGElement,
 ): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
 	const width = _width
@@ -30,6 +31,7 @@ export default function ECGpaper(
 		}
 		return path
 	}
+
 	const BigLines = function () {
 		let path = ''
 		for (let i = 1; i <= NMBRHORIZLRGBXS - 1; i++) {
@@ -62,8 +64,8 @@ export default function ECGpaper(
 	}
 
 	const constructor = function () {
-		const main = document.querySelector('main')
-		const svg = document.createElementNS(xmlns, 'svg')
+		const section = document.querySelector('section')
+		// const svg = document.createElementNS(xmlns, 'svg')
 
 		// set up svg
 		svg.setAttributeNS(null, 'viewBox', '0 0 ' + width + ' ' + height)
@@ -105,12 +107,20 @@ export default function ECGpaper(
 		bigLines.setAttributeNS(null, 'stroke', 'orange')
 		bigLines.setAttributeNS(null, 'stroke-width', '1')
 
-		// add svg element to main element
-		main.appendChild(svg)
+		// add svg element to section element
 		svg.appendChild(border)
 		svg.appendChild(smallLines)
 		svg.appendChild(bigLines)
 		svg.appendChild(grids)
+
+		const article = document.createElement('article')
+		const header = document.createElement('header')
+		const p = document.createElement('p')
+		p.textContent = 'normal sinus rhythm'
+		header.appendChild(p)
+		article.appendChild(header)
+		article.appendChild(svg)
+		section.appendChild(article)
 	}
 
 	return {

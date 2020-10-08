@@ -1,11 +1,11 @@
 import { leadStateObject, FormLeadProxy, formFeatureObject } from 'interfaces'
 import FormStructure from './FormStructure'
 
-export default function aside(
+export default function article(
 	leadStore: leadStateObject[],
 	formStore: Map<string, formFeatureObject[]>,
 ): { init: void } {
-	const main = document.querySelector('main')
+	const section = document.querySelector('section')
 
 	const target = {
 		leadKey: 'lead1',
@@ -27,13 +27,18 @@ export default function aside(
 
 	const form = FormStructure(leadStore, formStore, formLeadProxy)
 
-	const aside = (form: HTMLFormElement) => {
-		const aside = document.createElement('aside')
-		aside.appendChild(form)
-		main.appendChild(aside)
+	const article = (form: HTMLFormElement) => {
+		const article = document.createElement('article')
+		const header = document.createElement('header')
+		const p = document.createElement('p')
+		p.textContent = 'low level manipulation form'
+		header.appendChild(p)
+		article.appendChild(header)
+		article.appendChild(form)
+		section.appendChild(article)
 	}
 
 	return {
-		init: aside(form.init),
+		init: article(form.init),
 	}
 }

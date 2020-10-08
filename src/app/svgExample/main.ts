@@ -16,9 +16,12 @@ export default function mainSVG(): { init: void } {
 	const verticalMM = canvasHeight / NMBRVERTSMLBXS
 
 	const constructor = function (): void {
-		ECGpaper(canvasWidth, canvasHeight)
-		const svg = document.querySelector('svg')
+		const main = document.querySelector('main')
+		const section = document.createElement('section')
+		main.appendChild(section)
+		const svg = document.createElementNS(xmlns, 'svg')
 
+		ECGpaper(canvasWidth, canvasHeight, svg)
 		const processor = Processor(
 			svg,
 			xmlns,
@@ -30,6 +33,7 @@ export default function mainSVG(): { init: void } {
 		const leadStore = EcgStore(leadData, processor).init
 		const formStore = FormStore(formData).init
 		Form(leadStore, formStore)
+		// ECGpaper(canvasWidth, canvasHeight, svg)
 	}
 
 	return {
