@@ -1,10 +1,10 @@
 import leadData from '@/store/ecgState/rhythms/nsr'
-import formData from '@/store/formState/formFeaturesState'
+import formData from '@/store/ecgFeaturesFormState/state'
 import ECGpaper from '@/components/ECGpaper'
 import Processor from './Processor'
 import Form from '@/components/ecgFeaturesForm/main'
 import EcgStore from '@/store/ecgState/main'
-import FormStore from '@/store/formState/main'
+import FormStore from '@/store/ecgFeaturesFormState/main'
 
 export default function mainSVG(): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
