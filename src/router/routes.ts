@@ -1,5 +1,5 @@
 import Home from '@/app/home/main'
-import Svg from '@/app/svgExample/main'
+import Svg from '@/app/nsrECG/main'
 
 export default [
 	{

@@ -65,7 +65,6 @@ export default function ECGpaper(
 
 	const constructor = function () {
 		const section = document.querySelector('section')
-		// const svg = document.createElementNS(xmlns, 'svg')
 
 		// set up svg
 		svg.setAttributeNS(null, 'viewBox', '0 0 ' + width + ' ' + height)
