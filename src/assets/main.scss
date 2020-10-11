@@ -23,6 +23,14 @@ section {
 	align-items: center;
 }
 
+section :nth-child(1) {
+	order: 2;
+}
+
+section :nth-child(2) {
+	order: 1;
+}
+
 nav {
 	position: fixed;
 	top: 0;
@@ -40,4 +48,9 @@ nav {
 		list-style: none;
 		cursor: pointer;
 	}
+}
+
+h4 {
+	margin: 0;
+	padding: 0;
 }
