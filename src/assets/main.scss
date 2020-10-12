@@ -23,12 +23,16 @@ section {
 	align-items: center;
 }
 
-section :nth-child(1) {
+section article:nth-child(1) {
 	order: 2;
 }
 
-section :nth-child(2) {
+section article:nth-child(2) {
 	order: 1;
+}
+
+section article:nth-child(3) {
+	order: 3;
 }
 
 nav {

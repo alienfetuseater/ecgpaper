@@ -139,4 +139,20 @@ declare module 'interfaces' {
 			g: Element,
 		) => void
 	}
+
+	export interface CFrangeInput {
+		[index: string]: string | number
+		inputType: string
+		min: number
+		max: number
+		value: number
+		step: number
+	}
+
+	export interface CFradioInput {
+		[index: string]: string
+		inputType: string
+		firstValue: string
+		secondValue: string
+	}
 }

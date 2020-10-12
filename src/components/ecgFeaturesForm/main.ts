@@ -31,7 +31,7 @@ export default function article(
 		const article = document.createElement('article')
 		const header = document.createElement('header')
 		const p = document.createElement('p')
-		p.textContent = 'low level manipulation form'
+		p.textContent = 'ecg features form'
 		header.appendChild(p)
 		article.appendChild(header)
 		article.appendChild(form)

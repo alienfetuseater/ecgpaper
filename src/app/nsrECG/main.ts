@@ -5,6 +5,9 @@ import Processor from './Processor'
 import Form from '@/components/ecgFeaturesForm/main'
 import EcgStore from '@/store/ecgState/main'
 import FormStore from '@/store/ecgFeaturesFormState/main'
+import ClinicalFeaturesForm from '@/components/clinicalMetricsForm/main'
+import ClinicalFeaturesStore from '@/store/clinicalMetricsForm/main'
+import ClinicalFeaturesData from '@/store/clinicalMetricsForm/state'
 
 export default function mainSVG(): { init: void } {
 	const xmlns = 'http://www.w3.org/2000/svg'
@@ -33,6 +36,11 @@ export default function mainSVG(): { init: void } {
 		const leadStore = EcgStore(leadData, processor).init
 		const formStore = FormStore(formData).init
 		Form(leadStore, formStore)
+
+		const clinicalFeaturesStore = ClinicalFeaturesStore(
+			ClinicalFeaturesData,
+		).init
+		ClinicalFeaturesForm(clinicalFeaturesStore)
 	}
 
 	return {
