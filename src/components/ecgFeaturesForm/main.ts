@@ -29,11 +29,6 @@ export default function article(
 
 	const article = (form: HTMLFormElement) => {
 		const article = document.createElement('article')
-		const header = document.createElement('header')
-		const p = document.createElement('p')
-		p.textContent = 'ecg features form'
-		header.appendChild(p)
-		article.appendChild(header)
 		article.appendChild(form)
 		section.appendChild(article)
 	}

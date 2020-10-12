@@ -12,11 +12,6 @@ export default function Form(
 	const Form = (): HTMLFormElement => {
 		const form = document.createElement('form')
 
-		const leadSelectLabel = document.createElement('label')
-		leadSelectLabel.setAttribute('for', 'lead-select')
-		leadSelectLabel.textContent = 'select lead you wish to edit'
-		form.appendChild(leadSelectLabel)
-
 		const leadSelect = Select(formStore, formLeadProxy)
 		form.appendChild(leadSelect)
 
