@@ -1,5 +1,5 @@
 import { CFradioInput, CFrangeInput } from 'interfaces'
-import InputEventListener from './eventListeners'
+import InputEventListener from './eventListeners/main'
 
 export default function formFontent(
 	formState: Map<string, CFradioInput | CFrangeInput>,
