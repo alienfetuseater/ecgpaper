@@ -12,14 +12,9 @@ export default function Form(
 	const Form = (): HTMLFormElement => {
 		const form = document.createElement('form')
 
-		const leadSelect = Select(formStore, formLeadProxy)
-		form.appendChild(leadSelect)
-
 		const fieldSet = document.createElement('fieldset')
-		const legend = document.createElement('legend')
-		legend.textContent = 'lead: undefined'
-
-		fieldSet.appendChild(legend)
+		const leadSelect = Select(formStore, formLeadProxy)
+		fieldSet.appendChild(leadSelect)
 
 		FormContent(formLeadProxy, leadStore, fieldSet, formStore)
 		form.appendChild(fieldSet)

@@ -1,3 +1,6 @@
+:root {
+	--ecgPaperHeight: 100vh * (13 / 16);
+}
 body {
 	margin: 0;
 	height: 100vh;
@@ -18,9 +21,23 @@ form {
 }
 
 section {
+	width: 100vw;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
+}
+
+article,
+article > form {
+	height: calc(var(--ecgPaperHeight));
+}
+
+fieldset {
+	height: 100%;
+}
+
+article > form {
+	justify-content: space-between;
 }
 
 section article:nth-child(1) {

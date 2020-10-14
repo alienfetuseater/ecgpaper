@@ -113,11 +113,6 @@ export default function ECGpaper(
 		svg.appendChild(grids)
 
 		const article = document.createElement('article')
-		const header = document.createElement('header')
-		const p = document.createElement('p')
-		p.textContent = 'normal sinus rhythm'
-		header.appendChild(p)
-		article.appendChild(header)
 		article.appendChild(svg)
 		section.appendChild(article)
 	}

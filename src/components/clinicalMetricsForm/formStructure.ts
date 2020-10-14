@@ -8,10 +8,6 @@ export default function formStructure(
 		const form = document.createElement('form')
 
 		const fieldSet = document.createElement('fieldset')
-		const legend = document.createElement('legend')
-		legend.textContent = 'clinical features form'
-
-		fieldSet.appendChild(legend)
 
 		FormContent(formState, fieldSet)
 		form.appendChild(fieldSet)
