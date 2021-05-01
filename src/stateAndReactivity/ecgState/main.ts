@@ -1,5 +1,5 @@
 import { leadObject, leadStateObject } from 'interfaces'
-import State from '@/store/ecgState/state'
+import State from '@/stateAndReactivity/ecgState/state'
 
 export default function Store(
 	leads: leadObject[],
