@@ -5,6 +5,7 @@ module.exports = {
 	entry: './src/index.ts',
 	output: {
 		chunkFilename: '[name].bundle.js',
+		hashFunction: 'sha512',
 	},
 	devServer: {
 		historyApiFallback: {
